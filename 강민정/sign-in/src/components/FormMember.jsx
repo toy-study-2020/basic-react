@@ -1,12 +1,16 @@
 import React from 'react';
 import Birth from './Birth';
+import Message from './Message';
 
-const FormMember = ({ type }) => {
-  const prefix = `member-`;
+const FormMember = ({ type, check, value}) => {
   return (
-      <div className={`${prefix}${type.CLASS}`}>
+      <div className={`memberForm member-${type.CLASS}`}>
         <strong>
           {type.TITLE}
+          <Message
+            type={type.CLASS}
+            value={value}
+          />
         </strong>
 
         <div className="inputMember">
@@ -14,24 +18,41 @@ const FormMember = ({ type }) => {
             <label>
               <input
                 type="text"
-                name={`${prefix}${type.CLASS}`}
+                name={`${type.CLASS}`}
                 autoComplete="off"
+                onChange={check}
+                autoFocus
               />
             </label>
           }
 
           {type.CLASS === 'birth' &&
-            <Birth />
+            <>
+            <Birth
+              type={type}
+              check={check}/>
+            </>
           }
 
           {type.CLASS === 'gender' &&
             <>
               <label aria-label="남성">
-                <input type="radio" name={`${prefix}${type.CLASS}`} />
+                <input
+                  type="radio"
+                  name={`${type.CLASS}`}
+                  value="남성"
+                  onChange={check}
+                  checked={type.DEFAULT === '남성'}
+                />
                 <span>남성</span>
               </label>
               <label aria-label="여성">
-                <input type="radio" name={`${prefix}${type.CLASS}`} />
+                <input
+                  type="radio"
+                  name={`${type.CLASS}`}
+                  value="여성"
+                  onChange={check}
+                />
                 <span>여성</span>
               </label>
             </>
@@ -41,7 +62,8 @@ const FormMember = ({ type }) => {
             <label>
               <input
                 type="email"
-                name={`${prefix}${type.CLASS}`}
+                name={`${type.CLASS}`}
+                onChange={check}
                 autoComplete="off"
               />
             </label>
