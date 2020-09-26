@@ -46,7 +46,7 @@ const App = () => {
       ...member,
       value: {
         ...member.value,
-        [`${target.name}`]: value,
+        [target.name]: value,
       }
     });
   };
