@@ -18,7 +18,7 @@ const FormMember = ({ type, check, value}) => {
             <label>
               <input
                 type="text"
-                name={`${type.CLASS}`}
+                name={type.CLASS}
                 autoComplete="off"
                 onChange={check}
                 autoFocus
@@ -62,7 +62,7 @@ const FormMember = ({ type, check, value}) => {
             <label>
               <input
                 type="email"
-                name={`${type.CLASS}`}
+                name={type.CLASS}
                 onChange={check}
                 autoComplete="off"
               />
