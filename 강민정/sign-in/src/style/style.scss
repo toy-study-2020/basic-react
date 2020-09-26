@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.formMember {
+    width: 300px;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.memberForm {
+    display: block;
+
+    & + .memberForm {
+        margin-top: 20px;
+    }
+
+    strong {
+        display: block;
+        margin-bottom: 10px;
+
+        .alert {
+            padding-left: 10px;
+            font-size: 12px;
+            color: #565656;
+            font-weight: normal;
+        }
+    }
+
+    input {
+        &[type="text"],
+        &[type="email"] {
+            width: 100%;
+            height: 30px;
+            box-sizing: border-box;
+            padding: 0 3px;
+        }
+
+        &[type="radio"] {
+            margin-right: 5px;
+        }
+    }
+}
+
+.member-birth {
+    .inputMember {
+        display: flex;
+    }
+
+    label {
+        display: block;
+        flex: 1;
+        justify-content: space-between;
+
+        & + label {
+            margin-left: 10px;
+        }
+    }
+
+    select {
+        width: 100%;
+        height: 30px;
+    }
+}
+
+.member-gender {
+    label {
+        & + label {
+            margin-left: 20px;
+        }
+    }
+}
+
+.buttonSubmit {
+    width: 100%;
+    height: 30px;
+    margin-top: 30px;
+    background-color: #00b0ff;
+    color: #fff;
+    border: none;
+}
