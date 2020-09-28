@@ -18,7 +18,7 @@ const FormMember = ({ type, check, value}) => {
             <label>
               <input
                 type="text"
-                name={`${type.CLASS}`}
+                name={type.CLASS}
                 autoComplete="off"
                 onChange={check}
                 autoFocus
@@ -36,25 +36,14 @@ const FormMember = ({ type, check, value}) => {
 
           {type.CLASS === 'gender' &&
             <>
-              <label aria-label="남성">
-                <input
-                  type="radio"
-                  name={`${type.CLASS}`}
-                  value="남성"
-                  onChange={check}
-                  checked={type.DEFAULT === '남성'}
-                />
-                <span>남성</span>
-              </label>
-              <label aria-label="여성">
-                <input
-                  type="radio"
-                  name={`${type.CLASS}`}
-                  value="여성"
-                  onChange={check}
-                />
-                <span>여성</span>
-              </label>
+              <select
+                name={type.CLASS}
+                onChange={check}
+              >
+                <option value={type.DEFAULT}>선택</option>
+                <option value="male">남성</option>
+                <option value="female">여성</option>
+              </select>
             </>
           }
 
@@ -62,7 +51,7 @@ const FormMember = ({ type, check, value}) => {
             <label>
               <input
                 type="email"
-                name={`${type.CLASS}`}
+                name={type.CLASS}
                 onChange={check}
                 autoComplete="off"
               />

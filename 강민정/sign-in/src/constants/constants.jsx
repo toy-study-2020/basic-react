@@ -12,7 +12,7 @@ export const TEXT_DATA = {
   GENDER: {
     TITLE: '성별',
     CLASS: 'gender',
-    DEFAULT: '남성'
+    DEFAULT: ''
   },
   MAIL: {
     TITLE: '이메일',

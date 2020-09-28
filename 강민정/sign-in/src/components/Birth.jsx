@@ -23,7 +23,7 @@ const Birth = ({ type, check })  => {
     <>
       <label className="year" aria-label="출생 연도 선택">
         <select name="year" onChange={check}>
-          <option value={`${type.DEFAULT}`}>선택</option>
+          <option value={type.DEFAULT}>선택</option>
           {listYear && listYear.map((y) =>
             <option
               key={y}
@@ -35,7 +35,7 @@ const Birth = ({ type, check })  => {
       </label>
       <label className="month" aria-label="출생 달 선택">
         <select name="month" onChange={check}>
-          <option value={`${type.DEFAULT}`}>선택</option>
+          <option value={type.DEFAULT}>선택</option>
           {listMonth && listMonth.map((m) =>
             <option
               key={m}
@@ -47,7 +47,7 @@ const Birth = ({ type, check })  => {
       </label>
       <label className="day" aria-label="태어난 날짜 선택">
         <select name="day" onChange={check}>
-          <option value={`${type.DEFAULT}`}>선택</option>
+          <option value={type.DEFAULT}>선택</option>
           {listDay && listDay.map((d) =>
             <option
               key={d}

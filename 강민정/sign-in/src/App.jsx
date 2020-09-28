@@ -28,8 +28,8 @@ const App = () => {
     e.preventDefault();
     const memberValue = member.value;
     if (!member.value.name) return alert(`${TEXT.NAME.TITLE}을 입력하세요`);
-    if (!member.value.year || !member.value.month || !member.value.day) return alert(`${TEXT.BIRTH.TITLE}을 입력하세요`);
-    if (member.value.gender === 'default') return alert(`${TEXT.GENDER.TITLE}을 선택세요`);
+    if (member.value.year === 'default' || member.value.month === 'default' || member.value.day === 'default') return alert(`${TEXT.BIRTH.TITLE}을 입력하세요`);
+    if (!member.value.gender) return alert(`${TEXT.GENDER.TITLE}을 입력하세요`);
 
     setMember({
       value: MEMBER_RESET,
@@ -46,7 +46,7 @@ const App = () => {
       ...member,
       value: {
         ...member.value,
-        [`${target.name}`]: value,
+        [target.name]: value,
       }
     });
   };
