@@ -10,7 +10,7 @@ const UserInfoSelect = ({obj, value, handleUser}) => {
             value={value}
             onChange={handleUser}
         >
-        <option value={""}>선택</option>
+        <option value={""} defaultValue>선택</option>
         {opts()}
         </select>
     );
