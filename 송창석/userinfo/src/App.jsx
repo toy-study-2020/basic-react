@@ -1,10 +1,10 @@
 import React from 'react';
-import UserInfoComponent from './components/UserInfoComponent';
+import UserInfoForm from './components/UserInfoForm.jsx'
 
 function App() {
   return (
     <div className="App">
-      <UserInfoComponent/>
+      <UserInfoForm/>
     </div>
   );
 }
