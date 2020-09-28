@@ -4,16 +4,15 @@ const UserInfoSelect = ({obj, value, handleUser}) => {
     const {name, opts} = obj;
     
     return (
-        <dd>
-            <select
-                id={name}
-                name={name}
-                value={value}
-                onChange={handleUser}
-            >
-            {opts()}
-            </select>
-        </dd>
+        <select
+            id={name}
+            name={name}
+            value={value}
+            onChange={handleUser}
+        >
+        <option value={""}>선택</option>
+        {opts()}
+        </select>
     );
 };
 

@@ -30,7 +30,7 @@ const SELECT_OBJ = {
         label: "성별",
         name: "gender",
         opts: () => {
-            return ["남","여"].map(it => <option key={it}>{it}</option>)
+            return ["남","여"].map(it => <option key={it} value={it}>{it}</option>)
         }
     },
     birth: {
