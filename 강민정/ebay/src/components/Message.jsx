@@ -1,5 +1,5 @@
 import React from 'react';
-import {MSG} from '../constants/constants';
+import {JOIN_MSG} from '../constants/constants';
 
 const Message = ({ type, value })  => {
   const clear = value !== '' && value.indexOf('default') < 0;
@@ -7,7 +7,7 @@ const Message = ({ type, value })  => {
     <>
         {(type !== 'mail') &&
           <span className={clear ? 'clear' : 'alert'}>
-            {clear ? MSG.CLEAR : MSG.DEFAULT}
+            {clear ? JOIN_MSG.CLEAR : JOIN_MSG.DEFAULT}
           </span>
         }
     </>
