@@ -12,7 +12,7 @@ const Header = () => {
                 role="combobox"
                 aria-expanded="false"
                 placeholder="한글, 영어, 상품번호로 검색하세요."
-                autocomplete="off"
+                autoComplete="off"
                 aria-autocomplete="both"
                 aria-owns="recommend-keyword__lists"
                 aria-activedescendant=""/>
@@ -25,7 +25,7 @@ const Header = () => {
                 </div>
                 </form>
             </div>
-            </div>
+        </div>
     );
 };
 
