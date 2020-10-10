@@ -9,7 +9,7 @@ const UserInfoForm = () => {
     const [user, setUser] = useState({
         name: "",
         email: "",
-        gender: "남",
+        gender: "",
         year: "",
         month: "",
         day: ""
@@ -29,6 +29,7 @@ const UserInfoForm = () => {
 
         const infoArr = [];
         if(user.name === "") infoArr.push("이름")
+        if(user.gender === "") infoArr.push("성별")
         if(user.year === "" || user.month === "" || user.day === "") infoArr.push("생년월일")
         if(infoArr.length > 0) alert(`${infoArr.map(it => it)}을 확인해주세요.`)
         else console.log(user)

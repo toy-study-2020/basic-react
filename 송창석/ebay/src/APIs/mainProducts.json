@@ -1,0 +1,61 @@
+{
+  "mainProducts": {
+    "title": "찬스상품",
+    "items": [
+      {
+        "id": 1,
+        "name": "20%중복★닥스/헤지스 여성 ACC 이월 특가",
+        "originalPrice": "87.65",
+        "salePrice": "84.65",
+        "imgSrc": "http://image.gmarket.co.kr/service_image/2020/08/13/20200813092431943726_0_0.jpg",
+        "alt": "20%중복★닥스/헤지스 여성 ACC 이월 특가",
+        "badge": ["찬스특가", "20% 중복쿠폰"]
+      },
+      {
+        "id": 2,
+        "name": "머거본 2+1 꾸이한통2통+빼빼한통1통",
+        "originalPrice": "14.90",
+        "salePrice": "13.90",
+        "imgSrc": "http://image.gmarket.co.kr/service_image/2020/08/12/20200812172934687016_0_0.jpg",
+        "alt": "머거본 2+1 꾸이한통2통+빼빼한통1통",
+        "badge": ["15% 중복쿠폰"]
+      },
+      {
+        "id": 3,
+        "name": "[20%중복]아디다스 코트밴티지 외 최대60%할인",
+        "originalPrice": "59.50",
+        "salePrice": "37.53",
+        "imgSrc": "http://image.gmarket.co.kr/service_image/2020/08/12/20200812181402777566_0_0.jpg",
+        "alt": "[20%중복]아디다스 코트밴티지 외 최대60%할인",
+        "badge": ["찬스특가", "20% 중복쿠폰"]
+      },
+      {
+        "id": 4,
+        "name": "보나본 액체세제 3.05L 4개",
+        "originalPrice": "21.90",
+        "salePrice": "21.90",
+        "imgSrc": "http://image.gmarket.co.kr/service_image/2020/08/13/20200813095739656989_0_0.jpg",
+        "alt": "보나본 액체세제 3.05L 4개",
+        "badge": []
+      },
+      {
+        "id": 5,
+        "name": "에버라스트 발목양말 7족 세트",
+        "originalPrice": "9.90",
+        "salePrice": "9.90",
+        "imgSrc": "http://image.gmarket.co.kr/service_image/2020/08/13/20200813142517241455_0_0.jpg",
+        "alt": "에버라스트 발목양말 7족 세트",
+        "badge": []
+      },
+      {
+        "id": 6,
+        "name": "밀크바오밥 헤어&바디 2개 +증정",
+        "originalPrice": "23.00",
+        "salePrice": "23.00",
+        "imgSrc": "http://image.gmarket.co.kr/service_image/2020/08/12/20200812151219548697_0_0.jpg",
+        "alt": "밀크바오밥 헤어&바디 2개 +증정",
+        "badge": ["사은품 증정"]
+      }
+    ]
+  }
+}

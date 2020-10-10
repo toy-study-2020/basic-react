@@ -1,7 +1,6 @@
 import React from 'react';
 
-const UserInfoInput = ({obj, value, handleUser}) => {
-    const {name, type} = obj;
+const FormInput = ({name, type, value, handleUserValue}) => {
     
     return (
         <input
@@ -9,9 +8,9 @@ const UserInfoInput = ({obj, value, handleUser}) => {
             name={name}
             type={type}
             value={value}
-            onChange={handleUser}
+            onChange={handleUserValue}
         />
     );
 };
 
-export default UserInfoInput;
+export default FormInput;
