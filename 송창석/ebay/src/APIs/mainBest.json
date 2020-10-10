@@ -1,0 +1,46 @@
+{
+  "mainBest": {
+    "title": "베스트 핫딜",
+    "items": [
+      {
+        "id": 1,
+        "name": "[보스 QuietComfort 25 노이즈 캔슬링]",
+        "description": "Bose QuietComfort 25 Noise Cancelling Headphones - Factory Renewed",
+        "originalPrice": "279.95",
+        "salePrice": "99.95",
+        "imgSrc": "http://static.itrcomm.com/img/main/hotdeal/bestbanner/1351008612_1597390276.jpg",
+        "alt": "[보스 QuietComfort 25 노이즈 캔슬링]",
+        "labels": {
+          "typeDiscountRate": "64%",
+          "typeDiscountFee": "수수료 50% 할인"
+        }
+      },
+      {
+        "id": 2,
+        "name": "[레이몬드 웨일 2827-STC-00659 오토매틱]",
+        "description": "Raymond Weil 2827-STC-00659 Men's Maestro Silver Automatic Watch",
+        "originalPrice": "547.00",
+        "salePrice": "547.00",
+        "imgSrc": "http://static.itrcomm.com/img/main/hotdeal/bestbanner/1315948671_1597392038.jpg",
+        "alt": "[레이몬드 웨일 2827-STC-00659 오토매틱]",
+        "labels": {
+          "typeDiscountRate": "68%",
+          "typeDiscountFee": "수수료 50% 할인"
+        }
+      },
+      {
+        "id": 3,
+        "name": "[오메가 XL 60캡슐]",
+        "description": "Omega XL 60ct by Great HealthWorks: Small, Potent, Joint Pain Relief - Omega-3",
+        "originalPrice": "72.00",
+        "salePrice": "37.00",
+        "imgSrc": "http://static.itrcomm.com/img/main/hotdeal/bestbanner/333523923_1597126324.jpg",
+        "alt": "[오메가 XL 60캡슐]",
+        "labels": {
+          "typeDiscountRate": "49",
+          "typeDiscountFee": "수수료 50% 할인"
+        }
+      }
+    ]
+  }
+}
