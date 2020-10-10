@@ -1,0 +1,49 @@
+{
+  "mainEvent": {
+    "title": "기획전&이벤트",
+    "items": [
+      {
+        "id": 1,
+        "name": "묶음배송용 상품 모음",
+        "description": "미국창고경유, 운송비 최대 50% 할인!",
+        "imgSrc": "http://static.itrcomm.com/img/main/promotion/981466144_1562906388.jpg",
+        "alt": "묶음배송용 상품 모음"
+      },
+      {
+        "id": 2,
+        "name": "이베이인증 중고명품",
+        "description": "인증된 리셀러 상품 최대 80% 저렴",
+        "imgSrc": "http://static.itrcomm.com/img/main/promotion/1895732949_1561978129.jpg",
+        "alt": "이베이인증 중고명품"
+      },
+      {
+        "id": 3,
+        "name": "한국 공식 이베이 수입차부품",
+        "description": "국내대비 최대 90% 부품값 절감",
+        "imgSrc": "http://static.itrcomm.com/img/main/promotion/570335821_1561978139.jpg",
+        "alt": "한국 공식 이베이 수입차부품"
+      },
+      {
+        "id": 4,
+        "name": "단 4일간의 eBay Day",
+        "description": "신규가입회원 6%할인 & 컴백회원7%할인",
+        "imgSrc": "http://static.itrcomm.com/img/main/promotion/1818568242_1597370145.jpg",
+        "alt": "단 4일간의 eBay Day"
+      },
+      {
+        "id": 5,
+        "name": "삼성 65인치 4K Smart LED TV",
+        "description": "2020 삼성TV 스페셜 이벤트",
+        "imgSrc": "http://static.itrcomm.com/img/main/promotion/1569098499_1596618019.jpg",
+        "alt": "삼성 65인치 4K Smart LED TV"
+      },
+      {
+        "id": 6,
+        "name": "스텀프타운 커피 로스터스",
+        "description": "스텀프타운 11종 원두커피",
+        "imgSrc": "http://static.itrcomm.com/img/main/promotion/1173499709_1596415722.jpg",
+        "alt": "스텀프타운 커피 로스터스"
+      }
+    ]
+  }
+}

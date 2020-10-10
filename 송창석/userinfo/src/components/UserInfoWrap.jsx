@@ -4,10 +4,10 @@ const UserInfoWrap = ({obj, components}) => {
     const {label} = obj;
 
     return (
-        <dl>
-            <dt>{label}</dt>
-            {components}
-        </dl>
+        <div className={"input_userinfo"}>
+            <label>{label}</label>
+            <div>{components}</div>
+        </div>
     );
 };
 
