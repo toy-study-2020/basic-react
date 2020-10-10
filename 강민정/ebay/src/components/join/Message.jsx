@@ -1,5 +1,5 @@
 import React from 'react';
-import {JOIN_MSG} from '../constants/constants';
+import {JOIN_MSG} from '../../constants/constants';
 
 const Message = ({ type, value })  => {
   const clear = value !== '' && value.indexOf('default') < 0;

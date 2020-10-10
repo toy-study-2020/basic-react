@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {JOIN_DEFAULT} from './constants/constants';
-import FormMember from './components/FormMember';
-import './style/style.scss';
+import {JOIN_DEFAULT} from '../constants/constants';
+import FormMember from './join/FormMember';
+import '../style/join.scss';
 
 const Join = () => {
   const {NAME, BIRTH, GENDER, MAIL} = JOIN_DEFAULT;
@@ -20,7 +20,6 @@ const Join = () => {
   });
 
   useEffect (() => {
-    console.log(member.list);
     localStorage.setItem('member', JSON.stringify(member.list));
   }, [member.list]);
 
@@ -28,7 +27,7 @@ const Join = () => {
     e.preventDefault();
     const memberValue = member.value;
     if (!member.value.name) return alert(`${NAME.TITLE}을 입력하세요`);
-    if (member.value.year === 'default' || member.value.month === 'default' || member.value.day === 'default') return alert(`${TEXT.BIRTH.TITLE}을 입력하세요`);
+    if (member.value.year === 'default' || member.value.month === 'default' || member.value.day === 'default') return alert(`${BIRTH.TITLE}을 입력하세요`);
     if (!member.value.gender) return alert(`${GENDER.TITLE}을 입력하세요`);
 
     setMember({

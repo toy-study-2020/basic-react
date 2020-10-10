@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import LoadData from "../../action/LoadData";
 
 const Category = ({PATH}) => {
@@ -26,9 +27,9 @@ const Category = ({PATH}) => {
           <ul className="category-best">
             {mainMenu && mainMenu.map((item, index) =>
               <li className="category-list" key={index}>
-                <a href="#">
+                <Link to={`/detailCategory?=${index}`}>
                   <strong>{item.name}</strong>
-                </a>
+                </Link>
               </li>
             )}
           </ul>
