@@ -1,27 +1,11 @@
 import React from 'react';
 
-const CLASS_NAME = {
-    MAIN_BEST: {
-        CONT: "cont",
-        DISCOUNT: "discount",
-        RATE: "rate",
-        FEE: "fee",
-        IMG: "img",
-        DESC: "desc",
-        PRICE: "price",
-        NOW: "now",
-        ORIGIN: "origin"
-    },
-    MAIN_EVENT: {
-        IMG: "img",
-        DESC: "desc"
-    },
-    MAIN_CHANCE: {
-        CONT: "cont",
-        IMG: "img",
-        DESC: "desc",
-        BADGE: "badge"
-    }
+const MAIN_APIS = {
+    MENU: "menu",
+    STORE: "mainStore",
+    BEST: "mainBest",
+    EVENT: "mainEvent",
+    CHANCE: "mainProducts"
 }
 
 const generateBirthOptions = (start, end, dir) => {
@@ -100,7 +84,7 @@ const JOIN_OPTS = {
 }
 
 export {
-    CLASS_NAME,
+    MAIN_APIS,
     LOGIN_OPTS,
     JOIN_OPTS
 }

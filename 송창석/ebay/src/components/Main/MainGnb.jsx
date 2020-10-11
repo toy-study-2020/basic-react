@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { MainGnbStyles } from './MainContStyles';
-import { ListColStyles } from '../../GlobalStyles'
+import { fetchJson } from '../../fetch';
+import { MainGnbStyles } from '../../styled/Main/MainGnbStyles';
+import { ListColStyles } from '../../styled/GlobalStyles';
 
-const MainGnb = ({ IntervalSection, fetchItem }) => {
+
+const MainGnb = ({ IntervalSection, getURL }) => {
     const [mainMenu, setMainMenu] = useState([]);
     const [mainSide, setMainSide] = useState([]);
-    
+        
     useEffect(() => {
-        fetchItem.then(data => {
+        const res = fetchJson(getURL)
+        res.then(data => {
             setMainMenu(data.mainMenu)
             setMainSide(data.sideMenu)
         })
-    });
+    },[getURL]);
     
     return (
         <MainGnbStyles>

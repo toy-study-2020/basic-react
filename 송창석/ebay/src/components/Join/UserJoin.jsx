@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { IntervalSection } from '../../GlobalStyles';
+import { IntervalSection } from '../../styled/GlobalStyles';
 import { JOIN_OPTS } from '../../constant/constant';
-import { FormWrapStyles, FormTitleStyles, FormSubmitButtonStyles } from '../Form/FormStyles'
+import { FormWrapStyles, FormTitleStyles, FormSubmitButtonStyles } from '../../styled/Form/FormStyles'
 import FormBox from '../Form/FormBox';
 import FormInput from '../Form/FormInput';
 import FormSelect from '../Form/FormSelect';

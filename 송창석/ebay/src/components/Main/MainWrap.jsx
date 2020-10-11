@@ -1,7 +1,7 @@
 import React from 'react';
-import { fetchJson } from '../../fetch'
-import { IntervalSection } from '../../GlobalStyles';
-import { MainWrapStyles, MainContTitle } from './MainContStyles';
+import { MAIN_APIS } from '../../constant/constant';
+import { IntervalSection } from '../../styled/GlobalStyles';
+import { MainWrapStyles, MainContTitle } from '../../styled/Main/MainContStyles';
 import MainGnb from './MainGnb';
 import MainStore from './MainStore';
 import MainBest from './MainBest';
@@ -9,32 +9,33 @@ import MainEvent from './MainEvent';
 import MainChance from './MainChance';
 
 const MainWrap = () => {
+    const {MENU, STORE, BEST, EVENT, CHANCE} = MAIN_APIS;
     
     return (
         <MainWrapStyles>
             <MainGnb
                 IntervalSection={IntervalSection}
-                fetchItem={fetchJson("menu")}
+                getURL={MENU}
             />
             <MainStore
                 IntervalSection={IntervalSection}
                 MainContTitle={MainContTitle}
-                fetchItem={fetchJson("mainStore")}
+                getURL={STORE}
             />
             <MainBest
                 IntervalSection={IntervalSection}
                 MainContTitle={MainContTitle}
-                fetchItem={fetchJson("mainBest")}
+                getURL={BEST}
             />
             <MainEvent
                 IntervalSection={IntervalSection}
                 MainContTitle={MainContTitle}
-                fetchItem={fetchJson("mainEvent")}
+                getURL={EVENT}
             />
             <MainChance
                 IntervalSection={IntervalSection}
                 MainContTitle={MainContTitle}
-                fetchItem={fetchJson("mainProducts")}
+                getURL={CHANCE}
             />
         </MainWrapStyles>
     );

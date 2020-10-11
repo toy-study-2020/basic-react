@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { MainStoreStyles } from './MainContStyles';
-import { ListColStyles } from '../../GlobalStyles';
+import { fetchJson } from '../../fetch';
+import { ListColStyles } from '../../styled/GlobalStyles';
+import { MainStoreStyles } from '../../styled/Main/MainStoreStyles';
 
-const MainStore = ({ IntervalSection, MainContTitle, fetchItem }) => {
+const MainStore = ({ IntervalSection, MainContTitle, getURL }) => {
     const [title, setTitle] = useState("");
     const [store, setStore] = useState([]);
 
     useEffect(() => {
-        fetchItem.then(data => {
+        const res = fetchJson(getURL)
+        res.then(data => {
             setTitle(data.mainStore.title)
             setStore(data.mainStore.items)
         })
-    })
+    },[getURL]);
 
     return (
         <MainStoreStyles>

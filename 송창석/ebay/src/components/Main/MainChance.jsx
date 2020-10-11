@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { CLASS_NAME } from '../../constant/constant';
-import { ListColStyles } from '../../GlobalStyles';
-import { MainChanceStyles, MainListItemStyles } from './MainContStyles';
+import { fetchJson } from '../../fetch';
+import { ListColStyles } from '../../styled/GlobalStyles';
+import { ChanceBadgeStyles, ChanceDescItemStyles, MainChanceStyles } from '../../styled/Main/MainChanceStyles';
+import { MainImgStyles, MainItemDescStyles, MainListItemStyles } from '../../styled/Main/MainContStyles';
 
-const MainChance = ({ IntervalSection, MainContTitle, fetchItem }) => {
+const MainChance = ({ IntervalSection, MainContTitle, getURL }) => {
     const [title, setTitle] = useState("");
     const [chance, setChance] = useState([]);
-    const {MAIN_CHANCE} = CLASS_NAME;
-    const {CONT, IMG, DESC, BADGE} = MAIN_CHANCE;
 
     useEffect(() => {
-        fetchItem.then(data => {
+        const res = fetchJson(getURL)
+        res.then(data => {
             setTitle(data.mainProducts.title)
             setChance(data.mainProducts.items)
         })
-    })
+    },[getURL]);
 
     return (
         <MainChanceStyles>
@@ -24,22 +24,23 @@ const MainChance = ({ IntervalSection, MainContTitle, fetchItem }) => {
                     {chance.map((item) => {
                         return(
                             <MainListItemStyles key={item.id}>
-                                <a href={"#n"} className={CONT}>
-                                    <div className={IMG}><img src={item.imgSrc} alt={item.alt} /></div>
-                                    <div className={DESC}>
-                                        <dl>
+                                <a href={"#n"}>
+                                    <MainImgStyles><img src={item.imgSrc} alt={item.alt} /></MainImgStyles>
+                                    <MainItemDescStyles>
+                                        <ChanceDescItemStyles>
                                             <dt>
                                                 {
-                                                    item.originalPrice === item.salePrice ? <strong>{item.salePrice}</strong> : <strong>{item.salePrice}<small>{item.originalPrice}</small></strong>
+                                                    item.originalPrice === item.salePrice ?
+                                                    <strong>{item.salePrice}</strong> :
+                                                    <strong>{item.salePrice}<small>{item.originalPrice}</small></strong>
                                                 }
                                             </dt>
                                             <dd>{item.name}</dd>
-                                            <dd className={BADGE}>
+                                            <ChanceBadgeStyles>
                                                 {item.badge.map((it, index) => <em key={index}>{it}</em>)}
-                                            </dd>
-                                        </dl>
-                                        
-                                    </div>
+                                            </ChanceBadgeStyles>
+                                        </ChanceDescItemStyles>
+                                    </MainItemDescStyles>
                                 </a>
                             </MainListItemStyles>
                         )
