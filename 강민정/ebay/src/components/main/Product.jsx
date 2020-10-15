@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 import LoadData from "../../action/LoadData";
 import errorImage from '../../images/error.jpg';
 
@@ -19,7 +20,7 @@ const Product = ({PATH}) => {
 
   useEffect(() => {
     renderProduct();
-  }, []);
+  });
 
   return (
     <>
@@ -29,7 +30,7 @@ const Product = ({PATH}) => {
           {
             items && items.map((item, index) =>
               <li key={index}>
-                <a href="#">
+                <Link to={"/"}>
                   <span className="imgWrap">
                     <img
                       src={item.imgSrc}
@@ -58,7 +59,7 @@ const Product = ({PATH}) => {
                       {item.salePrice}<em>$</em>
                     </span>
                   </span>
-                </a>
+                </Link>
               </li>
             )
           }

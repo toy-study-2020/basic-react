@@ -18,7 +18,7 @@ const Category = ({PATH}) => {
 
   useEffect(() => {
     renderCategory();
-  }, []);
+  });
 
   return (
     <>
@@ -27,7 +27,7 @@ const Category = ({PATH}) => {
           <ul className="category-best">
             {mainMenu && mainMenu.map((item, index) =>
               <li className="category-list" key={index}>
-                <Link to={`/detailCategory?=${index}`}>
+                <Link to={`/detailCategory/${index}`}>
                   <strong>{item.name}</strong>
                 </Link>
               </li>
@@ -38,9 +38,9 @@ const Category = ({PATH}) => {
           <ul className="category-sub">
             {sideMenu && sideMenu.map((item, index) =>
               <li className="category-list" key={index}>
-                <a href="#">
+                <Link to={`/detailCategory/${index}`}>
                   <strong>{item.name}</strong>
-                </a>
+                </Link>
               </li>
             )}
           </ul>
