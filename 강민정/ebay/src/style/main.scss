@@ -1,0 +1,54 @@
+$maxWidth: 1000px;
+$borderColor: #f0eeec;
+$borderDarker: #ddd;
+$borderDarker: #ccc;
+$borderPoint: #777;
+$point: #0064d2;
+$point2: #00afd1;
+$hover: #eee;
+$fontDefault: 14px;
+$fontStrong: 18px;
+$fontTitle: 20px;
+$normalWeight: normal;
+$boldWeight: bold;
+@import './components/_mixin';
+
+body {
+    margin: 0;
+    padding: 0;
+    min-width: $maxWidth;
+
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-decoration: none;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.loadingWrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .1);
+
+    &:after {
+        @include loading;
+    }
+
+    &.hidden {
+        display: none;
+    }
+}
+
+@import './components/header';
+@import './components/search';
+@import './components/_category';
+@import './components/_product';
