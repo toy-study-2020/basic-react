@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { CLASS_NAME } from '../../constant/constant';
-import { ListColStyles } from '../../GlobalStyles';
-import { MainBestStyles, MainListItemStyles } from './MainContStyles';
+import { fetchJson } from '../../fetch';
+import { ListColStyles } from '../../styled/GlobalStyles';
+import { MainItemDescStyles, MainListItemStyles } from '../../styled/Main/MainContStyles';
+import { 
+    BestDiscountStyles,
+    MainBestStyles,
+    DiscountRateStyles,
+    DiscountFeeStyles,
+    BestImgStyles,
+    BestPriceStyles,
+    PriceNowStyles,
+    PriceOriginStyles
+} from '../../styled/Main/MainBestStyles';
 
-const MainBest = ({ IntervalSection, MainContTitle, fetchItem }) => {
+const MainBest = ({ IntervalSection, MainContTitle, getURL }) => {
     const [title, setTitle] = useState("");
     const [best, setBest] = useState([]);
-    const {MAIN_BEST} = CLASS_NAME;
-    const {CONT, DISCOUNT, RATE, FEE, IMG, DESC, PRICE, NOW, ORIGIN} = MAIN_BEST
 
     useEffect(() => {
-        fetchItem.then(data => {
+        const res = fetchJson(getURL)
+        res.then(data => {
             setTitle(data.mainBest.title)
             setBest(data.mainBest.items)
         })
-    })
+    },[getURL]);
 
     return (
         <MainBestStyles>
@@ -24,28 +33,28 @@ const MainBest = ({ IntervalSection, MainContTitle, fetchItem }) => {
                     {best.map((item => {
                         return(
                             <MainListItemStyles key={item.id}>
-                                <a href={"#n"} className={CONT}>
-                                    <label className={DISCOUNT}>
-                                        <div className={RATE}>{item.labels.typeDiscountRate}</div>
-                                        <div className={FEE}>{item.labels.typeDiscountFee}</div>
-                                    </label>
-                                    <div className={IMG}><img src={item.imgSrc} alt={item.alt} /></div>
-                                    <div className={DESC}>
+                                <a href={"#n"}>
+                                    <BestDiscountStyles>
+                                        <DiscountRateStyles>{item.labels.typeDiscountRate}</DiscountRateStyles>
+                                        <DiscountFeeStyles>{item.labels.typeDiscountFee}</DiscountFeeStyles>
+                                    </BestDiscountStyles>
+                                    <BestImgStyles><img src={item.imgSrc} alt={item.alt} /></BestImgStyles>
+                                    <MainItemDescStyles>
                                         <dl>
                                             <dt>{item.name}</dt>
                                             <dd>{item.description}</dd>
                                         </dl>
                                         {
                                             item.originalPrice === item.salePrice ? 
-                                            <div className={PRICE}>
-                                                <strong className={NOW}>{item.salePrice}</strong>
-                                            </div> :
-                                            <div className={PRICE}>
-                                                    <span className={ORIGIN}>{item.originalPrice}</span>
-                                                <strong className={NOW}>{item.salePrice}</strong>
-                                            </div>
+                                            <BestPriceStyles>
+                                                <PriceNowStyles>{item.salePrice}</PriceNowStyles>
+                                            </BestPriceStyles> :
+                                            <BestPriceStyles>
+                                                <PriceOriginStyles>{item.originalPrice}</PriceOriginStyles>
+                                                <PriceNowStyles>{item.salePrice}</PriceNowStyles>
+                                            </BestPriceStyles>
                                         }
-                                    </div>
+                                    </MainItemDescStyles>
                                 </a>
                             </MainListItemStyles>
                         )

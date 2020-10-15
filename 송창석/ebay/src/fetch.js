@@ -1,14 +1,6 @@
-const toJson = (res) => {
-    return res.json()
-}
+const toJson = res => res.json()
 
-const fetchJson = (url) => {
-    const fileName = `https://baekcode.github.io/APIs/${url}.json`
-
-    return fetch(fileName)
-    .then(toJson)
-}
-
-export {
-    fetchJson
+export const fetchJson = async (name) => {
+    const api = fetch(`https://baekcode.github.io/APIs/${name}.json`).then(toJson)
+    return api;
 }
