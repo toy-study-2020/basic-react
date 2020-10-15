@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderStyles, HeaderWrap, HeaderLogo, NavStyles } from './HeaderStyles';
+import { HeaderStyles, HeaderWrap, HeaderLogo, NavStyles } from '../../styled/Header/HeaderStyles';
 
 
 const Header = ({Link}) => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import { GlobalStyles } from './GlobalStyles';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,19 +14,18 @@ import MainWrap from './components/Main/MainWrap'
 function App() {
   return (
     <Router>
-      <GlobalStyles/>
       <Header
         Link={Link}
       />
       <Switch>
+        <Route exact path="/">
+          <MainWrap/>
+        </Route>
         <Route path="/login">
           <Login/>
         </Route>
         <Route path="/join">
           <UserJoin/>
-        </Route>
-        <Route path="/">
-          <MainWrap/>
         </Route>
       </Switch>
     </Router>

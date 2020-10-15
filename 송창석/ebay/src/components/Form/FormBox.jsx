@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormBoxStyles } from './FormStyles';
+import { FormBoxStyles } from '../../styled/Form/FormStyles';
 
 const FormBox = ({ label, components }) => {
     
