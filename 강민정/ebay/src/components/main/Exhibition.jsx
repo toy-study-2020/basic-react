@@ -20,7 +20,7 @@ const Exhibition = ({PATH}) => {
 
   useEffect(() => {
     renderExhibition();
-  });
+  }, []);
 
   return (
     <>

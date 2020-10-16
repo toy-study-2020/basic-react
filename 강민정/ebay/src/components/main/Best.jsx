@@ -20,7 +20,7 @@ const Best = ({PATH}) => {
 
   useEffect(() => {
     renderBest();
-  });
+  }, []);
 
   return (
     <>

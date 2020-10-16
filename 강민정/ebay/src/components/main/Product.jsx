@@ -20,7 +20,7 @@ const Product = ({PATH}) => {
 
   useEffect(() => {
     renderProduct();
-  });
+  }, []);
 
   return (
     <>

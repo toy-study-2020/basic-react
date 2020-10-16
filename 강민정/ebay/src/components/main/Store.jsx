@@ -18,7 +18,7 @@ const Store = ({PATH}) => {
 
   useEffect(() => {
     renderStore();
-  });
+  }, []);
 
   const {title, items} = store;
 

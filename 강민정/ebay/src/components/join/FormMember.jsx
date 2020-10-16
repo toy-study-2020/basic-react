@@ -1,64 +1,65 @@
 import React from 'react';
-import Birth from './Birth';
 import Message from './Message';
 
-const FormMember = ({ type, check, value}) => {
+const FormMember = ({type, check, value}) => {
   return (
-      <div className={`memberForm member-${type.CLASS}`}>
-        <strong>
-          {type.TITLE}
-          <Message
-            type={type.CLASS}
-            value={value}
+    <div className={`memberForm member-${type.class}`}>
+      <strong>
+        {type.title}
+        <Message
+          value={value}
+        />
+      </strong>
+      <div className="inputMember">
+        {type.class === 'name' &&
+        <label>
+          <input
+            type="text"
+            name={type.class}
+            autoComplete="off"
+            onChange={check}
+            autoFocus
           />
-        </strong>
+        </label>
+        }
 
-        <div className="inputMember">
-          {type.CLASS === 'name' &&
-            <label>
-              <input
-                type="text"
-                name={type.CLASS}
-                autoComplete="off"
-                onChange={check}
-                autoFocus
-              />
-            </label>
-          }
+        {type.class === 'nick' &&
+        <label>
+          <input
+            type="text"
+            name={type.class}
+            autoComplete="off"
+            onChange={check}
+            autoFocus
+          />
+        </label>
+        }
 
-          {type.CLASS === 'birth' &&
-            <>
-            <Birth
-              type={type}
-              check={check}/>
-            </>
-          }
+        {type.class === 'gender' &&
+        <>
+          <select
+            name={type.class}
+            onChange={check}
+          >
+            <option value={type.default}>선택</option>
+            <option value="male">남성</option>
+            <option value="female">여성</option>
+          </select>
+        </>
+        }
 
-          {type.CLASS === 'gender' &&
-            <>
-              <select
-                name={type.CLASS}
-                onChange={check}
-              >
-                <option value={type.DEFAULT}>선택</option>
-                <option value="male">남성</option>
-                <option value="female">여성</option>
-              </select>
-            </>
-          }
-
-          {type.CLASS === 'mail' &&
-            <label>
-              <input
-                type="email"
-                name={type.CLASS}
-                onChange={check}
-                autoComplete="off"
-              />
-            </label>
-          }
-        </div>
+        {type.class === 'mail' &&
+        <label>
+          <input
+            type="email"
+            name={type.class}
+            onChange={check}
+            autoComplete="off"
+          />
+        </label>
+        }
       </div>
+    </div>
   );
 }
 

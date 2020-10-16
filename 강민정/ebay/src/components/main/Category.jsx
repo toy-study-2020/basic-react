@@ -18,7 +18,7 @@ const Category = ({PATH}) => {
 
   useEffect(() => {
     renderCategory();
-  });
+  }, []);
 
   return (
     <>
