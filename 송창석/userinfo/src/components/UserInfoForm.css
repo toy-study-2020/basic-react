@@ -1,0 +1,32 @@
+.form_userinfo .input_userinfo {
+    margin-bottom: 10px;
+}
+
+.form_userinfo .input_userinfo:after {
+    content: '';
+    display: block;
+    clear: both
+}
+
+.input_userinfo label,
+.input_userinfo div {
+    float: left
+}
+
+.input_userinfo div {
+    margin-left: 10px;
+    font-size: 0;
+}
+
+.input_userinfo div input,
+.input_userinfo div select {
+    font-size: 16px;
+}
+
+.input_userinfo div select {
+    margin-left: 4px;
+}
+
+.input_userinfo div select:first-child {
+    margin-left: 0;
+}
