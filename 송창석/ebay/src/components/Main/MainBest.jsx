@@ -2,20 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { fetchJson } from '../../fetch';
 import { ListColStyles } from '../../styled/GlobalStyles';
 import { MainItemDescStyles, MainListItemStyles } from '../../styled/Main/MainContStyles';
-import { 
-    BestDiscountStyles,
-    MainBestStyles,
-    DiscountRateStyles,
-    DiscountFeeStyles,
-    BestImgStyles,
-    BestPriceStyles,
-    PriceNowStyles,
-    PriceOriginStyles
-} from '../../styled/Main/MainBestStyles';
+// import { 
+//     BestDiscountStyles,
+//     MainBestStyles,
+//     DiscountRateStyles,
+//     DiscountFeeStyles,
+//     BestImgStyles,
+//     BestPriceStyles,
+//     PriceNowStyles,
+//     PriceOriginStyles
+// } from '../../styled/Main/MainBestStyles';
+import * as MainBestStyledComponents from '../../styled/Main/MainBestStyles';
 
 const MainBest = ({ IntervalSection, MainContTitle, getURL }) => {
     const [title, setTitle] = useState("");
     const [best, setBest] = useState([]);
+    const {BestDiscountStyles, MainBestStyles, DiscountRateStyles, DiscountFeeStyles, BestImgStyles, BestPriceStyles, PriceNowStyles, PriceOriginStyles} = MainBestStyledComponents
 
     useEffect(() => {
         const res = fetchJson(getURL)

@@ -9,7 +9,10 @@ const FormSelect = ({name, options, value, onChangeFormHandler}) => {
         onChange={onChangeFormHandler}
         >
             <option value={""} defaultValue>선택</option>
-            {options()}
+            {/* {options()} */}
+            {options.map(it => {
+                return <option key={it} value={it}>{it}</option>
+            })}
         </select>
     );
 };
