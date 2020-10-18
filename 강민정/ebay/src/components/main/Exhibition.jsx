@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import errorImage from '../../images/error.jpg';
 import LoadData from "../../action/LoadData";
 
@@ -21,7 +22,6 @@ const Exhibition = ({PATH}) => {
     renderExhibition();
   }, []);
 
-
   return (
     <>
       <div className="event-wrapper">
@@ -29,7 +29,7 @@ const Exhibition = ({PATH}) => {
         <ul className="event-list event-event">
           {items && items.map((item, index) =>
             <li key={index}>
-              <a href="#">
+              <Link to={"/"}>
                 <span className="imgWrap">
                   <img
                     src={item.imgSrc}
@@ -41,7 +41,7 @@ const Exhibition = ({PATH}) => {
                 </span>
                 <strong>{item.name}</strong>
                 <span className="prdDescription">{item.description}</span>
-              </a>
+              </Link>
             </li>
           )}
         </ul>

@@ -1,88 +1,113 @@
-import React, {useEffect, useState} from 'react';
-import {JOIN_DEFAULT} from '../constants/constants';
+import React, {useReducer} from 'react';
+import {join_default} from '../constants/constants';
 import FormMember from './join/FormMember';
 import '../style/join.scss';
 
 const Join = () => {
-  const {NAME, BIRTH, GENDER, MAIL} = JOIN_DEFAULT;
-  const MEMBER_RESET = {
-    name: NAME.DEFAULT,
-    year: BIRTH.DEFAULT,
-    month: BIRTH.DEFAULT,
-    day: BIRTH.DEFAULT,
-    gender: GENDER.DEFAULT,
-    mail: MAIL.DEFAULT
+  const {name, nick, gender, mail} = join_default;
+
+  const reducer = (state, action) => {
+    switch(action.type) {
+      case 'name':
+        return {
+          ...state,
+          name: action.value
+        };
+      case 'nick':
+        return {
+          ...state,
+          nick: action.value
+        };
+      case 'gender':
+        return {
+          ...state,
+          gender: action.value
+        }
+      case 'mail':
+        return {
+          ...state,
+          mail: action.value
+        };
+      case 'clear':
+        return {}
+      default:
+        throw new Error();
+    }
+  }
+
+  const [user, dispatch] = useReducer(reducer, {});
+
+  const checkName  = (e) => {
+    dispatch({
+      type: 'name',
+      value: e.target.value
+    });
   };
 
-  const [member, setMember] = useState({
-    value: MEMBER_RESET,
-    list: []
-  });
+  const checkNick  = (e) => {
+    dispatch({
+      type: 'nick',
+      value: e.target.value
+    });
+  };
 
-  useEffect (() => {
-    localStorage.setItem('member', JSON.stringify(member.list));
-  }, [member.list]);
+  const checkGender  = (e) => {
+    dispatch({
+      type: 'gender',
+      value: e.target.value
+    });
+  };
 
-  const onSubmit = e => {
+  const checkMail  = (e) => {
+    dispatch({
+      type: 'mail',
+      value: e.target.value
+    });
+  };
+
+  const onSubmit = (e) => {
     e.preventDefault();
-    const memberValue = member.value;
-    if (!member.value.name) return alert(`${NAME.TITLE}을 입력하세요`);
-    if (member.value.year === 'default' || member.value.month === 'default' || member.value.day === 'default') return alert(`${BIRTH.TITLE}을 입력하세요`);
-    if (!member.value.gender) return alert(`${GENDER.TITLE}을 입력하세요`);
+    if (!user.name) return console.error('insert name');
+    if (!user.nick) return console.error('insert nick');
+    if (!user.gender) return console.error('insert gender');
+    if (!user.mail) return console.error('insert mail');
+    console.log(user);
+    clearValue(e.target);
+  }
 
-    setMember({
-      value: MEMBER_RESET,
-      list: [...member.list, memberValue],
-    });
+  const clearValue = (target) => {
+    dispatch({type: 'clear'})
 
-    clearForm(e.target);
-  };
-
-  const checkValue = e => {
-    const target = e.target;
-    const value = target.value;
-    setMember({
-      ...member,
-      value: {
-        ...member.value,
-        [target.name]: value,
-      }
-    });
-  };
-
-  const clearForm = (target) => {
-    target.name.value = NAME.DEFAULT;
-    target.year.value = BIRTH.DEFAULT;
-    target.month.value = BIRTH.DEFAULT;
-    target.day.value = BIRTH.DEFAULT;
-    target.gender.value = GENDER.DEFAULT;
-    target.mail.value = MAIL.DEFAULT;
-  };
+    target.name.value = name.default;
+    target.nick.value = nick.default;
+    target.gender.value = gender.default;
+    target.mail.value = mail.default;
+  }
 
   return (
     <div className="formMember">
-      <form name="signMember" onSubmit={onSubmit}>
+      <form
+        name="signMember"
+        onSubmit={onSubmit}>
         <FormMember
-          type={NAME}
-          check={checkValue}
-          value={member.value.name}/>
+          type={name}
+          check={checkName}
+          value={user.name}
+          />
         <FormMember
-          type={BIRTH}
-          check={checkValue}
-          value={[
-            member.value.year,
-            member.value.month,
-            member.value.day
-          ]}/>
-        <FormMember
-          type={GENDER}
-          check={checkValue}
-          value={member.value.gender}
+          type={nick}
+          check={checkNick}
+          value={user.nick}
         />
         <FormMember
-          type={MAIL}
-          check={checkValue}
-          value={member.value.mail}
+          type={gender}
+          check={checkGender}
+          value={user.gender}
+        />
+        <FormMember
+          type={mail}
+          check={checkMail}
+          value={user.mail}
         />
         <button
           type="submit"

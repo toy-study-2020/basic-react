@@ -1,20 +1,25 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const Header = ({Link}) => {
+const Header = () => {
   return (
     <>
       <header>
         <div className="headerTop">
           <div className="loginStatus">
-            <Link to="/">
-              <a href="#" className="logoAuction" aria-label="옥션으로 이동">AUCTION</a>
+            <Link to="/" className="logoAuction">
+              옥션으로 이동
             </Link>
             <ul className="loginList">
-              <li><a href="#">로그인</a></li>
+              <li>
+                <Link to="/login">로그인</Link>
+              </li>
               <li>
                 <Link to="/join">회원가입</Link>
               </li>
-              <li><a href="#">이용안내</a></li>
+              <li>
+                <Link to={"/"}>이용안내</Link>
+              </li>
             </ul>
           </div>
         </div>
