@@ -3,7 +3,7 @@ import { useReducer } from 'react';
 import FormBox from './components/Form/FormBox';
 import FormInput from './components/Form/FormInput';
 import FormSelect from './components/Form/FormSelect';
-import { FORM_OPTS } from './constant/constant';
+import { FORM_OPTS } from './constant/constant.js';
 
 const initialState = {
     name: "",
@@ -85,7 +85,7 @@ function App() {
                 FormComponent={
                     <FormSelect
                     name={GENDER.NAME}
-                    options={GENDER.OPTIONS}
+                    options={GENDER.OPTS}
                     value={FormValues.gender}
                     onChangeFormHandler={onChangeFormHandler}
                     />

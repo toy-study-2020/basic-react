@@ -1,5 +1,3 @@
-import React from 'react';
-
 const FORM_OPTS = {
     USERNAME: {
         LBL: "이름",
@@ -14,9 +12,7 @@ const FORM_OPTS = {
     GENDER: {
         LBL: "성별",
         NAME: "gender",
-        OPTIONS: () => {
-            return ["남", "여"].map(it => <option key={it} value={it}>{it}</option>)
-        }
+        OPTS: ["남", "여"]
     },
     EMAIL: {
         LBL: "이메일",
