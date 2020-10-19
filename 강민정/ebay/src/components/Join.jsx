@@ -14,28 +14,11 @@ const Join = () => {
 
   const reducer = (state, action) => {
     switch(action.type) {
-      case 'name':
+      case action.type:
         return {
           ...state,
-          name: action.value
+          [action.type]: action.value
         };
-      case 'nick':
-        return {
-          ...state,
-          nick: action.value
-        };
-      case 'gender':
-        return {
-          ...state,
-          gender: action.value
-        }
-      case 'mail':
-        return {
-          ...state,
-          mail: action.value
-        };
-      case 'clear':
-        return {}
       default:
         throw new Error();
     }
@@ -77,6 +60,7 @@ const Join = () => {
     if (!user.nick) return console.error('insert nick');
     if (!user.gender) return console.error('insert gender');
     if (!user.mail) return console.error('insert mail');
+    console.log(user);
     clearValue(e.target);
   }
 
