@@ -5,6 +5,12 @@ import '../style/join.scss';
 
 const Join = () => {
   const {name, nick, gender, mail} = join_default;
+  const initialState = {
+    name: name.default,
+    nick: nick.default,
+    gender: gender.default,
+    mail: name.default
+  }
 
   const reducer = (state, action) => {
     switch(action.type) {
@@ -35,7 +41,7 @@ const Join = () => {
     }
   }
 
-  const [user, dispatch] = useReducer(reducer, {});
+  const [user, dispatch] = useReducer(reducer, initialState);
 
   const checkName  = (e) => {
     dispatch({
@@ -71,13 +77,11 @@ const Join = () => {
     if (!user.nick) return console.error('insert nick');
     if (!user.gender) return console.error('insert gender');
     if (!user.mail) return console.error('insert mail');
-    console.log(user);
     clearValue(e.target);
   }
 
   const clearValue = (target) => {
-    dispatch({type: 'clear'})
-
+    dispatch({type: 'clear'});
     target.name.value = name.default;
     target.nick.value = nick.default;
     target.gender.value = gender.default;
