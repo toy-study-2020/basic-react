@@ -30,7 +30,6 @@ const FormMember = ({type, check, value}) => {
             name={type.class}
             autoComplete="off"
             onChange={check}
-            autoFocus
           />
         </label>
         }
