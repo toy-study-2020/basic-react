@@ -14,6 +14,8 @@ const Join = () => {
 
   const reducer = (state, action) => {
     switch(action.type) {
+      case 'clear':
+        return initialState;
       case action.type:
         return {
           ...state,
