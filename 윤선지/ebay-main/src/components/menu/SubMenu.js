@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ServiceNav, LstNav, LstItem } from './MenuStyle';
 
 function SubMenu({items}) {
@@ -6,7 +7,7 @@ function SubMenu({items}) {
     return arr.map((item, idx) => {
       return (
         <LstItem key={idx}>
-          <a href="#" id="{item.id}">{item.name}</a>
+          <Link to={`/menu/${item.id}`}>{item.name}</Link>
         </LstItem>
       )
     })

@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import MainMenu from './MainMenu';
-import SubMenu from './SubMenu';
-import { InnerLayout } from './MenuStyle';
+import { getFetch } from '../../utils/utils';
+import MenuPresenter from './MenuPresenter';
 
 const MenuContainer = ({getUrl}) => {
-  const [mainMenu, setMainMenu] = useState([]);
-  const [subMenu, setSubMenu] = useState([]);
- 
-  useEffect(() => {
-    fetch(getUrl)
-      .then(res => res.json())
-      .then(success => {
-        setMainMenu(success.mainMenu);
-        setSubMenu(success.sideMenu)
-      });
-  }, [getUrl]);
+    const [mainMenu, setMainMenu] = useState([]);
+    const [subMenu, setSubMenu] = useState([]);
 
-  return (
-    <div>
-      <InnerLayout>
-        <MainMenu items={mainMenu}></MainMenu>
-        <SubMenu items={subMenu}></SubMenu>
-      </InnerLayout>
-    </div>
-  );
+    useEffect(() => {
+        getData();
+    }, []);
+
+    const getData = async () => {
+        const data = await getFetch(getUrl);
+        setMainMenu(data.mainMenu);
+        setSubMenu(data.sideMenu);
+    }
+
+    return (
+        <MenuPresenter mainMenu={mainMenu} subMenu={subMenu}></MenuPresenter>
+    );
 }
 
 export default MenuContainer;
