@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getFetch } from '../../utils/utils';
 import BestPresenter from './BestPresenter';
+export const DataConText = React.createContext();
 
 const BestContainer = ({getUrl}) => {
     const [bestTitle, setBestTitle] = useState('');
@@ -17,7 +18,9 @@ const BestContainer = ({getUrl}) => {
     }
 
     return (
-      <BestPresenter bestTitle={bestTitle} bestItems={bestItems}></BestPresenter>
+      <DataConText.Provider value={{bestItems, bestTitle}}>
+         <BestPresenter></BestPresenter>
+      </DataConText.Provider>
     );
 }
 

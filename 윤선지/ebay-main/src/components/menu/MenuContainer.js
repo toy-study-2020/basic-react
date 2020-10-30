@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getFetch } from '../../utils/utils';
 import MenuPresenter from './MenuPresenter';
+export const DataConText = React.createContext();
 
 const MenuContainer = ({getUrl}) => {
     const [mainMenu, setMainMenu] = useState([]);
@@ -17,7 +18,9 @@ const MenuContainer = ({getUrl}) => {
     }
 
     return (
-        <MenuPresenter mainMenu={mainMenu} subMenu={subMenu}></MenuPresenter>
+        <DataConText.Provider value={{mainMenu, subMenu}}>
+            <MenuPresenter></MenuPresenter>
+        </DataConText.Provider>
     );
 }
 

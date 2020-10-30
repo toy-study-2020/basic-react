@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Item from './BestItem';
+import { DataConText } from './BestContainer';
+
 import {
     BestHotdealArea,
     InnerLayout,
@@ -7,7 +9,8 @@ import {
     LstBest
 } from './BestStyle';
 
-const SearchPresenter = ({bestTitle, bestItems}) => {
+const SearchPresenter = () => {
+    const { bestItems, bestTitle } = useContext(DataConText);
     return (
         <BestHotdealArea>
             <InnerLayout>

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MainNav, LstNav, LstItem } from './MenuStyle';
+import { DataConText } from './MenuContainer';
 
-function MainMenu({items}) {
+function MainMenu() {
+  const { mainMenu } = useContext(DataConText);
   const listMainMenu = menu => {
     return menu.map((item, idx) => {
       return (
@@ -16,7 +18,7 @@ function MainMenu({items}) {
   return (
     <MainNav>
 			<LstNav>
-				{listMainMenu(items)}
+				{listMainMenu(mainMenu)}
 			</LstNav>
 		</MainNav>
   );

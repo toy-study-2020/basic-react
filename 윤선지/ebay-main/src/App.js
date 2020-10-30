@@ -1,17 +1,17 @@
 import React from 'react';
-import {Route, Redirect, Switch, Link} from 'react-router-dom';
-import Login from './components/Login';
-import Menu from './components/menu';
+import {Route, Redirect, Switch} from 'react-router-dom';
+import Gnb from './components/Gnb';
+import Header from './components/Header';
+import Login from './components/login';
 import Main from './components/Main';
+import Slider from "./components/Slider";
 
 function App() {
   return (
     <>
-      <div>
-        <Link to={`/`} className="btnHome">홈</Link>
-        <Link to={`/login`} className="btnLogin">로그인</Link>
-      </div>
-      <Menu getUrl='https://baekcode.github.io/APIs/menu.json'></Menu>
+      <Gnb></Gnb>
+      <Header></Header>
+      <Slider></Slider>
 
       <Switch>
         <Route exact path="/login" render={() => <Login></Login>}></Route>
