@@ -1,23 +1,20 @@
 export const join_default = {
+  default: '',
   name: {
     title: '이름',
-    class: 'name',
-    default: ''
+    class: 'name'
   },
   nick: {
     title: '닉네임',
-    class: 'nick',
-    default: ''
+    class: 'nick'
   },
   gender: {
     title: '성별',
-    class: 'gender',
-    default: ''
+    class: 'gender'
   },
   mail: {
     title: '이메일',
-    class: 'mail',
-    default: ''
+    class: 'mail'
   }
 };
 
