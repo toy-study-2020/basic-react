@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { fetchJson } from '../../fetch';
-import { ListColStyles } from '../../styled/GlobalStyles';
-import { ChanceBadgeStyles, ChanceDescItemStyles, MainChanceStyles } from '../../styled/Main/MainChanceStyles';
-import { MainImgStyles, MainItemDescStyles, MainListItemStyles } from '../../styled/Main/MainContStyles';
+import React from 'react';
+import { MainContTitle, MainImgStyles, MainItemDescStyles, MainListItemStyles } from '../../../routes/Main/MainContStyles';
+import { IntervalSection, ListColStyles } from '../../../GlobalStyles';
+import { ChanceBadgeStyles, ChanceDescItemStyles, MainChanceStyles } from './MainChanceStyles';
 
-const MainChance = ({ IntervalSection, MainContTitle, getURL }) => {
-    const [title, setTitle] = useState("");
-    const [chance, setChance] = useState([]);
-
-    useEffect(() => {
-        const res = fetchJson(getURL)
-        res.then(data => {
-            setTitle(data.mainProducts.title)
-            setChance(data.mainProducts.items)
-        })
-    },[getURL]);
-
+const MainProductsPresenter = ({title, items}) => {
     return (
         <MainChanceStyles>
             <IntervalSection>
                 <MainContTitle>{title}</MainContTitle>
                 <ListColStyles>
-                    {chance.map((item) => {
-                        return(
+                    {items.map((item) => {
+                        return (
                             <MainListItemStyles key={item.id}>
                                 <a href={"#n"}>
                                     <MainImgStyles><img src={item.imgSrc} alt={item.alt} /></MainImgStyles>
@@ -31,8 +19,8 @@ const MainChance = ({ IntervalSection, MainContTitle, getURL }) => {
                                             <dt>
                                                 {
                                                     item.originalPrice === item.salePrice ?
-                                                    <strong>{item.salePrice}</strong> :
-                                                    <strong>{item.salePrice}<small>{item.originalPrice}</small></strong>
+                                                        <strong>{item.salePrice}</strong> :
+                                                        <strong>{item.salePrice}<small>{item.originalPrice}</small></strong>
                                                 }
                                             </dt>
                                             <dd>{item.name}</dd>
@@ -51,4 +39,4 @@ const MainChance = ({ IntervalSection, MainContTitle, getURL }) => {
     );
 };
 
-export default MainChance;
+export default MainProductsPresenter;

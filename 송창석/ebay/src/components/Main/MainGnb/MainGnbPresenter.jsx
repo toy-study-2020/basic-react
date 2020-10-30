@@ -1,27 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { fetchJson } from '../../fetch';
-import { MainGnbStyles } from '../../styled/Main/MainGnbStyles';
-import { ListColStyles } from '../../styled/GlobalStyles';
+import React from 'react';
+import { IntervalSection, ListColStyles } from '../../../GlobalStyles';
+import { MainGnbStyles } from './MainGnbStyles';
 
-
-const MainGnb = ({ IntervalSection, getURL }) => {
-    const [mainMenu, setMainMenu] = useState([]);
-    const [mainSide, setMainSide] = useState([]);
-        
-    useEffect(() => {
-        const res = fetchJson(getURL)
-        res.then(data => {
-            setMainMenu(data.mainMenu)
-            setMainSide(data.sideMenu)
-        })
-    },[getURL]);
-    
+const MainGnbPresenter = ({main, side}) => {
     return (
         <MainGnbStyles>
             <IntervalSection>
                 <ListColStyles>
                     {
-                        mainMenu.map(item => {
+                        main.map(item => {
                             return (
                                 <li key={item.id}><a href={item.url}>{item.name}</a></li>
                             )
@@ -30,7 +17,7 @@ const MainGnb = ({ IntervalSection, getURL }) => {
                 </ListColStyles>
                 <ListColStyles>
                     {
-                        mainSide.map(item => {
+                        side.map(item => {
                             return (
                                 <li key={item.id}><a href={item.url}>{item.name}</a></li>
                             )
@@ -42,4 +29,4 @@ const MainGnb = ({ IntervalSection, getURL }) => {
     );
 };
 
-export default MainGnb;
+export default MainGnbPresenter;
