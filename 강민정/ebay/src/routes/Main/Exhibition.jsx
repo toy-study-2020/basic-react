@@ -1,27 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import errorImage from '../../images/error.jpg';
-import LoadData from "../../action/LoadData";
+import {UseAPI} from "./MainContainer";
 
-const Exhibition = ({PATH}) => {
-  const [exhibition, setExhibition] = useState({});
-
-  const renderExhibition = () => {
-    LoadData(PATH, 'mainEvent').then(data => {
-      setExhibition({
-        ...exhibition,
-        title: data.mainEvent.title,
-        items: data.mainEvent.items
-      });
-    });
-  };
-
+const Exhibition = () => {
+  const {exhibition} = useContext(UseAPI);
   const {title, items} = exhibition;
-
-  useEffect(() => {
-    renderExhibition();
-  }, []);
-
   return (
     <>
       <div className="event-wrapper">

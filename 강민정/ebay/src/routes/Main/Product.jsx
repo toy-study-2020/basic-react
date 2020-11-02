@@ -1,32 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
-import LoadData from "../../action/LoadData";
 import errorImage from '../../images/error.jpg';
+import {UseAPI} from "./MainContainer";
 
-const Best = ({PATH}) => {
-  const [best, setBest] = useState({});
-
-  const renderBest = () => {
-    LoadData(PATH, 'mainBest').then(data => {
-      setBest({
-        ...best,
-        title: data.mainBest.title,
-        items: data.mainBest.items
-      });
-    });
-  };
-
-  const {title, items} = best;
-
-  useEffect(() => {
-    renderBest();
-  }, []);
-
+const Product = () => {
+  const {product} = useContext(UseAPI);
+  const {title, items} = product;
   return (
     <>
-      <div className="hot-wrapper">
+      <div className="chance-wrapper">
         <h2>{title && title}</h2>
-        <ul className="hot-list">
+        <ul className="chance-list event-chance">
           {
             items && items.map((item, index) =>
               <li key={index}>
@@ -40,8 +24,14 @@ const Best = ({PATH}) => {
                       }}
                     />
                   </span>
+                  <span className="prdBadge">
+                    {
+                      item.badge.length > 0 && item.badge.map((badge, index) =>
+                        <span key={index}>{badge}</span>
+                      )
+                    }
+                  </span>
                   <strong>{item.name}</strong>
-                  <span className="prdDescription">{item.description}</span>
                   <span className="prdPrice">
                     {
                       item.originalPrice !== item.salePrice &&
@@ -63,4 +53,4 @@ const Best = ({PATH}) => {
   )
 }
 
-export default Best;
+export default Product;
