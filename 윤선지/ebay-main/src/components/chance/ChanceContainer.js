@@ -1,74 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import {
-	InnerLayout,
-	AreaTitle,
-	LstChance,
-	LiChance,
-	ItemChance,
-	ThumbImg,
-	Img,
-	ItemInfo,
-	Name,
-	Price,
-	Original,
-	Sale,
-	ItemBadge,
-	BadgeArea
-} from './ChanceStyle';
+import { getFetch } from '../../utils/utils';
+import ChancePresenter from './ChancePresenter';
+export const DataConText = React.createContext();
 
 const ChanceContainer = ({getUrl}) => {
-  const [chanceTitle, setChanceTitle] = useState('');
-  const [chanceItems, setChanceItems] = useState([]);
- 
-  useEffect(() => {
-    fetch(getUrl)
-      .then(res => res.json())
-      .then(success => {
-        setChanceTitle(success.mainProducts.title);
-        setChanceItems(success.mainProducts.items)
-      });
-	}, [getUrl]);
-	
-	const listArr = arr => {
-    return arr.map((item, idx) => {
-      return (
-        <LiChance key={idx}>
-					<a href="#{idx}">
-						<ItemChance>
-							<BadgeArea>
-								{item.badge.map(badge => {
-									return (
-										<ItemBadge>{badge}</ItemBadge>
-									);
-								})}
-							</BadgeArea>
-							<ThumbImg>
-								<Img src={item.imgSrc} alt={item.alt} />
-							</ThumbImg>
-							<ItemInfo>
-								<Name>{item.name}</Name>
-								<Price>
-									{item.originalPrice !== item.salePrice ? <Original>${item.originalPrice}</Original> : ''}
-									<Sale>${item.salePrice}</Sale>
-								</Price>
-							</ItemInfo>
-						</ItemChance>
-					</a>
-		  	</LiChance>
-      )
-    })
-  };
+	const [chanceTitle, setChanceTitle] = useState('');
+	const [chanceItems, setChanceItems] = useState([]);
 
-  return (
-    <section>
-			<InnerLayout>
-					<AreaTitle>{chanceTitle}</AreaTitle>
-					<LstChance>
-						{listArr(chanceItems)}
-					</LstChance>
-      </InnerLayout>
-    </section>
-  );
+	useEffect(() => {
+		getData();
+	}, []);
+
+	const getData = async () => {
+		const data = await getFetch(getUrl);
+		setChanceTitle(data.mainProducts.title);
+		setChanceItems(data.mainProducts.items);
+	}
+
+	return (
+		<DataConText.Provider value={{chanceTitle, chanceItems}}>
+			<ChancePresenter chanceTitle={chanceTitle} chanceItems={chanceItems}></ChancePresenter>
+		</DataConText.Provider>
+	);
 }
 
 export default ChanceContainer;
