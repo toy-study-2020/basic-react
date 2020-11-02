@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { fetchJson } from '../../fetch';
-import { MainImgStyles, MainItemDescStyles } from '../../styled/Main/MainContStyles';
-import { MainEventStyles } from '../../styled/Main/MainEventStyles';
+import React from 'react';
+import { MainContTitle, MainImgStyles, MainItemDescStyles } from '../../../routes/Main/MainContStyles';
+import { IntervalSection } from '../../../GlobalStyles';
+import { MainEventStyles } from './MainEventStyles';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
 import 'swiper/swiper.scss';
@@ -9,18 +9,7 @@ import 'swiper/components/navigation/navigation.scss';
 
 SwiperCore.use([Navigation]);
 
-const MainEvent = ({ IntervalSection, MainContTitle, getURL }) => {
-    const [title, setTitle] = useState("");
-    const [event, setEvent] = useState([]);
-
-    useEffect(() => {
-        const res = fetchJson(getURL)
-        res.then(data => {
-            setTitle(data.mainEvent.title)
-            setEvent(data.mainEvent.items)
-        })
-    },[getURL]);
-
+const MainEventPresenter = ({title, items}) => {
     return (
         <MainEventStyles>
             <IntervalSection>
@@ -32,11 +21,11 @@ const MainEvent = ({ IntervalSection, MainContTitle, getURL }) => {
                     navigation
                     loop
                 >
-                    {event.map((item) => {
-                        return(
+                    {items.map((item) => {
+                        return (
                             <SwiperSlide key={item.id}>
                                 <a href={"#n"}>
-                                    <MainImgStyles><img src={item.imgSrc} alt={item.alt}/></MainImgStyles>
+                                    <MainImgStyles><img src={item.imgSrc} alt={item.alt} /></MainImgStyles>
                                     <MainItemDescStyles>
                                         <dl>
                                             <dt>{item.name}</dt>
@@ -53,4 +42,4 @@ const MainEvent = ({ IntervalSection, MainContTitle, getURL }) => {
     );
 };
 
-export default MainEvent;
+export default MainEventPresenter;

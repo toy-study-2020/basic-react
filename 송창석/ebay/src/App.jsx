@@ -6,10 +6,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Login from './components/Login/Login';
-import UserJoin from './components/Join/UserJoin'
-import MainWrap from './components/Main/MainWrap'
-
+import MainIndex from './routes/Main/MainIndex';
+import LoginIndex from './routes/Login/LoginIndex';
+import UserJoinIndex from './routes/Join/UserJoinIndex';
 
 function App() {
   return (
@@ -19,13 +18,13 @@ function App() {
       />
       <Switch>
         <Route exact path="/">
-          <MainWrap/>
+          <MainIndex/>
         </Route>
         <Route path="/login">
-          <Login/>
+          <LoginIndex/>
         </Route>
         <Route path="/join">
-          <UserJoin/>
+          <UserJoinIndex/>
         </Route>
       </Switch>
     </Router>
