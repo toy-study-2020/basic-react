@@ -6,26 +6,19 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import MainIndex from './routes/Main/MainIndex';
-import LoginIndex from './routes/Login/LoginIndex';
-import UserJoinIndex from './routes/Join/UserJoinIndex';
+import Main from './routes/Main';
+import Login from './routes/Login';
+import Join from './routes/Join';
+
 
 function App() {
   return (
     <Router>
-      <Header
-        Link={Link}
-      />
+      <Header Link={Link} />
       <Switch>
-        <Route exact path="/">
-          <MainIndex/>
-        </Route>
-        <Route path="/login">
-          <LoginIndex/>
-        </Route>
-        <Route path="/join">
-          <UserJoinIndex/>
-        </Route>
+        <Route exact path="/" component={Main} />
+        <Route path="/login" component={Login} />
+        <Route path="/join" component={Join} />
       </Switch>
     </Router>
   );

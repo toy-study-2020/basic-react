@@ -1,29 +1,21 @@
 import React from 'react';
-import { LOGIN_OPTS } from '../../constant/constant';
-import FormUtils from '../../utils/FormUtils';
+import useFormStore from '../../store/useFormStore';
 import LoginPresenter from './LoginPresenter'
 
-const ConstantContext = React.createContext(null)
-const LoginContext = React.createContext(null)
-export {
-    ConstantContext,
-    LoginContext
-}
-
+export const LoginContext = React.createContext(null)
 
 const LoginContainer = () => {
-    const LoginValues = FormUtils({
-        email: "",
-        password: ""
-    })
+  const loginValues = useFormStore({
+    email: "",
+    password: ""
+  })
+  
 
-    return (
-        <ConstantContext.Provider value={LOGIN_OPTS}>
-            <LoginContext.Provider value={LoginValues}>
-                <LoginPresenter/>
-            </LoginContext.Provider>
-        </ConstantContext.Provider>
-    );
+  return (
+    <LoginContext.Provider value={loginValues}>
+      <LoginPresenter/>
+    </LoginContext.Provider>
+  );
 };
 
 export default LoginContainer;
