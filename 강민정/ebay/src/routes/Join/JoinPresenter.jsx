@@ -1,5 +1,5 @@
 import React from 'react';
-import FormMember from "./FormMember";
+import FormMember from "../../components/Join/FormMember";
 
 const MainPresenter = () => {
   return (
@@ -7,7 +7,6 @@ const MainPresenter = () => {
       <div className="formMember">
         <FormMember />
       </div>
-
     </>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import JoinContainer from './JoinContainer';
 import '../../style/join.scss';
 
-const Join = () => {
+const Index = () => {
   return (
     <>
       <JoinContainer />
@@ -10,4 +10,4 @@ const Join = () => {
   )
 }
 
-export default Join;
+export default Index;

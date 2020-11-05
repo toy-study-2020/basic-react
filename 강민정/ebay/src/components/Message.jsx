@@ -1,17 +1,18 @@
 import React from 'react';
-import {join_msg} from '../../constants/constants';
+import { JOIN_MSG } from '../constants/constants.js';
 
-const Message = ({value})  => {
+const Message = ({value}) => {
+  const {CLEAR, DEFAULT} = JOIN_MSG;
   const clear = value;
   return (
     <>
       {
         <span className={clear ? 'clear' : 'alert'}>
-          {clear ? join_msg.clear : join_msg.default}
+          {clear ? CLEAR : DEFAULT}
         </span>
       }
     </>
   );
-}
+};
 
 export default Message;

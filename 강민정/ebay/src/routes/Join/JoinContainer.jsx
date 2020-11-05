@@ -1,25 +1,17 @@
 import React, {useReducer, createContext} from 'react';
 import '../../style/join.scss';
+import { JOIN_INITIAL_VALUE, JOIN_INITIAL_METHOD } from '../../constants/constants';
 import JoinPresenter from "./JoinPresenter";
 
-const initialCheckMethod = {};
-const defaultValue =  '';
 
-const initialValue = {
-  name: defaultValue,
-  nick: defaultValue,
-  gender: defaultValue,
-  mail: defaultValue
-}
-
-export const CheckMethod = createContext(initialCheckMethod);
-export const FormValue = createContext(initialValue);
+export const CheckMethod = createContext(JOIN_INITIAL_METHOD);
+export const FormValue = createContext(JOIN_INITIAL_VALUE);
 
 const Join = () => {
   const reducer = (state, action) => {
     switch(action.type) {
       case 'clear':
-        return initialValue;
+        return JOIN_INITIAL_VALUE;
       case action.type:
         return {
           ...state,
@@ -30,32 +22,11 @@ const Join = () => {
     }
   }
 
-  const [user, dispatch] = useReducer(reducer, initialValue);
+  const [user, dispatch] = useReducer(reducer, JOIN_INITIAL_VALUE);
 
-  const checkName  = (e) => {
+  const checkFunc  = (e, type) => {
     dispatch({
-      type: 'name',
-      value: e.target.value
-    });
-  };
-
-  const checkNick  = (e) => {
-    dispatch({
-      type: 'nick',
-      value: e.target.value
-    });
-  };
-
-  const checkGender  = (e) => {
-    dispatch({
-      type: 'gender',
-      value: e.target.value
-    });
-  };
-
-  const checkMail  = (e) => {
-    dispatch({
-      type: 'mail',
+      type: [type],
       value: e.target.value
     });
   };
@@ -72,18 +43,15 @@ const Join = () => {
 
   const clearValue = (target) => {
     dispatch({type: 'clear'});
-    target.name.value = defaultValue;
-    target.nick.value = defaultValue;
-    target.gender.value = defaultValue;
-    target.mail.value = defaultValue;
+    target.name.value = '';
+    target.nick.value = '';
+    target.gender.value = '';
+    target.mail.value = '';
   };
 
   return (
     <CheckMethod.Provider value={{
-      checkName: checkName,
-      checkNick: checkNick,
-      checkGender: checkGender,
-      checkMail: checkMail,
+      checkFunc: checkFunc,
       onSubmit: onSubmit
     }}>
       <FormValue.Provider value={{user}}>

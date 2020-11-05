@@ -1,16 +1,16 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import errorImage from '../../images/error.jpg';
-import {UseAPI} from "./MainContainer";
+import {UseAPI} from "../../routes/Main/MainContainer";
 
-const Product = () => {
-  const {product} = useContext(UseAPI);
-  const {title, items} = product;
+const Best = () => {
+  const {best} = useContext(UseAPI);
+  const {title, items} = best;
   return (
     <>
-      <div className="chance-wrapper">
+      <div className="hot-wrapper">
         <h2>{title && title}</h2>
-        <ul className="chance-list event-chance">
+        <ul className="hot-list">
           {
             items && items.map((item, index) =>
               <li key={index}>
@@ -24,14 +24,8 @@ const Product = () => {
                       }}
                     />
                   </span>
-                  <span className="prdBadge">
-                    {
-                      item.badge.length > 0 && item.badge.map((badge, index) =>
-                        <span key={index}>{badge}</span>
-                      )
-                    }
-                  </span>
                   <strong>{item.name}</strong>
+                  <span className="prdDescription">{item.description}</span>
                   <span className="prdPrice">
                     {
                       item.originalPrice !== item.salePrice &&
@@ -53,4 +47,4 @@ const Product = () => {
   )
 }
 
-export default Product;
+export default Best;

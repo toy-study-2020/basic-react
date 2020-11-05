@@ -1,22 +1,12 @@
-import React, {createContext, useContext, useReducer} from 'react';
+import React, {createContext, useReducer} from 'react';
 import {LoadData} from '../../action/Action.js';
-import {PATHContext} from "./Main";
+import { PATH, INITIAL_API } from '../../constants/constants.js';
 import {useOnMounted} from '../../action/useOnMounted.js';
 import MainPresenter from './MainPresenter';
 
-const initialAPI = {
-  menu: {},
-  store: {},
-  best: {},
-  exhibition: {},
-  product: {}
-};
-
-export const UseAPI = createContext(initialAPI);
+export const UseAPI = createContext(INITIAL_API);
 
 const MainContainer = () => {
-  const PATH = useContext(PATHContext);
-
   const reducer = (state, action) => {
     switch (action.type) {
       default:
@@ -40,7 +30,7 @@ const MainContainer = () => {
     }
   }
 
-  const [API, dispatch] = useReducer(reducer, initialAPI);
+  const [API, dispatch] = useReducer(reducer, INITIAL_API);
 
   const renderCategory = () => {
     LoadData(PATH, 'menu').then(data => {
