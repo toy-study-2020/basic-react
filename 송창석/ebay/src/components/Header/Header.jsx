@@ -1,8 +1,8 @@
 import React from 'react';
-import { HeaderStyles, HeaderWrap, HeaderLogo, NavStyles } from '../../styled/Header/HeaderStyles';
-
+import * as HeaderStyledCompoents from './HeaderStyles';
 
 const Header = ({Link}) => {
+    const {HeaderStyles, HeaderWrap, HeaderLogo, NavStyles} = HeaderStyledCompoents
     return (
         <HeaderStyles>
             <HeaderWrap>

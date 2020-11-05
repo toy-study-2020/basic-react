@@ -1,16 +1,18 @@
 import React from 'react';
 
-const FormSelect = ({name, callback, value, handleUserValue}) => {
+const FormSelect = ({name, arr, value, label, changeValuesHandler}) => {
     
     return (
         <select
             id={name}
             name={name}
             value={value}
-            onChange={handleUserValue}
+            onChange={changeValuesHandler}
         >
-            <option value={""} defaultValue>선택</option>
-            {callback()}
+            <option value={""} defaultValue>{label}</option>
+            {arr.map((opts) => {
+                return <option key={opts} value={opts}>{opts}</option>
+            })}
         </select>
     );
 };
