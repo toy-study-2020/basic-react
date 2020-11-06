@@ -1,20 +1,12 @@
-import React from 'react';
-import useFormStore from '../../store/useFormStore';
-import LoginPresenter from './LoginPresenter'
-
-export const LoginContext = React.createContext(null)
+import React, { useContext } from 'react';
+import { LoginContext } from '../../App';
+import LoginPresenter from './LoginPresenter';
 
 const LoginContainer = () => {
-  const loginValues = useFormStore({
-    email: "",
-    password: ""
-  })
-  
+  const provide = useContext(LoginContext)
 
   return (
-    <LoginContext.Provider value={loginValues}>
-      <LoginPresenter/>
-    </LoginContext.Provider>
+    <LoginPresenter state={provide}/>
   );
 };
 

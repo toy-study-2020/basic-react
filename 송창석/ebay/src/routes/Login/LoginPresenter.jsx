@@ -1,14 +1,12 @@
 import React from 'react';
-import { useContext } from 'react';
 import FormInput from '../../components/Form/FormInput';
 import { FormBoxStyles, FormSubmitButtonStyles, FormTitleStyles, FormWrapStyles } from '../../components/Form/FormStyles';
 import { LOGIN_OPTS } from '../../constant/constant';
 import { IntervalSection } from '../../GlobalStyles';
-import { LoginContext } from './LoginContainer';
 
-const LoginPresenter = () => {
+const LoginPresenter = ({state}) => {
   const {TITLE, EMAIL, PASSWORD} = LOGIN_OPTS
-  const {values, changeValuesHandler, submitValuesHandler} = useContext(LoginContext)
+  const {values, changeValuesHandler, submitValuesHandler} = state
 
   return (
     <FormWrapStyles>

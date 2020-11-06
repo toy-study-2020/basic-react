@@ -1,15 +1,13 @@
 import React from 'react';
-import { useContext } from 'react';
 import FormInput from '../../components/Form/FormInput';
 import FormSelect from '../../components/Form/FormSelect';
 import { FormBoxStyles, FormSubmitButtonStyles, FormTitleStyles, FormWrapStyles } from '../../components/Form/FormStyles';
 import { JOIN_OPTS } from '../../constant/constant';
 import { IntervalSection } from '../../GlobalStyles';
-import { UserJoinContext } from './UserJoinContainer';
 
-const UserJoinPresenter = () => {
+const UserJoinPresenter = ({state}) => {
   const { TITLE, NAME, EMAIL, PASSWORD, GENDER, BIRTH, YEAR, MONTH, DAY } = JOIN_OPTS
-  const {values, changeValuesHandler, submitValuesHandler} = useContext(UserJoinContext)
+  const {values, changeValuesHandler, submitValuesHandler} = state
 
   return (
     <FormWrapStyles>

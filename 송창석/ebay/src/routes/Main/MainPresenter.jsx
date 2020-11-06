@@ -5,12 +5,10 @@ import Best from '../../components/Main/Best';
 import Event from '../../components/Main/Exhibition';
 import Products from '../../components/Main/Products';
 import { MainWrapStyles } from './MainContStyles';
-import { useContext } from 'react';
-import { MainContext } from './MainContainer';
 
-const MainPresenter = () => {
-  const {menu, mainStore, mainBest, mainEvent, mainProducts} = useContext(MainContext)
-    
+const MainPresenter = ({state}) => {
+  const {menu, mainStore, mainBest, mainEvent, mainProducts} = state
+  
   return (
     <MainWrapStyles>
       <Gnb apis={menu}/>
