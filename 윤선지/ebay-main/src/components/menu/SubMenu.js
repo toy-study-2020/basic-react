@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ServiceNav, LstNav, LstItem } from './MenuStyle';
-import { DataConText } from './MenuContainer';
 
-function SubMenu({items}) {
-  const { subMenu } = useContext(DataConText);
+function SubMenu({sideMenu}) {
+  
   const listArr = arr => {
     return arr.map((item, idx) => {
       return (
@@ -18,7 +17,7 @@ function SubMenu({items}) {
   return (
     <ServiceNav>
       <LstNav>
-        {listArr(subMenu)}
+        {listArr(sideMenu)}
       </LstNav>
     </ServiceNav>
   );

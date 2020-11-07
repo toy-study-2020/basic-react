@@ -1,2 +1,2 @@
-import ChanceContainer from './ChanceContainer';
-export default ChanceContainer;
+import Chance from './Chance';
+export default Chance;

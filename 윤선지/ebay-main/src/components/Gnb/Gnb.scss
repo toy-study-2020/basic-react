@@ -1,3 +1,18 @@
+.gnbArea {
+    border-bottom: 1px solid #ddd;
+
+    .innerLayout {
+        width: 1250px;
+        margin: 0 auto;
+
+        &:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    }
+}
+
 .logoAuction {
     position: relative;
     width: 88px;
@@ -16,7 +31,7 @@
     }
 }
 
-.GnbMenu {
+.gnbMenu {
     float: right;
     margin-top: 8px;
 

@@ -1,2 +1,2 @@
-import BestContainer from './BestContainer';
-export default BestContainer;
+import Best from './Best';
+export default Best;

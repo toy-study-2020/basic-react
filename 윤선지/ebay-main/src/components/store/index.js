@@ -1,2 +1,2 @@
-import StoreContainer from './StoreContainer';
-export default StoreContainer;
+import Store from './Store';
+export default Store;
