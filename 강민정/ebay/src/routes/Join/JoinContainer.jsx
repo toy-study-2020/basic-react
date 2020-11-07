@@ -1,30 +1,17 @@
-import React, {useReducer, createContext} from 'react';
+import React, { useReducer, createContext, useContext } from 'react';
 import '../../style/join.scss';
 import { JOIN_INITIAL_VALUE, JOIN_INITIAL_METHOD } from '../../constants/constants';
+import { JoinReducer } from '../../App';
 import JoinPresenter from "./JoinPresenter";
-
 
 export const CheckMethod = createContext(JOIN_INITIAL_METHOD);
 export const FormValue = createContext(JOIN_INITIAL_VALUE);
 
 const Join = () => {
-  const reducer = (state, action) => {
-    switch(action.type) {
-      case 'clear':
-        return JOIN_INITIAL_VALUE;
-      case action.type:
-        return {
-          ...state,
-          [action.type]: action.value
-        };
-      default:
-        throw new Error();
-    }
-  }
+  const {joinReducer} = useContext(JoinReducer);
+  const [user, dispatch] = useReducer(joinReducer, JOIN_INITIAL_VALUE);
 
-  const [user, dispatch] = useReducer(reducer, JOIN_INITIAL_VALUE);
-
-  const checkFunc  = (e, type) => {
+  const checkFunc = (e, type) => {
     dispatch({
       type: [type],
       value: e.target.value

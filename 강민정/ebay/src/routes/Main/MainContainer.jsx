@@ -1,102 +1,60 @@
-import React, {createContext, useReducer} from 'react';
-import {LoadData} from '../../action/Action.js';
+import React, { createContext, useContext, useReducer } from 'react';
+import {loadData} from '../../action/action.js';
 import { PATH, INITIAL_API } from '../../constants/constants.js';
 import {useOnMounted} from '../../action/useOnMounted.js';
+import { MainReducer } from '../../App';
 import MainPresenter from './MainPresenter';
 
 export const UseAPI = createContext(INITIAL_API);
 
 const MainContainer = () => {
-  const reducer = (state, action) => {
-    switch (action.type) {
-      default:
-        throw new Error();
-      case 'menu':
-        return {
-          ...state,
-          menu: {
-            mainMenu: action.value.mainMenu,
-            sideMenu: action.value.sideMenu
+  const {mainReducer} = useContext(MainReducer);
+  const [API, dispatch] = useReducer(mainReducer, INITIAL_API);
+
+  const renderAPI = ({type, name}) => {
+    loadData(PATH, [name]).then(data => {
+      if (type === 'menu') {
+        dispatch({
+          type: type,
+          value: {
+            mainMenu: data.mainMenu,
+            sideMenu: data.sideMenu
           }
-        }
-        case action.type:
-        return {
-          ...state,
-          [action.type]: {
-            title: action.value.title,
-            items: action.value.items
+        })
+      } else {
+        dispatch({
+          type: type,
+          value: {
+            title: data[name].title,
+            items: data[name].items
           }
-        }
-    }
-  }
-
-  const [API, dispatch] = useReducer(reducer, INITIAL_API);
-
-  const renderCategory = () => {
-    LoadData(PATH, 'menu').then(data => {
-      dispatch({
-        type: 'menu',
-        value: {
-          mainMenu: data.mainMenu,
-          sideMenu: data.sideMenu
-        }
-      })
+        })
+      }
     });
   };
 
-  const renderStore = () => {
-    LoadData(PATH, 'mainStore').then(data => {
-      dispatch({
-        type: 'store',
-        value: {
-          title: data.mainStore.title,
-          items: data.mainStore.items
-        }
-      })
+  useOnMounted(() => {
+    renderAPI({
+      type: 'menu',
+      name: 'menu'
     });
-  };
-
-  const renderBest = () => {
-    LoadData(PATH, 'mainBest').then(data => {
-      dispatch({
-        type: 'best',
-        value: {
-          title: data.mainBest.title,
-          items: data.mainBest.items
-        }
-      })
+    renderAPI({
+      type: 'store',
+      name: 'mainStore'
     });
-  };
-
-  const renderExhibition = () => {
-    LoadData(PATH, 'mainEvent').then(data => {
-      dispatch({
-        type: 'exhibition',
-        value: {
-          title: data.mainEvent.title,
-          items: data.mainEvent.items
-        }
-      })
+    renderAPI({
+      type: 'best',
+      name: 'mainBest'
     });
-  };
-
-  const renderProduct = () => {
-    LoadData(PATH, 'mainProducts').then(data => {
-      dispatch({
-        type: 'product',
-        value: {
-          title: data.mainProducts.title,
-          items: data.mainProducts.items
-        }
-      })
+    renderAPI({
+      type: 'exhibition',
+      name: 'mainEvent'
     });
-  };
-
-  useOnMounted(() => renderCategory());
-  useOnMounted(() => renderStore());
-  useOnMounted(() => renderBest());
-  useOnMounted(() => renderExhibition());
-  useOnMounted(() => renderProduct());
+    renderAPI({
+      type: 'product',
+      name: 'mainProducts'
+    });
+  });
 
   return (
     <UseAPI.Provider value={API}>
