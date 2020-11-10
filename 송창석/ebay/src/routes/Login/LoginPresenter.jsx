@@ -4,22 +4,21 @@ import { FormBoxStyles, FormSubmitButtonStyles, FormTitleStyles, FormWrapStyles 
 import { LOGIN_OPTS } from '../../constant/constant';
 import { IntervalSection } from '../../GlobalStyles';
 
-const LoginPresenter = ({state}) => {
+const LoginPresenter = ({values, onChange, onSubmit}) => {
   const {TITLE, EMAIL, PASSWORD} = LOGIN_OPTS
-  const {values, changeValuesHandler, submitValuesHandler} = state
 
   return (
     <FormWrapStyles>
       <IntervalSection>
         <FormTitleStyles>{TITLE}</FormTitleStyles>
-        <form onSubmit={(event) => submitValuesHandler(event, EMAIL, PASSWORD)}>
+        <form onSubmit={(event) => onSubmit(event, EMAIL, PASSWORD)}>
           <FormBoxStyles>
             <label>{EMAIL.LABEL}</label>
             <FormInput
               name={EMAIL.NAME}
               type={EMAIL.TYPE}
               value={values[EMAIL]}
-              changeValuesHandler={changeValuesHandler}
+              changeValuesHandler={onChange}
             />
           </FormBoxStyles>
           <FormBoxStyles>
@@ -28,7 +27,7 @@ const LoginPresenter = ({state}) => {
               name={PASSWORD.NAME}
               type={PASSWORD.TYPE}
               value={values[PASSWORD]}
-              changeValuesHandler={changeValuesHandler}
+              changeValuesHandler={onChange}
             />
           </FormBoxStyles>
           <FormSubmitButtonStyles className={"submit"}>{TITLE}</FormSubmitButtonStyles>

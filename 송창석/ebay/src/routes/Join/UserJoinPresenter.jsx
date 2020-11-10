@@ -5,22 +5,21 @@ import { FormBoxStyles, FormSubmitButtonStyles, FormTitleStyles, FormWrapStyles 
 import { JOIN_OPTS } from '../../constant/constant';
 import { IntervalSection } from '../../GlobalStyles';
 
-const UserJoinPresenter = ({state}) => {
+const UserJoinPresenter = ({values, onChange, onSubmit}) => {
   const { TITLE, NAME, EMAIL, PASSWORD, GENDER, BIRTH, YEAR, MONTH, DAY } = JOIN_OPTS
-  const {values, changeValuesHandler, submitValuesHandler} = state
 
   return (
     <FormWrapStyles>
       <IntervalSection>
         <FormTitleStyles>{TITLE}</FormTitleStyles>
-        <form onSubmit={(event) => submitValuesHandler(event, NAME, EMAIL, PASSWORD, GENDER, YEAR, MONTH, DAY)}>
+        <form onSubmit={(event) => onSubmit(event, NAME, EMAIL, PASSWORD, GENDER, YEAR, MONTH, DAY)}>
           <FormBoxStyles>
             <label>{NAME.LABEL}</label>
             <FormInput
               name={NAME.NAME}
               type={NAME.TYPE}
               value={values[NAME]}
-              changeValuesHandler={changeValuesHandler}
+              changeValuesHandler={onChange}
             />
           </FormBoxStyles>
           <FormBoxStyles>
@@ -29,7 +28,7 @@ const UserJoinPresenter = ({state}) => {
               name={EMAIL.NAME}
               type={EMAIL.TYPE}
               value={values[EMAIL]}
-              changeValuesHandler={changeValuesHandler}
+              changeValuesHandler={onChange}
             />
           </FormBoxStyles>
           <FormBoxStyles>
@@ -38,7 +37,7 @@ const UserJoinPresenter = ({state}) => {
               name={PASSWORD.NAME}
               type={PASSWORD.TYPE}
               value={values[PASSWORD]}
-              changeValuesHandler={changeValuesHandler}
+              changeValuesHandler={onChange}
             />
           </FormBoxStyles>
           <FormBoxStyles>
@@ -48,7 +47,7 @@ const UserJoinPresenter = ({state}) => {
               arr={GENDER.OPTIONS}
               value={values[GENDER]}
               label={GENDER.LABEL}
-              changeValuesHandler={changeValuesHandler}
+              changeValuesHandler={onChange}
             />
           </FormBoxStyles>
           <FormBoxStyles>
@@ -58,21 +57,21 @@ const UserJoinPresenter = ({state}) => {
               arr={YEAR.OPTIONS}
               value={values[YEAR]}
               label={YEAR.LABEL}
-              changeValuesHandler={changeValuesHandler}
+              changeValuesHandler={onChange}
             />
             <FormSelect
               name={MONTH.NAME}
               arr={MONTH.OPTIONS}
               value={values[MONTH]}
               label={MONTH.LABEL}
-              changeValuesHandler={changeValuesHandler}
+              changeValuesHandler={onChange}
             />
             <FormSelect
               name={DAY.NAME}
               arr={DAY.OPTIONS}
               value={values[DAY]}
               label={DAY.LABEL}
-              changeValuesHandler={changeValuesHandler}
+              changeValuesHandler={onChange}
             />
           </FormBoxStyles>
           <FormSubmitButtonStyles className={"submit"}>{TITLE}</FormSubmitButtonStyles>

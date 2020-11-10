@@ -1,12 +1,18 @@
-import React, { useContext } from 'react';
-import { LoginContext } from '../../App';
+import React from 'react';
+import { useFormState, useFormChange, useFormSubmit } from '../../hooks/LoginContext';
 import LoginPresenter from './LoginPresenter';
 
 const LoginContainer = () => {
-  const provide = useContext(LoginContext)
+  const state = useFormState();
+  const onChange = useFormChange();
+  const onSubmit = useFormSubmit();
 
   return (
-    <LoginPresenter state={provide}/>
+    <LoginPresenter
+      values={state}
+      onChange={onChange}
+      onSubmit={onSubmit}
+    />
   );
 };
 
