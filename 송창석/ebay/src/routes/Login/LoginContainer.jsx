@@ -1,11 +1,13 @@
 import React from 'react';
-import { useFormState, useFormChange, useFormSubmit } from '../../hooks/LoginContext';
+import { useFormState, useFormDispatch } from '../../hooks/LoginContext';
+import { changeValuesHandler, submitValuesHandler } from '../../utils/FormUtils';
 import LoginPresenter from './LoginPresenter';
 
 const LoginContainer = () => {
   const state = useFormState();
-  const onChange = useFormChange();
-  const onSubmit = useFormSubmit();
+  const dispatch = useFormDispatch();
+  const onChange = changeValuesHandler(dispatch)
+  const onSubmit = submitValuesHandler(dispatch)
 
   return (
     <LoginPresenter

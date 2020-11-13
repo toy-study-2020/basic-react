@@ -1,11 +1,13 @@
 import React from 'react';
-import { useFormChange, useFormState, useFormSubmit } from '../../hooks/JoinContext';
+import { useFormDispatch, useFormState } from '../../hooks/JoinContext';
+import { changeValuesHandler, submitValuesHandler } from '../../utils/FormUtils';
 import UserJoinPresenter from './UserJoinPresenter';
 
 const UserJoinContainer = () => {
   const state = useFormState();
-  const onChange = useFormChange();
-  const onSubmit = useFormSubmit();
+  const dispatch = useFormDispatch();
+  const onChange = changeValuesHandler(dispatch);
+  const onSubmit = submitValuesHandler(dispatch);
 
   return (
     <UserJoinPresenter
