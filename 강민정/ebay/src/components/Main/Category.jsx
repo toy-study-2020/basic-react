@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
-import {UseAPI} from "./MainContainer";
+import {UseAPI} from "../../routes/Main/MainContainer";
 
 const Category = () => {
   const {menu} = useContext(UseAPI);

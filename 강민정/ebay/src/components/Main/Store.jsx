@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import errorImage from '../../images/error.jpg';
-import {UseAPI} from "./MainContainer";
+import {UseAPI} from "../../routes/Main/MainContainer";
 
 const Store = () => {
   const {store} = useContext(UseAPI);

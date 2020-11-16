@@ -1,9 +1,9 @@
 import React from 'react';
-import Category from "./Category";
-import Store from "./Store";
-import Best from "./Best";
-import Exhibition from "./Exhibition";
-import Product from "./Product";
+import Category from "../../components/Main/Category";
+import Store from "../../components/Main/Store";
+import Best from "../../components/Main/Best";
+import Exhibition from "../../components/Main/Exhibition";
+import Product from "../../components/Main/Product";
 
 const MainPresenter = () => {
 
