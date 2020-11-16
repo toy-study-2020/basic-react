@@ -3,15 +3,17 @@ import MainMenu from './MainMenu';
 import SubMenu from './SubMenu';
 import { InnerLayout } from './MenuStyle';
 
-const MenuPresenter = () => {
+const Menu = ({menu}) => {
+  const {mainMenu, sideMenu} = menu;
+
   return (
     <div>
       <InnerLayout>
-        <MainMenu></MainMenu>
-        <SubMenu></SubMenu>
+        <MainMenu mainMenu={mainMenu}></MainMenu>
+        <SubMenu sideMenu={sideMenu}></SubMenu>
       </InnerLayout>
     </div>
   );
 }
 
-export default MenuPresenter;
+export default Menu;

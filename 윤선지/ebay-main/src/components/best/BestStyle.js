@@ -19,7 +19,7 @@ export const AreaTitle = styled.div`
 
 export const BestHotdealArea = styled.div`
   padding-bottom: 35px;
-  background: #fff;
+  background: #f7f6f5;
 `;
 
 export const LstBest = styled.ul`

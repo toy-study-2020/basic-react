@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { MainNav, LstNav, LstItem } from './MenuStyle';
-import { DataConText } from './MenuContainer';
 
-function MainMenu() {
-  const { mainMenu } = useContext(DataConText);
+function MainMenu({mainMenu}) {
+
   const listMainMenu = menu => {
     return menu.map((item, idx) => {
       return (

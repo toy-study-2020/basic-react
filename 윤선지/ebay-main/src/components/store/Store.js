@@ -7,17 +7,19 @@ import {
   LstBrand
 } from './StoreStyle';
 
-const MenuPresenter = ({storeTitle, storeItems}) => {
+const Store = ({mainStore}) => {
+    const { title, items } = mainStore;
+
     return (
         <BrandArea>
             <InnerLayout>
-                <AreaTitle>{storeTitle}</AreaTitle>
+                <AreaTitle>{title}</AreaTitle>
                 <LstBrand>
-                    {storeItems.map((item, idx) => <Item item={item} idx={idx}></Item>)}
+                    {items.map((item, idx) => <Item item={item} idx={idx}></Item>)}
                 </LstBrand>
             </InnerLayout>
         </BrandArea>
     );
 }
 
-export default MenuPresenter;
+export default Store;

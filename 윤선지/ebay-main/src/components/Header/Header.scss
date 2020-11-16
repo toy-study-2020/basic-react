@@ -1,0 +1,111 @@
+.headerArea {
+    background: #f0eeec;
+    height: 95px;
+    border-bottom: 1px solid #ddd;
+
+    .innerLayout {
+        width: 1250px;
+        margin: 0 auto;
+
+        &:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    }
+
+    .logoEbay {
+        float: left;
+        display: inline-block;
+        width: 176px;
+        height: 40px;
+        margin-top: 26px;
+        text-indent: -999px;
+        background: url('../../images/common-icon.png') 0 -44px no-repeat;
+        background-size: 146px;
+    }
+
+    .headerMenu {
+        float: right;
+        margin-top: 23px;
+
+        &:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        > .menu {
+            float: left;
+            position: relative;
+            width: 45px;
+            height: 50px;
+            margin-left: 11px;
+            font-size: 12px;
+            line-height: 18px;
+            letter-spacing: -1px;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                height: 28px;
+                transform: translateX(-50%);
+                background: url('../../images/common-icon.png') 0 0 no-repeat;
+            }
+
+            a {
+                display: block;
+                height: 100%;
+                padding-top: 28px;
+                box-sizing: border-box;
+                color: #7f7f7f;
+            }
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+
+        .btnMyShop {
+            &:after {
+                width: 19px;
+                background-position: 0px -10px;
+                background-size: 125px;
+            }
+        }
+
+        .btnOrder {
+            &:after {
+                width: 24px;
+                background-position: -18px -10px;
+                background-size: 125px;
+            }
+        }
+
+        .btnCart {
+            &:after {
+                width: 24px;
+                background-position: -40px -10px;
+                background-size: 125px;
+            }
+
+            .countNum {
+                position: absolute;
+                color: #fff;
+                display: block;
+                width: 17px;
+                height: 17px;
+                background-color: #0064d2;
+                right: 0;
+                bottom: 23px;
+                border-radius: 50%;
+                text-align: center;
+                font-size: 10px;
+                line-height: 17px;
+            }
+        }
+        
+    }
+}

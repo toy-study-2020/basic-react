@@ -1,5 +1,5 @@
-export const getFetch = async url => {
-    const response = await fetch(url);
+export const getFetch = async name => {
+    const response = await fetch(`https://baekcode.github.io/APIs/${name}.json`);
     const data = await response.json();
     return data;
 };
