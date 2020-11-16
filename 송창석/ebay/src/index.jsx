@@ -4,10 +4,10 @@ import App from './App';
 import { GlobalStyles } from './GlobalStyles';
 
 ReactDOM.render(
-    <>
-    <GlobalStyles/>    
-    <App />
-    </>,
-    
-    document.getElementById('root')
+  <>
+  <GlobalStyles/>    
+  <App />
+  </>,
+  
+  document.getElementById('root')
 );

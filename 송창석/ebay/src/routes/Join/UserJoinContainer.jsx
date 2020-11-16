@@ -1,34 +1,21 @@
 import React from 'react';
-import { JOIN_OPTS } from '../../constant/constant';
-import FormUtils from '../../utils/FormUtils';
+import { useFormDispatch, useFormState } from '../../hooks/JoinContext';
+import { changeValuesHandler, submitValuesHandler } from '../../utils/FormUtils';
 import UserJoinPresenter from './UserJoinPresenter';
 
-const ConstantContext = React.createContext(null)
-const UserJoinContext = React.createContext(null)
-
-export {
-    ConstantContext,
-    UserJoinContext
-}
-
 const UserJoinContainer = () => {
-    const UserJoinValues = FormUtils({
-        name: "",
-        email: "",
-        password: "",
-        gender: "",
-        year: "",
-        month: "",
-        day: ""
-    })
+  const state = useFormState();
+  const dispatch = useFormDispatch();
+  const onChange = changeValuesHandler(dispatch);
+  const onSubmit = submitValuesHandler(dispatch);
 
-    return (
-        <ConstantContext.Provider value={JOIN_OPTS}>
-            <UserJoinContext.Provider value={UserJoinValues}>
-                <UserJoinPresenter/>
-            </UserJoinContext.Provider>
-        </ConstantContext.Provider>
-    );
+  return (
+    <UserJoinPresenter
+      values={state}
+      onChange={onChange}
+      onSubmit={onSubmit}
+    />
+  );
 };
 
 export default UserJoinContainer;

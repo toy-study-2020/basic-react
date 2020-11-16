@@ -1,29 +1,21 @@
 import React from 'react';
-import { LOGIN_OPTS } from '../../constant/constant';
-import FormUtils from '../../utils/FormUtils';
-import LoginPresenter from './LoginPresenter'
-
-const ConstantContext = React.createContext(null)
-const LoginContext = React.createContext(null)
-export {
-    ConstantContext,
-    LoginContext
-}
-
+import { useFormState, useFormDispatch } from '../../hooks/LoginContext';
+import { changeValuesHandler, submitValuesHandler } from '../../utils/FormUtils';
+import LoginPresenter from './LoginPresenter';
 
 const LoginContainer = () => {
-    const LoginValues = FormUtils({
-        email: "",
-        password: ""
-    })
+  const state = useFormState();
+  const dispatch = useFormDispatch();
+  const onChange = changeValuesHandler(dispatch)
+  const onSubmit = submitValuesHandler(dispatch)
 
-    return (
-        <ConstantContext.Provider value={LOGIN_OPTS}>
-            <LoginContext.Provider value={LoginValues}>
-                <LoginPresenter/>
-            </LoginContext.Provider>
-        </ConstantContext.Provider>
-    );
+  return (
+    <LoginPresenter
+      values={state}
+      onChange={onChange}
+      onSubmit={onSubmit}
+    />
+  );
 };
 
 export default LoginContainer;

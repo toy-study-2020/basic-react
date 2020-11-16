@@ -1,34 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { MAIN_APIS } from '../../constant/constant';
-import MainUtils from '../../utils/MainUtils';
+import { useMainState, useMainDispatch } from '../../hooks/MainContext';
+import fetchAsyncDispatcher from '../../utils/asyncUtils';
 import MainPresenter from './MainPresenter';
 
-const ConstantContext = React.createContext(null)
-const ApisContext = React.createContext(null)
-const DispatchContext = React.createContext(null)
-const FetchDataContext = React.createContext(null)
-
-export {
-    ConstantContext,
-    ApisContext,
-    DispatchContext,
-    FetchDataContext
-}
-
 const MainContainer = () => {
-    const {apis, dispatchApis, fetchData} = MainUtils()
+  const state = useMainState()
+  const dispatch = useMainDispatch()
 
-    return (
-        <ConstantContext.Provider value={MAIN_APIS}>
-            <ApisContext.Provider value={apis}>
-                <DispatchContext.Provider value={dispatchApis}>
-                    <FetchDataContext.Provider value={fetchData}>
-                        <MainPresenter apis={apis}/>
-                    </FetchDataContext.Provider>
-                </DispatchContext.Provider>
-            </ApisContext.Provider>
-        </ConstantContext.Provider>
-    )
+  useEffect(() => {
+    fetchAsyncDispatcher(dispatch, "DISPATCH_GNB", MAIN_APIS.MENU)
+    fetchAsyncDispatcher(dispatch, "DISPATCH_CONTENT", MAIN_APIS.STORE)
+    fetchAsyncDispatcher(dispatch, "DISPATCH_CONTENT", MAIN_APIS.BEST)
+    fetchAsyncDispatcher(dispatch, "DISPATCH_CONTENT", MAIN_APIS.EVENT)
+    fetchAsyncDispatcher(dispatch, "DISPATCH_CONTENT", MAIN_APIS.PRODUCTS)
+  }, [dispatch])
+
+  return (
+    <MainPresenter state={state}/>
+  )
 }
 
 export default MainContainer;
