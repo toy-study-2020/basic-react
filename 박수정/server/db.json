@@ -1,0 +1,9 @@
+{
+  "posts": [
+    { "id": 1, "title": "hello world, 첫번째 포스트입니다.", "author": "박수정" }
+  ],
+  "comments": [
+    { "id": 1, "body": "댓글 작성내용이 출력됩니다.", "postId": 1 }
+  ],
+  "profile": { "name": "박수정" }
+}
