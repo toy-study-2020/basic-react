@@ -1,0 +1,14 @@
+.posts_list {
+  li {
+    a {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+    }
+    strong,
+    span {
+      font-size: 18px;
+    }
+  }
+}
