@@ -26,6 +26,7 @@ import {
 import Main from './Routes/Main';
 import PostsList from './Routes/PostsLIst/index';
 import PostDetail from './Routes/PostDetail/index';
+import PostCreate from './Routes/PostCreate/index';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -163,6 +164,9 @@ export default function PersistentDrawerLeft() {
           <Switch>
             <Route path={`/`} exact>
               <Main/>
+            </Route>
+            <Route path={`/boards/create`}>
+              <PostCreate/>
             </Route>
             <Route path={`/boards/:id`}>
               <PostDetail/>

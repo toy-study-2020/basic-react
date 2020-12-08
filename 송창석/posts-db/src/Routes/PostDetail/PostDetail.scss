@@ -1,19 +1,12 @@
-.btn {
-  & + .btn {
-    margin-left: 10px;
-  }
-  &.btn_back {
-    background-color: #1D4CD8;
-    color: #fff;
-  }
-  &.btn_del {
-    background-color: #eee;
-    color: #222;
-  }
+.detail_wrap {
+  overflow: hidden;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
 }
 .sec_detail {
-  margin: 20px 0;
-  padding: 20px;
+  margin-bottom: 30px;
   h4 {
     margin-bottom: 20px;
     font-weight: bold;
