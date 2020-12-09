@@ -29,7 +29,8 @@ const GlobalStyles = createGlobalStyle`
       background-color: #1D4CD8;
       color: #fff;
     }
-    &.btn_del {
+    &.btn_del,
+    &.btn_cancel {
       background-color: #eee;
       color: #222;
     }

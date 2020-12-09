@@ -13,5 +13,23 @@
     span {
       font-size: 18px;
     }
+    i {
+      display: inline-block;
+      vertical-align: middle;
+      position: relative;
+      margin-right: 20px;
+      padding-right: 20px;
+      &:after {
+        content: '';
+        display: block;
+        width: 2px;
+        height: 20px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -10px;
+        background-color: #222;
+      }
+    }
   }
 }

@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import './PostCreate.scss'
 
-const PostCreatePresenter = ({goBack, onChange, onSubmit}) => {
+const PostCreatePresenter = ({id, title, goBack, onChange, onSubmit}) => {
   return (
     <>
       <Button
@@ -21,13 +21,15 @@ const PostCreatePresenter = ({goBack, onChange, onSubmit}) => {
             label="제목"
             variant="outlined"
             onChange={onChange}
+            name={"title"}
+            value={title}
           />
           <Button
             variant="contained"
             className={"btn btn_add"}
             onClick={onSubmit}
           >
-            추가
+            {id ? "수정" : "추가"}
           </Button>
         </div>
       </form>

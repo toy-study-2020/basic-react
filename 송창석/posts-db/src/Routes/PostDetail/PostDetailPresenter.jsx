@@ -1,20 +1,17 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import { Link } from 'react-router-dom'
 import Comment from '../../Components/Comment/index'
 import './PostDetail.scss'
 
-const PostDetailPresenter = ({ post, update, id, onEvent }) => {
-  const {goBack, onDelete, onToggle, onChange, onUpdate} = onEvent
+const PostDetailPresenter = ({ post, id, goBack, onDelete }) => {
   return (
-      
-    !update
-    ?
     <>
       <Button
         variant="contained"
         className={"btn btn_update"}
-        onClick={onToggle}
+        component={Link}
+        to={`/boards/update/${id}`}
       >
         수정
       </Button>
@@ -39,30 +36,6 @@ const PostDetailPresenter = ({ post, update, id, onEvent }) => {
           <span>작성자 : {post.author}</span>
         </section>
         <Comment id={id} />
-      </div>
-    </>
-    :
-    <>
-      <div className={"update_wrap"}>
-        <form noValidate autoComplete="off" onSubmit={onUpdate}>
-          <div className={"form_wrap"}>
-            <TextField
-              id="outlined-basic"
-              label="제목"
-              variant="outlined"
-              name={"title"}
-              value={post.title}
-              onChange={onChange}
-            />
-            <Button
-              variant="contained"
-              className={"btn btn_add"}
-              onClick={onUpdate}
-            >
-              확인
-            </Button>
-          </div>
-        </form>
       </div>
     </>
   );

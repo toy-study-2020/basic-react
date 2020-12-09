@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import './PostsList.scss'
 
 export default function PostsListPresenter({posts}) {
-  if(posts) return (
+  return (
     <>
       <Button
         variant="contained"
@@ -15,24 +15,29 @@ export default function PostsListPresenter({posts}) {
         추가
       </Button>
       <hr/>
-      <ol className={"posts_list"}>
-        {posts.map((post) => {
-          return (
-            <li key={post.id}>
-              <Button
-                variant="contained"
-                className={"btn"}
-                component={Link}
-                to={`boards/${post.id}`}
-              >
-                <strong>{post.title}</strong>
-                <span>{post.author}</span>
-              </Button>
-            </li>
-          )
-        })}
-      </ol>
+      {
+        posts.length > 0
+        ?
+        <ol className={"posts_list"}>
+          {posts.map((post) => {
+            return (
+              <li key={post.id}>
+                <Button
+                  variant="contained"
+                  className={"btn"}
+                  component={Link}
+                  to={`boards/${post.id}`}
+                >
+                  <strong><i>{post.id}</i>{post.title}</strong>
+                  <span>{post.author}</span>
+                </Button>
+              </li>
+            )
+          })}
+        </ol>
+        :
+        <div>리스트가 없습니다.</div>
+      }
     </>
   );
-  return <div>리스트가 없습니다.</div>
 }

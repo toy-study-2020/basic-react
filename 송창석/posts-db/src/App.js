@@ -168,6 +168,9 @@ export default function PersistentDrawerLeft() {
             <Route path={`/boards/create`}>
               <PostCreate/>
             </Route>
+            <Route path={`/boards/update/:id`}>
+              <PostCreate/>
+            </Route>
             <Route path={`/boards/:id`}>
               <PostDetail/>
             </Route>

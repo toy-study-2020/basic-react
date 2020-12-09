@@ -1,19 +1,19 @@
 import React from 'react';
 import './Comment.scss'
 
-const CommentPresenter = ({comments}) => {
+const CommentPresenter = ({comment}) => {
   return (
     <ol className={"comment_list"}>
       {
-        comments !== undefined
+        comment.length > 0
         ?
-        comments.map((desc) => {
+        comment.map((desc) => {
           return (
             <li key={desc.id}>{desc.body}</li>
           )
         })
         : 
-        <li>댓글을 입력해주세요.</li>
+        <li>댓글이 없습니다.</li>
       }
     </ol>
   );

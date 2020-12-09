@@ -1,33 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { createPost, getPostProfile } from '../../api/posts';
+import { useHistory, useParams } from 'react-router-dom';
+import { createPost, getPostById, getPostProfile, updatePostById } from '../../api/posts';
 import PostCreatePresenter from './PostCreatePresenter';
 
 const PostCreateContainer = () => {
-  const [title, setTitle] = useState("")
-  const [author, setAuthor] = useState()
+  const [post, setPost] = useState({
+    title: "",
+    author: ""
+  })
+  const {title, author} = post
   const history = useHistory()
+  const {id} = useParams()
 
   useEffect(() => {
-    getPostProfile().then(profile => {
-      setAuthor(profile.name)
+    if(!id) getPostProfile().then(profile => {
+      setPost(post => {
+        return {
+          ...post,
+          author: profile.name
+        }
+      })
     })
-  }, [])
+    else getPostById(id).then(data => {
+      const {title, author} = data
+      setPost({
+        title,
+        author
+      })
+    })
+  }, [id])
 
   const goBack = () => history.goBack()
-  const handleChange = e => setTitle(e.target.value)
+  const handleChange = e => setPost({
+    ...post,
+    [e.target.name] : e.target.value
+  })
   const handleCreate = e => {
     e.preventDefault()
-    createPost({title, author})
+    if(!id) createPost({title, author})
+    else updatePostById({id, title, author})
     goBack()
   }
 
   return (
     <PostCreatePresenter
+      id={id}
+      title={title}
       goBack={goBack}
       onChange={handleChange}
       onSubmit={handleCreate}
-      title={title}
     />
   );
 };
