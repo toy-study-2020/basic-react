@@ -38,7 +38,18 @@ const FETCH = {
     title: title,
     author: author
   }) => {
-    console.log(type, id, title, author);
+    const response = await fetch(`${URL}/${type}/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        title: title,
+        author: author
+      }),
+      headers: HEADERS
+    });
+    if (response.ok) {
+      await response.json();
+      await console.log(response);
+    }
   },
   deleteDB: async ({
     id: id
