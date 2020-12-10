@@ -1,4 +1,13 @@
-import { URL } from './constants.js';
+import {
+  URL,
+  HEADERS
+} from './constants.js';
+import {
+  docSelector,
+  createEl,
+  insertEl,
+  toggleClassMethod
+} from './method.js';
 
 const FETCH = {
   getDB: async _ => {
