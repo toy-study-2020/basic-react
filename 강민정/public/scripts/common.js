@@ -58,7 +58,13 @@ const FETCH = {
   }
 };
 
-const { getDB, postDB, updateDB, deleteDB } = FETCH;
+const {
+  postDB: post,
+  getDB: read,
+  updateDB: update,
+  deleteDB: del
+} = FETCH;
+
 const btnCreate = docSelector({el: '.btnCreate'});
 const btnUpdate = docSelector({el: '.btnUpdate'});
 btnCreate.addEventListener('click', async _ => {
