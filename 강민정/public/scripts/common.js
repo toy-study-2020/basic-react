@@ -12,10 +12,7 @@ import {
 const FETCH = {
   getDB: async _ => {
     const response = await fetch(`${URL}/posts`);
-    if (response.ok) {
-      return await response.json();
-    }
-
+    if (response.ok) return await response.json();
   },
   postDB: async ({
     type: type,
