@@ -10,17 +10,27 @@ import {
 } from './method.js';
 
 const FETCH = {
-  getDB: async _ => {
-    const response = await fetch(`${URL}/posts`);
-    if (response.ok) return await response.json();
-  },
   postDB: async ({
     type: type,
-    id: id,
     title: title,
     author: author
   }) => {
-    console.log(type, id, title, author);
+    const response = await fetch(`${URL}/${type}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        title: title,
+        author: author
+      }),
+      headers: HEADERS
+    });
+    if (response.ok) {
+      await response.json();
+      await console.log(response);
+    }
+  },
+  getDB: async _ => {
+    const response = await fetch(`${URL}/posts`);
+    if (response.ok) return await response.json();
   },
   updateDB: async ({
     type: type,
