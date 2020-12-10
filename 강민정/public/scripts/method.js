@@ -12,6 +12,14 @@ const createEl = ({
   return document.createElement(tag);
 };
 
+const insertEl = ({
+  target: target,
+  position: pos = 'beforebegin',
+  element: el
+}) => {
+  target.insertAdjacentElement(pos, el);
+}
+
 const toggleClassMethod = ({
   el: el,
   methodType: methodType,
@@ -23,5 +31,6 @@ const toggleClassMethod = ({
 export {
   docSelector,
   createEl,
+  insertEl,
   toggleClassMethod
 }
