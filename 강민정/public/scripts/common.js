@@ -59,6 +59,24 @@ const FETCH = {
 };
 
 const { getDB, postDB, updateDB, deleteDB } = FETCH;
+const btnCreate = docSelector({el: '.btnCreate'});
+const btnUpdate = docSelector({el: '.btnUpdate'});
+btnCreate.addEventListener('click', async _ => {
+  await post({
+    type: 'posts',
+    title: '테스트 타이틀',
+    author: '테스트 작성자'
+  })
+});
+
+btnUpdate.addEventListener('click', async _ => {
+  await update({
+    type: 'posts',
+    id: 2,
+    title: '수정된 타이틀',
+    author: '수정된 작성자'
+  })
+});
 
 const init = async _ => {
   const db = await getDB();
