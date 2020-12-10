@@ -84,9 +84,26 @@ btnUpdate.addEventListener('click', async _ => {
   })
 });
 
-const init = async _ => {
-  const db = await getDB();
-  await console.log(db);
+
+const setUI = async _ => {
+  const db = await read();
+  console.log(db);
+
+  await db.map(val => {
+    const {id, title, author} = val;
+    const post = createEl({tag: 'div'});
+    post.textContent = `${id}, ${title}, ${author}`;
+
+    insertEl({
+      target: docSelector({el: 'body'}),
+      element: post
+    })
+  }).join('');
+};
+
+const init = _ => {
+  setUI();
+
 }
 if (document.readyState === 'complete') {
   init();
