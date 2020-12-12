@@ -189,6 +189,9 @@ const io = new IntersectionObserver((entries, observe) => {
   });
 }, observerOption);
 
+btnAdd.addEventListener('click', _ => {
+  addPost({type: 'posts'});
+});
 
 const init = async _ => {
   const initialData = await fetchData();
