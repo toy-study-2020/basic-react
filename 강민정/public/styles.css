@@ -8,7 +8,8 @@ body {
   list-style: none;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu; }
   body button,
-  body input {
+  body input,
+  body textarea {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu; }
   body a {
     text-decoration: none; }
@@ -18,7 +19,8 @@ body {
     font-size: 14px;
     color: #fff;
     border: none;
-    background-color: #00a3e5; }
+    background-color: #00a3e5;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2); }
   body a:active,
   body button:active {
     opacity: .8; }
@@ -37,13 +39,34 @@ li {
 header strong {
   font-size: 18px; }
 
+.addForm {
+  margin-bottom: 30px; }
+  .addForm > div {
+    display: flex;
+    padding: 4px 0; }
+    .addForm > div label {
+      display: flex;
+      width: 150px;
+      align-items: center; }
+      .addForm > div label[for="description"] {
+        align-items: flex-start; }
+    .addForm > div span {
+      flex: auto; }
+    .addForm > div input,
+    .addForm > div textarea {
+      width: 100%;
+      padding: 8px 5px;
+      box-sizing: border-box;
+      resize: none; }
+
 .posts li {
   display: flex;
   justify-content: space-between;
   padding: 15px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  opacity: 1;
-  transition: opacity 1s; }
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out;
+  animation-fill-mode: forwards; }
   .posts li > span {
     display: flex;
     align-items: center; }
@@ -84,7 +107,8 @@ header strong {
   position: sticky;
   top: 0;
   padding: 30px 0;
-  text-align: right; }
+  text-align: right;
+  z-index: 1; }
   .buttonWrap ul {
     font-size: 0; }
   .buttonWrap li {
@@ -120,3 +144,9 @@ header strong {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
