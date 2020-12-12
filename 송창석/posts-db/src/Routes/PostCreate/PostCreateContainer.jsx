@@ -37,9 +37,13 @@ const PostCreateContainer = () => {
   })
   const handleCreate = e => {
     e.preventDefault()
-    if(!id) createPost({title, author})
-    else updatePostById({id, title, author})
-    goBack()
+    if(title !== "") {
+      if(!id) createPost({title, author})
+      else updatePostById({id, title, author})
+      goBack()
+    } else {
+      alert("내용을 입력해주세요.")
+    }
   }
 
   return (

@@ -9,18 +9,18 @@ const PostDetailPresenter = ({ post, id, goBack, onDelete }) => {
     <>
       <Button
         variant="contained"
+        className={"btn btn_back"}
+        onClick={goBack}
+      >
+        뒤로가기
+      </Button>
+      <Button
+        variant="contained"
         className={"btn btn_update"}
         component={Link}
         to={`/boards/update/${id}`}
       >
         수정
-      </Button>
-      <Button
-        variant="contained"
-        className={"btn btn_back"}
-        onClick={goBack}
-      >
-        뒤로가기
       </Button>
       <Button
         variant="contained"

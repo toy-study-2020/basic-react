@@ -15,11 +15,11 @@ export default function PostsListPresenter({posts}) {
         추가
       </Button>
       <hr/>
-      {
-        posts.length > 0
-        ?
-        <ol className={"posts_list"}>
-          {posts.map((post) => {
+      <ol className={"posts_list"}>
+        {
+          posts.length > 0
+          ?
+          posts.map((post) => {
             return (
               <li key={post.id}>
                 <Button
@@ -33,11 +33,11 @@ export default function PostsListPresenter({posts}) {
                 </Button>
               </li>
             )
-          })}
-        </ol>
-        :
-        <div>리스트가 없습니다.</div>
-      }
+          })
+          :
+          <li>리스트가 없습니다.</li>
+        }
+      </ol>
     </>
   );
 }
