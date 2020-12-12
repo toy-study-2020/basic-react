@@ -121,6 +121,31 @@ const setUI = ({
         position: position,
         element: post
       });
+const addPost = async ({
+  type: type
+}) => {
+  loading.classList.remove(HIDDEN);
+
+  const postData = {
+    type: type,
+    title: titleForm.value,
+    desc: descriptionForm.value,
+    author: authorForm.value
+  }
+
+  await post(postData);
+
+  const data = await fetchData();
+  setUI({
+    data: data,
+    min: data.length - 1,
+    max: data.length,
+    insertPosition: 'afterbegin'
+  });
+
+  await loading.classList.add(HIDDEN);
+  await formClear();
+};
   });
 };
 
