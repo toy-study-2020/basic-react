@@ -81,21 +81,12 @@ const {
 } = FETCH;
 
 
+const fetchData = async _ => {
+  await loading.classList.add('hidden');
+  return await read();
+};
 
-const setUI = async _ => {
-  const db = await read();
-  console.log(db);
 
-  await db.map(val => {
-    const {id, title, author} = val;
-    const post = createEl({tag: 'div'});
-    post.textContent = `${id}, ${title}, ${author}`;
-
-    insertEl({
-      target: docSelector({el: 'body'}),
-      element: post
-    })
-  }).join('');
 };
 
 const init = _ => {
