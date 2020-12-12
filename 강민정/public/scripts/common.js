@@ -17,7 +17,7 @@ const {HIDDEN} = TOGGLE_CLASS;
 const {MAX_POST} = MAGIC_NUMBER;
 
 const loading = docSelector({el: LOADING});
-const articleEl = docSelector({el: POSTS});
+const postEl = docSelector({el: POSTS});
 const btnAdd = docSelector({el: BTN.ADD});
 
 const addForm = docSelector({el: ADD_FORM.WRAP});
@@ -117,7 +117,7 @@ const setUI = ({
         <span class="author">${author}</span>
       `;
       insertEl({
-        target: articleEl,
+        target: postEl,
         position: position,
         element: post
       });
