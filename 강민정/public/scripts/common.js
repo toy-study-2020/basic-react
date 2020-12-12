@@ -12,13 +12,18 @@ import {
   toggleClassMethod
 } from './method.js';
 
-const {LOADING, POSTS, BTN} = ELEMENTS_CLASS;
+const {LOADING, POSTS, BTN, ADD_FORM} = ELEMENTS_CLASS;
 const {HIDDEN} = TOGGLE_CLASS;
 const {MAX_POST} = MAGIC_NUMBER;
 
 const loading = docSelector({el: LOADING});
 const articleEl = docSelector({el: POSTS});
 const btnAdd = docSelector({el: BTN.ADD});
+
+const addForm = docSelector({el: ADD_FORM.WRAP});
+const titleForm = addForm.querySelector(ADD_FORM.TITLE);
+const authorForm = addForm.querySelector(ADD_FORM.AUTHOR);
+const descriptionForm = addForm.querySelector(ADD_FORM.DESCRIPTION);
 
 const FETCH = {
   postDB: async ({

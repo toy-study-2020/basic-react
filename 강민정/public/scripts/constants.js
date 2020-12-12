@@ -8,6 +8,12 @@ const ELEMENTS_CLASS = {
     ADD: '.btnAdd',
     DELETE: '.btnDelete',
     MODIFY: '.btnModify'
+  },
+  ADD_FORM: {
+    WRAP: '.addForm',
+    TITLE: '#title',
+    AUTHOR: '#author',
+    DESCRIPTION: '#description'
   }
 };
 
