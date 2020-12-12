@@ -121,6 +121,15 @@ const setUI = ({
         position: position,
         element: post
       });
+    });
+};
+
+const formClear = _ => {
+  titleForm.value = '';
+  descriptionForm.value = '';
+  authorForm.value = '';
+}
+
 const addPost = async ({
   type: type
 }) => {
