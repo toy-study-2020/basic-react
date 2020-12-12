@@ -2,6 +2,7 @@ import {
   URL,
   HEADERS,
   ELEMENTS_CLASS,
+  TOGGLE_CLASS,
   MAGIC_NUMBER
 } from './constants.js';
 import {
@@ -12,6 +13,7 @@ import {
 } from './method.js';
 
 const {LOADING, POSTS, BTN} = ELEMENTS_CLASS;
+const {HIDDEN} = TOGGLE_CLASS;
 const {MAX_POST} = MAGIC_NUMBER;
 
 const loading = docSelector({el: LOADING});
@@ -82,7 +84,7 @@ const {
 
 
 const fetchData = async _ => {
-  await loading.classList.add('hidden');
+  await loading.classList.add(HIDDEN);
   return await read();
 };
 

@@ -11,6 +11,10 @@ const ELEMENTS_CLASS = {
   }
 };
 
+const TOGGLE_CLASS = {
+  HIDDEN: 'hidden'
+}
+
 const MAGIC_NUMBER = {
   MAX_POST: 20
 };
@@ -19,5 +23,6 @@ export {
   URL,
   HEADERS,
   ELEMENTS_CLASS,
+  TOGGLE_CLASS,
   MAGIC_NUMBER
 };
