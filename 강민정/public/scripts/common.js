@@ -2,6 +2,7 @@ import {
   URL,
   HEADERS,
   ELEMENTS_CLASS,
+  MAGIC_NUMBER
 } from './constants.js';
 import {
   docSelector,
@@ -11,6 +12,8 @@ import {
 } from './method.js';
 
 const {LOADING, POSTS, BTN} = ELEMENTS_CLASS;
+const {MAX_POST} = MAGIC_NUMBER;
+
 const loading = docSelector({el: LOADING});
 const articleEl = docSelector({el: POSTS});
 const btnAdd = docSelector({el: BTN.ADD});

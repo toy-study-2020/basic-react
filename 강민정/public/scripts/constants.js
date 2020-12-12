@@ -10,8 +10,14 @@ const ELEMENTS_CLASS = {
     MODIFY: '.btnModify'
   }
 };
+
+const MAGIC_NUMBER = {
+  MAX_POST: 20
+};
+
 export {
   URL,
   HEADERS,
   ELEMENTS_CLASS,
+  MAGIC_NUMBER
 };
