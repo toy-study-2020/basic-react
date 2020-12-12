@@ -61,9 +61,15 @@ const FETCH = {
     }
   },
   deleteDB: async ({
+    type: type,
     id: id
   }) => {
-    console.log(id)
+    const response = await fetch(`${URL}/${type}/${id}`, {
+      method: 'DELETE'
+    });
+    if (response.ok) {
+      await console.log(FETCH.getDB());
+    }
   }
 };
 
