@@ -87,7 +87,6 @@ const {
   deleteDB: del
 } = FETCH;
 
-
 const fetchData = async _ => {
   await loading.classList.add(HIDDEN);
   return await read();
@@ -95,12 +94,13 @@ const fetchData = async _ => {
 
 const setUI = ({
   data: data,
-  limit: limit,
+  min: min,
+  max: max,
   insertPosition: position
 }) => {
   data
     .reverse()
-    .filter(posts => posts.id > limit)
+    .filter(posts => posts.id > min && posts.id <= max)
     .map(val => {
       const {id, title, author} = val;
       const post = createEl({tag: 'li'});
@@ -132,7 +132,8 @@ const init = async _ => {
   await console.log(initialData);
   await setUI({
     data: initialData,
-    limit: initialData.length - MAX_POST,
+    min: initialData.length - MAX_POST,
+    max: initialData.length,
     insertPosition: 'beforeend'
   });
 }
