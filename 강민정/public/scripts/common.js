@@ -86,6 +86,36 @@ const fetchData = async _ => {
   return await read();
 };
 
+const setUI = ({
+  data: data,
+  limit: limit,
+  insertPosition: position
+}) => {
+  data
+    .reverse()
+    .filter(posts => posts.id > limit)
+    .map(val => {
+      const {id, title, author} = val;
+      const post = createEl({tag: 'li'});
+      post.dataset.index = id;
+      post.innerHTML = `
+        <span class="indexWrap">
+          <span class="index">${id}</span>
+          <a 
+            href="#"
+            class="titleWrap">
+            <span class="title">${title}</span>  
+          </a>
+        </span>
+        <span class="author">${author}</span>
+      `;
+      insertEl({
+        target: articleEl,
+        position: position,
+        element: post
+      });
+  });
+};
 
 };
 
