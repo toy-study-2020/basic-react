@@ -119,10 +119,17 @@ const setUI = ({
 
 };
 
-const init = _ => {
-  setUI();
 
+const init = async _ => {
+  const initialData = await fetchData();
+  await console.log(initialData);
+  await setUI({
+    data: initialData,
+    limit: initialData.length - MAX_POST,
+    insertPosition: 'beforeend'
+  });
 }
+
 if (document.readyState === 'complete') {
   init();
 } else if (document.addEventListener) {
