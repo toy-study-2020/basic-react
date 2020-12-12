@@ -195,7 +195,6 @@ btnAdd.addEventListener('click', _ => {
 
 const init = async _ => {
   const initialData = await fetchData();
-  await console.log(initialData);
   await setUI({
     data: initialData,
     min: initialData.length - MAX_POST,
