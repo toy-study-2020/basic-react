@@ -1,6 +1,7 @@
 import {
   URL,
-  HEADERS
+  HEADERS,
+  ELEMENTS_CLASS,
 } from './constants.js';
 import {
   docSelector,
@@ -8,6 +9,11 @@ import {
   insertEl,
   toggleClassMethod
 } from './method.js';
+
+const {LOADING, POSTS, BTN} = ELEMENTS_CLASS;
+const loading = docSelector({el: LOADING});
+const articleEl = docSelector({el: POSTS});
+const btnAdd = docSelector({el: BTN.ADD});
 
 const FETCH = {
   postDB: async ({
