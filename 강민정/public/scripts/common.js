@@ -222,6 +222,10 @@ const init = async _ => {
     insertPosition: 'beforeend'
   });
 
+  changeURL({
+    parameter: 'posts=all',
+    method: 'replaceState'
+  });
   infinityScroll(io);
 };
 
