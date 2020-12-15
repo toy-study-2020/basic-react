@@ -60,21 +60,27 @@ header strong {
       resize: none; }
 
 .posts li {
-  display: flex;
-  justify-content: space-between;
   padding: 15px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   opacity: 0;
   animation: fadeIn 1s ease-in-out;
   animation-fill-mode: forwards; }
-  .posts li > span {
+
+.posts .titleInfoWrap {
+  display: flex;
+  justify-content: space-between; }
+  .posts .titleInfoWrap > span {
     display: flex;
     align-items: center; }
 
+.posts .descriptionInfoWrap {
+  display: none; }
+
 .posts .index {
   flex-shrink: 0;
-  width: 80px;
-  text-align: center; }
+  width: 100px;
+  text-align: center;
+  box-sizing: border-box; }
 
 .posts .titleWrap {
   position: relative;
@@ -91,17 +97,19 @@ header strong {
   padding-right: 10px; }
 
 .posts .author {
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-break: break-all;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  flex-shrink: 0;
-  width: 150px;
-  padding: 0 10px;
-  box-sizing: border-box;
-  text-align: center; }
+  flex-shrink: 0; }
+  .posts .author a {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    width: 150px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    text-align: center;
+    color: #000; }
 
 .buttonWrap {
   position: sticky;

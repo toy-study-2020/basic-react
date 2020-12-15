@@ -106,15 +106,24 @@ const setUI = ({
       const post = createEl({tag: 'li'});
       post.dataset.index = id;
       post.innerHTML = `
-        <span class="indexWrap">
-          <span class="index">${id}</span>
-          <a 
-            href="#"
-            class="titleWrap">
-            <span class="title">${title}</span>  
-          </a>
-        </span>
-        <span class="author">${author}</span>
+        <div class="titleInfoWrap">
+          <span class="indexWrap">
+            <span class="index">${id}</span>
+            <a 
+              href="#"
+              class="titleWrap">
+              <span class="title">${title}</span>  
+            </a>
+          </span>
+          <span class="author">
+            <a href="#">${author}</a>
+          </span>
+        </div>
+        <div class="descriptionInfoWrap">
+          <div class="description">
+            ${val.desc ? val.desc : '내용이 없습니다.'}  
+          </div>
+        </div>
       `;
       insertEl({
         target: postEl,
