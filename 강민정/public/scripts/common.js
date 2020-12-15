@@ -209,9 +209,28 @@ const io = new IntersectionObserver((entries, observe) => {
   });
 }, observerOption);
 
+const showDescription = e => {
+  e.preventDefault();
+  let target = e.target;
+  while (target !== undefined && target.parentNode) {
+    if (target.tagName === 'LI') {
+      const postNumber = target.dataset.index;
+
+      changeURL({
+        parameter: `posts=${postNumber}`,
+        method: 'pushState'
+      })
+      return;
+    }
+    target = target.parentNode;
+  }
+};
+
 btnAdd.addEventListener('click', _ => {
   addPost({type: 'posts'});
 });
+
+postEl.addEventListener('click', showDescription);
 
 const init = async _ => {
   const initialData = await fetchData();
