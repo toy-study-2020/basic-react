@@ -28,7 +28,7 @@ export default function PostsListPresenter({posts}) {
                   component={Link}
                   to={`boards/${post.id}`}
                 >
-                  <strong><i>{post.id}</i>{post.title}</strong>
+                  <strong>{post.title}</strong>
                   <span>{post.author}</span>
                 </Button>
               </li>

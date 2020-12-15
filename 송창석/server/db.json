@@ -1,9 +1,54 @@
 {
   "posts": [
-    { "id": 1, "title": "hello world, 첫번째 포스트입니다.", "author": "송창석" }
+    {
+      "id": 1,
+      "title": "hello world, 첫번째 포스트입니다.",
+      "author": "송창석"
+    },
+    {
+      "title": "22222",
+      "author": "송창석",
+      "id": 2
+    },
+    {
+      "title": "333",
+      "author": "송창석",
+      "id": 3
+    }
   ],
   "comments": [
-    { "id": 1, "body": "댓글 작성내용이 출력됩니다.", "postId": 1 }
+    {
+      "id": 1,
+      "body": "댓글 작성내용이 출력됩니다.",
+      "postId": 1
+    },
+    {
+      "body": "2-1",
+      "postId": 2,
+      "id": 2
+    },
+    {
+      "body": "2-2",
+      "postId": 2,
+      "id": 3
+    },
+    {
+      "body": "2-3",
+      "postId": 2,
+      "id": 4
+    },
+    {
+      "body": "3-1",
+      "postId": 3,
+      "id": 5
+    },
+    {
+      "body": "3-2",
+      "postId": 3,
+      "id": 6
+    }
   ],
-  "profile": { "name": "송창석" }
+  "profile": {
+    "name": "송창석"
+  }
 }

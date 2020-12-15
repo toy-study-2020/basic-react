@@ -25,11 +25,6 @@ export const updatePostById = async ({id, title, author}) => {
     return response.data
 }
 
-export const getPostCommentById = async id => {
-  const response = await axios.get(`http://localhost:3030/posts/${id}/comments`)
-  return response.data
-}
-
 export const getPostProfile = async () => {
     const response = await axios.get(`http://localhost:3030/profile`)
     return response.data

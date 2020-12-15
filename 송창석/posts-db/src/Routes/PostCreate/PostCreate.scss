@@ -1,4 +1,17 @@
 .form_wrap {
+  &.comment {
+    margin: 20px 0;
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+      & + * {
+        margin-left: 20px;
+      }
+    }
+    > div {
+      margin: 0;
+    }
+  }
   > div {
     display: block;
     margin: 20px 0;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import { Link } from 'react-router-dom'
-import Comment from '../../Components/Comment/index'
+import { Link } from 'react-router-dom';
+import CommentsWrap from '../../Components/CommentsWrap/index';
 import './PostDetail.scss'
 
 const PostDetailPresenter = ({ post, id, goBack, onDelete }) => {
@@ -35,7 +35,7 @@ const PostDetailPresenter = ({ post, id, goBack, onDelete }) => {
           <h4>제목 : {post.title}</h4>
           <span>작성자 : {post.author}</span>
         </section>
-        <Comment id={id} />
+        <CommentsWrap />
       </div>
     </>
   );
