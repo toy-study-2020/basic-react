@@ -25,6 +25,17 @@ const titleForm = addForm.querySelector(ADD_FORM.TITLE);
 const authorForm = addForm.querySelector(ADD_FORM.AUTHOR);
 const descriptionForm = addForm.querySelector(ADD_FORM.DESCRIPTION);
 
+const changeURL = ({
+  parameter: param,
+  method: method
+}) => {
+  const state = { 'page_id': 1, 'user_id': 5 }
+  const title = '';
+  const url = `./index.html?${param}`;
+
+  history[method](state, title, url)
+};
+
 const FETCH = {
   postDB: async ({
     type: type,
