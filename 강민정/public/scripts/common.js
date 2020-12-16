@@ -41,13 +41,15 @@ const FETCH = {
   postDB: async ({
     type: type,
     title: title,
-    author: author
+    author: author,
+    desc: desc
   }) => {
     const response = await fetch(`${URL}/${type}`, {
       method: 'POST',
       body: JSON.stringify({
         title: title,
-        author: author
+        author: author,
+        desc: desc
       }),
       headers: HEADERS
     });
