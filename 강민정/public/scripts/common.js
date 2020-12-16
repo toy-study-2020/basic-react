@@ -215,8 +215,23 @@ const showDescription = e => {
   e.preventDefault();
   let target = e.target;
   while (target !== undefined && target.parentNode) {
-    if (target.tagName === 'LI') {
-      const postNumber = target.dataset.index;
+    if (target.tagName === 'A') {
+      const link = target.closest('li');
+      const description = link.querySelector(DESCRIPTION);
+      const method = description.classList.value.indexOf('hidden') > -1 ? 'remove' : 'add';
+      const postNumber = method === 'remove' ? link.dataset.index : 'all';
+
+      toggleClassAll({
+        el: DESCRIPTION,
+        methodType: 'add',
+        toggleClass: HIDDEN
+      });
+
+      toggleClassMethod({
+        el: description,
+        methodType: method,
+        toggleClass: HIDDEN
+      });
 
       changeURL({
         parameter: `posts=${postNumber}`,
