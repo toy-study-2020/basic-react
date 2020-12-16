@@ -13,7 +13,7 @@ import {
   toggleClassAll
 } from './method.js';
 
-const {LOADING, POSTS, BTN, ADD_FORM} = ELEMENTS_CLASS;
+const {LOADING, POSTS, DESCRIPTION, BTN, ADD_FORM} = ELEMENTS_CLASS;
 const {HIDDEN} = TOGGLE_CLASS;
 const {MAX_POST} = MAGIC_NUMBER;
 

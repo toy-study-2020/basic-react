@@ -4,6 +4,7 @@ const HEADERS = {'Content-type': 'application/json; charset=UTF-8'};
 const ELEMENTS_CLASS = {
   LOADING: '.loading',
   POSTS: '.posts',
+  DESCRIPTION: '.descriptionInfoWrap',
   BTN: {
     ADD: '.btnAdd',
     DELETE: '.btnDelete',
