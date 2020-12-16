@@ -26,11 +26,24 @@ const toggleClassMethod = ({
   toggleClass: toggleClass
 }) => {
   el.classList[methodType](toggleClass);
+};
+
+const toggleClassAll = ({
+  el: el,
+  methodType: type,
+  toggleClass: toggleClass
+}) => {
+  const elements = docSelector({el, all: true});
+  elements.forEach(element => {
+    element.classList[type](toggleClass);
+  })
+};
 }
 
 export {
   docSelector,
   createEl,
   insertEl,
-  toggleClassMethod
+  toggleClassMethod,
+  toggleClassAll
 }

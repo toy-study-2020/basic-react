@@ -9,7 +9,8 @@ import {
   docSelector,
   createEl,
   insertEl,
-  toggleClassMethod
+  toggleClassMethod,
+  toggleClassAll
 } from './method.js';
 
 const {LOADING, POSTS, BTN, ADD_FORM} = ELEMENTS_CLASS;
