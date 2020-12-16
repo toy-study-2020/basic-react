@@ -130,7 +130,7 @@ const setUI = ({
             <a href="#">${author}</a>
           </span>
         </div>
-        <div class="descriptionInfoWrap">
+        <div class="descriptionInfoWrap hidden">
           <div class="description">
             ${val.desc ? val.desc : '내용이 없습니다.'}  
           </div>
