@@ -162,7 +162,7 @@ const addPost = async ({
     title: titleForm.value,
     desc: descriptionForm.value,
     author: authorForm.value
-  }
+  };
 
   await post(postData);
 
