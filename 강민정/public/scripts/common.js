@@ -55,7 +55,6 @@ const FETCH = {
     });
     if (response.ok) {
       await response.json();
-      await console.log(response);
     }
   },
   getDB: async _ => {
