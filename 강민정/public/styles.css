@@ -59,7 +59,7 @@ header strong {
       box-sizing: border-box;
       resize: none; }
 
-.posts li {
+.posts > li {
   padding: 15px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   opacity: 0;
@@ -69,58 +69,67 @@ header strong {
 .posts .titleInfoWrap {
   display: flex;
   justify-content: space-between; }
-  .posts .titleInfoWrap > span {
-    display: flex;
-    align-items: center; }
 
 .posts .descriptionInfoWrap {
-  display: flex;
-  justify-content: flex-start;
+  display: block;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   margin-top: 15px;
-  padding: 40px 10px 30px; }
+  padding: 40px 10px 0; }
   .posts .descriptionInfoWrap.hidden {
     display: none; }
 
 .posts .index {
-  flex-shrink: 0;
   width: 100px;
   text-align: center;
   box-sizing: border-box; }
 
 .posts .titleWrap {
-  position: relative;
-  display: block; }
+  flex: 1; }
 
-.posts .title {
+.posts .title input {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #000;
+  padding-right: 10px;
+  font-size: 16px; }
+
+.posts .authorWrap {
+  width: 150px; }
+
+.posts .author {
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  padding: 0 10px;
+  box-sizing: border-box;
   color: #000;
-  padding-right: 10px; }
+  text-align: center; }
 
-.posts .author {
-  flex-shrink: 0; }
-  .posts .author a {
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-all;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    width: 150px;
-    padding: 0 10px;
-    box-sizing: border-box;
-    text-align: center;
-    color: #000; }
+.posts input[readonly],
+.posts textarea[readonly] {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: block;
+  width: 100%;
+  padding: 3px;
+  resize: none;
+  border: none;
+  outline: none;
+  font-size: 16px; }
+
+.posts input {
+  cursor: pointer; }
 
 .buttonWrap {
-  position: sticky;
-  top: 0;
-  padding: 30px 0;
+  padding: 30px 0 10px;
   text-align: right;
   z-index: 1; }
   .buttonWrap ul {
