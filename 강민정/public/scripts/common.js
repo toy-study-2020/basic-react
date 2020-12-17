@@ -120,21 +120,43 @@ const setUI = ({
       post.dataset.index = id;
       post.innerHTML = `
         <div class="titleInfoWrap">
-          <span class="indexWrap">
-            <span class="index">${id}</span>
-            <a 
-              href="#"
-              class="titleWrap">
-              <span class="title">${title}</span>  
-            </a>
-          </span>
-          <span class="author">
-            <a href="#">${author}</a>
+          <span class="index">${id}</span>
+          <span class="titleWrap">
+            <span class="title">
+              <input 
+                type="text"
+                value="${title}"
+                readonly
+                title="제목">
+            </span>
+          </span>  
+          <span class="authorWrap">
+            <span class="author">${author}</span>
           </span>
         </div>
         <div class="descriptionInfoWrap hidden">
           <div class="description">
-            ${val.desc ? val.desc : '내용이 없습니다.'}  
+            <textarea
+              title="내용"
+              readonly>${val.desc ? val.desc : '내용이 없습니다.'}</textarea>
+          </div>
+          <div class="buttonWrap">
+            <ul>
+              <li>
+                <button
+                  type="button"
+                  class="btnModify"
+                  data-index="1">
+                  MODIFY
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  class="btnDelete">DELETE
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       `;
