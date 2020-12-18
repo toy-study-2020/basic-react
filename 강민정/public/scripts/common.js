@@ -232,12 +232,12 @@ const postEvent = e => {
 
 const toggleDescription = ({target: target}) => {
   const link = target.closest('li');
-  const description = link.querySelector(DESCRIPTION);
+  const description = link.querySelector(DESCRIPTION_ELEMENT);
   const method = description.classList.contains('hidden') ? 'remove' : 'add';
   const postNumber = method === 'remove' ? link.dataset.index : 'all';
 
   toggleClassAll({
-    el: DESCRIPTION,
+    el: DESCRIPTION_ELEMENT,
     methodType: 'add',
     toggleClass: HIDDEN
   });
