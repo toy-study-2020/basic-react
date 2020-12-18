@@ -59,6 +59,18 @@ header strong {
       box-sizing: border-box;
       resize: none; }
 
+.posts .btnConfirm {
+  display: none; }
+
+.posts .btnModify {
+  display: inline-block; }
+
+.posts.modify .btnModify {
+  display: none; }
+
+.posts.modify .btnConfirm {
+  display: inline-block; }
+
 .posts > li {
   padding: 15px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -68,7 +80,8 @@ header strong {
 
 .posts .titleInfoWrap {
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  align-items: center; }
 
 .posts .descriptionInfoWrap {
   display: block;
@@ -111,22 +124,32 @@ header strong {
 
 .posts input[readonly],
 .posts textarea[readonly] {
+  outline: none;
+  border-color: transparent; }
+
+.posts input[readonly] {
+  cursor: pointer; }
+
+.posts input {
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  padding: 8px; }
+
+.posts textarea {
+  padding: 10px; }
+
+.posts input,
+.posts textarea {
   display: block;
   width: 100%;
-  padding: 3px;
+  border: 1px solid #ccc;
   resize: none;
-  border: none;
-  outline: none;
-  font-size: 16px; }
-
-.posts input {
-  cursor: pointer; }
+  font-size: 16px;
+  box-sizing: border-box; }
 
 .buttonWrap {
   padding: 30px 0 10px;
@@ -136,6 +159,9 @@ header strong {
     font-size: 0; }
   .buttonWrap li {
     display: inline-block;
+    font-size: 0; }
+  .buttonWrap button {
+    cursor: pointer;
     margin-left: 10px; }
 
 .loading {
