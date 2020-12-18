@@ -126,6 +126,7 @@ const setUI = ({
             <span class="title">
               <input 
                 type="text"
+                name="title"
                 value="${title}"
                 readonly
                 title="제목">
@@ -139,6 +140,8 @@ const setUI = ({
           <div class="description">
             <textarea
               title="내용"
+              name="description"
+              rows="10"
               readonly>${val.desc ? val.desc : '내용이 없습니다.'}</textarea>
           </div>
           <div class="buttonWrap">
