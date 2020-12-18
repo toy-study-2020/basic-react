@@ -4,11 +4,12 @@ const HEADERS = {'Content-type': 'application/json; charset=UTF-8'};
 const ELEMENTS_CLASS = {
   LOADING: '.loading',
   POSTS: '.posts',
-  DESCRIPTION: '.descriptionInfoWrap',
+  DESCRIPTION_ELEMENT: '.descriptionInfoWrap',
   BTN: {
     ADD: '.btnAdd',
     DELETE: '.btnDelete',
-    MODIFY: '.btnModify'
+    MODIFY: '.btnModify',
+    CONFIRM: '.btnConfirm'
   },
   ADD_FORM: {
     WRAP: '.addForm',

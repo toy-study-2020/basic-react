@@ -13,18 +13,20 @@ import {
   toggleClassAll
 } from './method.js';
 
-const {LOADING, POSTS, DESCRIPTION, BTN, ADD_FORM} = ELEMENTS_CLASS;
+const {LOADING, POSTS, DESCRIPTION_ELEMENT, BTN, ADD_FORM} = ELEMENTS_CLASS;
+const {WRAP, TITLE, AUTHOR, DESCRIPTION} = ADD_FORM;
 const {HIDDEN} = TOGGLE_CLASS;
 const {MAX_POST} = MAGIC_NUMBER;
+const {ADD, DELETE, MODIFY, CONFIRM} = BTN;
 
 const loading = docSelector({el: LOADING});
 const postEl = docSelector({el: POSTS});
-const btnAdd = docSelector({el: BTN.ADD});
+const btnAdd = docSelector({el: ADD});
 
-const addForm = docSelector({el: ADD_FORM.WRAP});
-const titleForm = addForm.querySelector(ADD_FORM.TITLE);
-const authorForm = addForm.querySelector(ADD_FORM.AUTHOR);
-const descriptionForm = addForm.querySelector(ADD_FORM.DESCRIPTION);
+const addForm = docSelector({el: WRAP});
+const titleForm = addForm.querySelector(TITLE);
+const authorForm = addForm.querySelector(AUTHOR);
+const descriptionForm = addForm.querySelector(DESCRIPTION);
 
 const changeURL = ({
   parameter: param,
