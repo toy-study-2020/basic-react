@@ -157,6 +157,14 @@ const setUI = ({
               <li>
                 <button
                   type="button"
+                  class="btnConfirm"
+                  data-index="${id}">
+                  CONFIRM
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
                   class="btnDelete"
                   data-index="${id}">
                   DELETE
