@@ -238,6 +238,19 @@ const toggleDescription = ({target: target}) => {
   })
 };
 
+const postModify = ({el: el}) => {
+  postEl.classList.add('modify');
+  const title = el.querySelector(`input[name="${TITLE.replace('#', '')}"]`);
+  const description = el.querySelector(`textarea[name="${DESCRIPTION.replace('#', '')}"]`);
+
+  title.readOnly = false;
+  description.readOnly = false;
+};
+
+const postDelete = _ => {
+  console.log('delete');
+}
+
 const postEvent = e => {
   e.preventDefault();
   let target = e.target;
