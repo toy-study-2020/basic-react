@@ -199,39 +199,6 @@ const addPost = async ({
   await formClear();
 };
 
-const infinityScroll = intersectionObserver => {
-  const post = postEl.querySelectorAll('li');
-  post.forEach(el => {
-    const postIndex = Number(el.dataset.index);
-    if (!el.nextSibling && postIndex > 1) {
-      intersectionObserver.observe(el);
-    } else if (postIndex <= 1) {
-      intersectionObserver.disconnect();
-    }
-  });
-};
-
-const observerOption = {
-  threshold: 0
-};
-
-const io = new IntersectionObserver((entries, observe) => {
-  entries.forEach(async (entry) => {
-    if (entry.isIntersecting) {
-      loading.classList.remove(HIDDEN);
-      const entriesIndex = await entries[0].target.dataset.index - 1;
-      await setUI({
-        data: await fetchData(),
-        min: entriesIndex - MAX_POST,
-        max: entriesIndex,
-        insertPosition: 'beforeend'
-      });
-      await loading.classList.add(HIDDEN);
-      await infinityScroll(observe);
-    }
-  });
-}, observerOption);
-
 const postEvent = e => {
   e.preventDefault();
   let target = e.target;
@@ -277,6 +244,39 @@ btnAdd.addEventListener('click', _ => {
 });
 
 postEl.addEventListener('click', postEvent);
+
+const infinityScroll = intersectionObserver => {
+  const post = postEl.querySelectorAll('li');
+  post.forEach(el => {
+    const postIndex = Number(el.dataset.index);
+    if (!el.nextSibling && postIndex > 1) {
+      intersectionObserver.observe(el);
+    } else if (postIndex <= 1) {
+      intersectionObserver.disconnect();
+    }
+  });
+};
+
+const observerOption = {
+  threshold: 0
+};
+
+const io = new IntersectionObserver((entries, observe) => {
+  entries.forEach(async (entry) => {
+    if (entry.isIntersecting) {
+      loading.classList.remove(HIDDEN);
+      const entriesIndex = await entries[0].target.dataset.index - 1;
+      await setUI({
+        data: await fetchData(),
+        min: entriesIndex - MAX_POST,
+        max: entriesIndex,
+        insertPosition: 'beforeend'
+      });
+      await loading.classList.add(HIDDEN);
+      await infinityScroll(observe);
+    }
+  });
+}, observerOption);
 
 const init = async _ => {
   const initialData = await fetchData();
