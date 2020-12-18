@@ -214,22 +214,6 @@ const addPost = async ({
   await formClear();
 };
 
-const postEvent = e => {
-  e.preventDefault();
-  let target = e.target;
-  while (target !== undefined && target.parentNode) {
-    if (target.tagName === 'INPUT') {
-      return toggleDescription({target: target});
-    }
-
-    if (target.tagName === 'BUTTON') {
-      const funcName = target.className === BTN.MODIFY ? 'postModify' : 'postDelete';
-      [funcName]();
-    }
-    target = target.parentNode;
-  }
-};
-
 const toggleDescription = ({target: target}) => {
   const link = target.closest('li');
   const description = link.querySelector(DESCRIPTION_ELEMENT);
@@ -252,6 +236,34 @@ const toggleDescription = ({target: target}) => {
     parameter: `posts=${postNumber}`,
     method: 'pushState'
   })
+};
+
+const postEvent = e => {
+  e.preventDefault();
+  let target = e.target;
+  switch (target.tagName) {
+  case 'INPUT':
+    if (postEl.classList.contains('modify')) return;
+    toggleDescription({target: target});
+    break;
+  case 'BUTTON':
+    const index = target.dataset.index;
+    if (target.className === MODIFY.replace('.', '')) {
+      postModify({
+        el: postEl.querySelector(`li[data-index="${index}"]`)
+      });
+    } else if (target.className === DELETE.replace('.', '')) {
+      postDelete();
+    } else {
+      update({
+
+      });
+    }
+    break;
+  default:
+    target = target.parentNode;
+    break;
+  }
 };
 
 btnAdd.addEventListener('click', _ => {
