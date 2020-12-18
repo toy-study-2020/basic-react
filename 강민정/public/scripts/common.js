@@ -101,7 +101,6 @@ const {
 } = FETCH;
 
 const fetchData = async _ => {
-  await loading.classList.add(HIDDEN);
   return await read();
 };
 
@@ -189,7 +188,7 @@ const addPost = async ({
   await post(postData);
 
   const data = await fetchData();
-  setUI({
+  await setUI({
     data: data,
     min: data.length - 1,
     max: data.length,
@@ -287,6 +286,8 @@ const init = async _ => {
     max: initialData.length,
     insertPosition: 'beforeend'
   });
+
+  await loading.classList.add(HIDDEN);
 
   changeURL({
     parameter: 'posts=all',
