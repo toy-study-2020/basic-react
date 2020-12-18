@@ -150,14 +150,16 @@ const setUI = ({
                 <button
                   type="button"
                   class="btnModify"
-                  data-index="1">
+                  data-index="${id}">
                   MODIFY
                 </button>
               </li>
               <li>
                 <button
                   type="button"
-                  class="btnDelete">DELETE
+                  class="btnDelete"
+                  data-index="${id}">
+                  DELETE
                 </button>
               </li>
             </ul>
