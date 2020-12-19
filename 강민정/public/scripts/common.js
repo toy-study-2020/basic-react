@@ -213,20 +213,43 @@ const setButtons = ({target}) => {
       el: btnWrap
     });
 
-    btn.addEventListener('click', _ => {
-      const elements = {
-        title: target.querySelector('input'),
-        author: target.querySelector(AUTHOR.replace('#', '.')),
-        description: target.querySelector('textarea'),
-        toggleClass: 'modify'
-      };
+    const prevData = {
+      title: target.querySelector('input').value,
+      description: target.querySelector('textarea').value
+    };
 
-      modifyMethod[btnText.toLocaleLowerCase()]({
-        target,
-        elements
-      });
+    Object.freeze(prevData);
+
+    btn.addEventListener('click', _ => {
+      onClickButton({target, btnText, prevData});
     });
   }
+};
+
+const onClickButton = ({target, btnText, prevData}) => {
+  const elements = {
+    title: target.querySelector('input'),
+    author: target.querySelector(AUTHOR.replace('#', '.')),
+    description: target.querySelector('textarea'),
+    toggleClass: 'modify'
+  };
+
+  if (btnText === 'CONFIRM') {
+    const currentData = {
+      title: elements.title.value,
+      description: elements.description.value
+    };
+
+    if (JSON.stringify(prevData) === JSON.stringify(currentData)) {
+      return alert(`변경 내역이 없습니다.`);
+    }
+  }
+
+  modifyMethod[btnText.toLocaleLowerCase()]({
+    target,
+    elements,
+    prevData
+  });
 }
 
 const formClear = _ => {
