@@ -32,9 +32,9 @@ const changeURL = ({
   parameter: param,
   method: method
 }) => {
-  const state = { 'page_id': 1, 'user_id': 5 }
-  const title = '';
-  const url = `./index.html?${param}`;
+  const state = null
+  const title = null;
+  const url = `${param}`;
 
   history[method](state, title, url)
 };
