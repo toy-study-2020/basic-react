@@ -439,8 +439,15 @@ const onClickPost = e => {
 };
 
 btnAdd.addEventListener('click', _ => {
-  addPost({type: 'posts'});
   modifyMethod.cancel({});
+  addPost({type: 'posts'})
+    .then(_ => {
+      toggleClassAll({
+        el: DESCRIPTION_ELEMENT,
+        methodType: 'add',
+        toggleClass: HIDDEN
+      });
+    });
 });
 
 postEl.addEventListener('click', onClickPost);
