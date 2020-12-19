@@ -21,9 +21,9 @@ const insertEl = ({
 }
 
 const toggleClassMethod = ({
-  el: el,
-  methodType: methodType,
-  toggleClass: toggleClass
+  el,
+  methodType,
+  toggleClass
 }) => {
   el.classList[methodType](toggleClass);
 };
