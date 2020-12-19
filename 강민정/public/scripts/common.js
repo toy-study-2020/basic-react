@@ -71,7 +71,7 @@ const FETCH = {
     desc
   }) => {
     const response = await fetch(`${URL}/${type}/${id}`, {
-      method: 'PUT',
+      method: 'PATCH',
       body: JSON.stringify({
         title,
         author,
@@ -90,8 +90,8 @@ const FETCH = {
     const response = await fetch(`${URL}/${type}/${id}`, {
       method: 'DELETE'
     });
-    if (response.ok) {
-      await console.log(FETCH.getDB());
+    if (!response.ok) {
+      console.error('can not delete');
     }
   }
 };
