@@ -59,24 +59,29 @@ header strong {
       box-sizing: border-box;
       resize: none; }
 
-.posts .btnConfirm {
-  display: none; }
-
-.posts .btnModify {
-  display: inline-block; }
-
-.posts.modify .btnModify {
-  display: none; }
-
-.posts.modify .btnConfirm {
-  display: inline-block; }
-
 .posts > li {
   padding: 15px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   opacity: 0;
   animation: fadeIn 1s ease-in-out;
   animation-fill-mode: forwards; }
+  .posts > li.hidden {
+    display: none; }
+  .posts > li.modify .btnModify,
+  .posts > li.modify .btnDelete {
+    display: none; }
+  .posts > li.modify .btnConfirm,
+  .posts > li.modify .btnCancel {
+    display: inline-block; }
+  .posts > li .btnConfirm,
+  .posts > li .btnCancel {
+    display: none; }
+  .posts > li .btnModify,
+  .posts > li .btnDelete {
+    display: inline-block; }
+
+.posts .modify .btnAdd {
+  display: none; }
 
 .posts .titleInfoWrap {
   display: flex;
