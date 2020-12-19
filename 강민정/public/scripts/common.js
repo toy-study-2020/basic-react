@@ -112,6 +112,7 @@ const setUI = ({
   min,
   max,
   insertPosition: position,
+  target: wrapEl
 }) => {
   data
     .reverse()
@@ -152,9 +153,9 @@ const setUI = ({
         </div>
       `;
       insertEl({
-        target: postEl,
+        target: typeof wrapEl === 'undefined' ? postEl : wrapEl,
         position: position,
-        element: post
+        el: post
       });
 
       setButtons({
@@ -265,18 +266,58 @@ const toggleDescription = ({target}) => {
   })
 };
 
-const postModify = ({el: el}) => {
-  postEl.classList.add('modify');
-  const title = el.querySelector(`input[name="${TITLE.replace('#', '')}"]`);
-  const description = el.querySelector(`textarea[name="${DESCRIPTION.replace('#', '')}"]`);
+const modifyMethod = {
+  modify: ({target, elements}) => {
+    target.classList.add(elements.toggleClass);
+    elements.title.readOnly = false;
+    elements.description.readOnly = false;
+  },
+  confirm: async ({target, elements}) => {
+    const modifyData = {
+      type: 'posts',
+      id: target.dataset.index,
+      title: elements.title.value,
+      author: elements.author.textContent,
+      desc: elements.description.value
+    };
 
-  title.readOnly = false;
-  description.readOnly = false;
+    const {type, id, title, author, desc} = modifyData;
+
+    await update({
+      type,
+      id,
+      title,
+      author,
+      desc
+    });
+
+    await loading.classList.remove(HIDDEN);
+
+    const nextElement = await target.nextElementSibling ? target.nextElementSibling : postEl;
+    const position = await target.nextElementSibling ? 'beforebegin' : 'beforeend';
+
+    const data = await fetchData();
+    await target.classList.add(HIDDEN);
+    await setUI({
+      data: data,
+      min: id - 1,
+      max: id,
+      insertPosition: position,
+      target: nextElement
+    });
+    await target.remove();
+    await postEl.querySelector(`li[data-index="${id}"] .descriptionInfoWrap`).classList.remove(HIDDEN);
+    await loading.classList.add(HIDDEN);
+  },
+  cancel: ({target, elements}) => {
+    target.classList.remove(elements.toggleClass);
+    elements.title.readOnly = true;
+    elements.description.readOnly = true;
+  },
+  delete: ({target}) => {
+    console.log('delete')
+  }
 };
-
-const postDelete = _ => {
-  console.log('delete');
-}
 
 const postEvent = e => {
   e.preventDefault();
