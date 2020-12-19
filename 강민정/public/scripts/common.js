@@ -338,7 +338,7 @@ const toggleDescription = ({target}) => {
   });
 
   changeURL({
-    parameter: `posts=${postNumber}`,
+    parameter: `/post/${postNumber}`,
     method: 'pushState'
   })
 };
@@ -348,6 +348,10 @@ const modifyMethod = {
     target.classList.add(elements.toggleClass);
     elements.title.readOnly = false;
     elements.description.readOnly = false;
+    changeURL({
+      parameter: `/post/${target.dataset.index}`,
+      method: 'pushState'
+    });
   },
   confirm: async ({target, elements}) => {
     const modifyData = {
