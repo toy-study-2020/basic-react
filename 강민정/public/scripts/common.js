@@ -13,11 +13,11 @@ import {
   toggleClassAll
 } from './method.js';
 
-const {LOADING, POSTS, DESCRIPTION_ELEMENT, BTN, ADD_FORM} = ELEMENTS_CLASS;
+const {LOADING, POSTS, DESCRIPTION_ELEMENT, BUTTON_ELEMENT, BTN, ADD_FORM} = ELEMENTS_CLASS;
 const {WRAP, TITLE, AUTHOR, DESCRIPTION} = ADD_FORM;
 const {HIDDEN} = TOGGLE_CLASS;
 const {MAX_POST} = MAGIC_NUMBER;
-const {ADD, DELETE, MODIFY, CONFIRM} = BTN;
+const {ADD, DELETE, MODIFY, CANCEL, CONFIRM} = BTN;
 
 const loading = docSelector({el: LOADING});
 const postEl = docSelector({el: POSTS});
@@ -146,31 +146,7 @@ const setUI = ({
               readonly>${val.desc ? val.desc : '내용이 없습니다.'}</textarea>
           </div>
           <div class="buttonWrap">
-            <ul>
-              <li>
-                <button
-                  type="button"
-                  class="btnModify"
-                  data-index="${id}">
-                  MODIFY
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="btnConfirm"
-                  data-index="${id}">
-                  CONFIRM
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  class="btnDelete"
-                  data-index="${id}">
-                  DELETE
-                </button>
-              </li>
+            <ul class="buttons">
             </ul>
           </div>
         </div>
@@ -180,8 +156,58 @@ const setUI = ({
         position: position,
         element: post
       });
+
+      setButtons({
+        target: post
+      });
     });
 };
+
+const setButtons = ({target}) => {
+  const buttonEl = target.querySelector(BUTTON_ELEMENT);
+  const buttons = {
+    btnModify: MODIFY,
+    btnConfirm: CONFIRM,
+    btnCancel: CANCEL,
+    btnDelete: DELETE
+  };
+
+  for (const [key, value] of Object.entries(buttons)) {
+    const btnWrap = createEl({tag: 'li'});
+    const btnClass = value.replace('.', '');
+    const btnText = btnClass.replace('btn', '').toUpperCase();
+    const btn = createEl({
+      tag: 'button',
+      attribute: {
+        type: 'button',
+        className: btnClass
+      }
+    });
+
+    btn.textContent = btnText;
+    btnWrap.append(btn);
+
+    insertEl({
+      target: buttonEl,
+      position: 'beforeend',
+      el: btnWrap
+    });
+
+    btn.addEventListener('click', _ => {
+      const elements = {
+        title: target.querySelector('input'),
+        author: target.querySelector(AUTHOR.replace('#', '.')),
+        description: target.querySelector('textarea'),
+        toggleClass: 'modify'
+      };
+
+      modifyMethod[btnText.toLocaleLowerCase()]({
+        target,
+        elements
+      });
+    });
+  }
+}
 
 const formClear = _ => {
   titleForm.value = '';
