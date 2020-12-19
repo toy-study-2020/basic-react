@@ -132,7 +132,12 @@ const setUI = ({
     .filter(posts => posts.id > min && posts.id <= max)
     .map(val => {
       const {id, title, author} = val;
-      const post = createEl({tag: 'li'});
+      const post = createEl({
+        tag: 'li',
+        attribute: {
+          className: 'post'
+        }
+      });
       post.dataset.index = id;
       post.innerHTML = `
         <div class="titleInfoWrap">
