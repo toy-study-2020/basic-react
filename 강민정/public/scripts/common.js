@@ -41,17 +41,17 @@ const changeURL = ({
 
 const FETCH = {
   postDB: async ({
-    type: type,
-    title: title,
-    author: author,
-    desc: desc
+    type,
+    title,
+    author,
+    desc
   }) => {
     const response = await fetch(`${URL}/${type}`, {
       method: 'POST',
       body: JSON.stringify({
-        title: title,
-        author: author,
-        desc: desc
+        title,
+        author,
+        desc
       }),
       headers: HEADERS
     });
@@ -64,16 +64,18 @@ const FETCH = {
     if (response.ok) return await response.json();
   },
   updateDB: async ({
-    type: type,
-    id: id,
-    title: title,
-    author: author
+    type,
+    id,
+    title,
+    author,
+    desc
   }) => {
     const response = await fetch(`${URL}/${type}/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        title: title,
-        author: author
+        title,
+        author,
+        desc
       }),
       headers: HEADERS
     });
@@ -107,10 +109,10 @@ const fetchData = async _ => {
 };
 
 const setUI = ({
-  data: data,
-  min: min,
-  max: max,
-  insertPosition: position
+  data,
+  min,
+  max,
+  insertPosition: position,
 }) => {
   data
     .reverse()
@@ -189,7 +191,7 @@ const formClear = _ => {
 }
 
 const addPost = async ({
-  type: type
+  type
 }) => {
   loading.classList.remove(HIDDEN);
 
@@ -214,7 +216,7 @@ const addPost = async ({
   await formClear();
 };
 
-const toggleDescription = ({target: target}) => {
+const toggleDescription = ({target}) => {
   const link = target.closest('li');
   const description = link.querySelector(DESCRIPTION_ELEMENT);
   const method = description.classList.contains('hidden') ? 'remove' : 'add';
