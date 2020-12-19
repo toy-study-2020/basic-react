@@ -319,7 +319,7 @@ const modifyMethod = {
   }
 };
 
-const postEvent = e => {
+const onClickPost = e => {
   e.preventDefault();
   let target = e.target;
   while (target !== undefined && target.parentNode) {
@@ -335,7 +335,7 @@ btnAdd.addEventListener('click', _ => {
   addPost({type: 'posts'});
 });
 
-postEl.addEventListener('click', postEvent);
+postEl.addEventListener('click', onClickPost);
 
 const infinityScroll = intersectionObserver => {
   const post = postEl.querySelectorAll('li');
