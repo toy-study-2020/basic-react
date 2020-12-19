@@ -17,6 +17,5 @@ export const deleteComment = async id => {
 
 export const updateComment = async ({id, body, postId}) => {
   const response = await axios.put(`http://localhost:3030/comments/${id}`, {body, postId})
-  console.log(response.data)
   return response.data
 }
