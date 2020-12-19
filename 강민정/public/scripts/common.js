@@ -180,7 +180,7 @@ const setUI = ({
       setButtons({
         target: post
       });
-    });
+    }).join('');
 };
 
 const setButtons = ({target}) => {
