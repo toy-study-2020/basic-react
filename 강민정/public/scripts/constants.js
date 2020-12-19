@@ -28,7 +28,8 @@ const TOGGLE_CLASS = {
 }
 
 const MAGIC_NUMBER = {
-  MAX_POST: 20
+  MAX_POST: 20,
+  ONE: 1
 };
 
 export {
