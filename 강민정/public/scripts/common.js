@@ -130,6 +130,7 @@ const setUI = ({
                 type="text"
                 name="title"
                 value="${title}"
+                autocomplete="off"
                 readonly
                 title="제목">
             </span>
