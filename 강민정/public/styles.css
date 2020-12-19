@@ -65,6 +65,10 @@ header strong {
   opacity: 0;
   animation: fadeIn 1s ease-in-out;
   animation-fill-mode: forwards; }
+  .posts > li.no {
+    padding: 80px;
+    text-align: center;
+    border: none; }
   .posts > li.hidden {
     display: none; }
   .posts > li.modify .btnModify,
