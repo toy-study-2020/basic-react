@@ -114,6 +114,19 @@ const setUI = ({
   insertPosition: position,
   target: wrapEl
 }) => {
+  if (data.length === 0) {
+    return noPost();
+  } else {
+    const noPost = docSelector({el: NO_POST});
+    noPost?.classList.add(HIDDEN);
+    noPost?.remove();
+
+    changeURL({
+      parameter: '/post/all',
+      method: 'replaceState'
+    });
+  }
+
   data
     .reverse()
     .filter(posts => posts.id > min && posts.id <= max)
@@ -215,6 +228,27 @@ const formClear = _ => {
   titleForm.value = '';
   descriptionForm.value = '';
   authorForm.value = '';
+};
+
+const noPost = _ => {
+  const noPost = createEl({
+    tag: 'li',
+    attribute: {
+      className: 'no'
+    }
+  });
+
+  noPost.textContent = '게시글이 없습니다.';
+  insertEl({
+    target: postEl,
+    position: 'afterbegin',
+    el: noPost
+  });
+
+  changeURL({
+    parameter: `/post/no`,
+    method: `replaceState`
+  });
 }
 
 const addPost = async ({
