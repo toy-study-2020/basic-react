@@ -111,6 +111,7 @@ const setUI = ({
   data,
   min,
   max,
+  index: isIndex = false,
   insertPosition: position,
   target: wrapEl
 }) => {
@@ -129,7 +130,7 @@ const setUI = ({
 
   data
     .reverse()
-    .filter(posts => posts.id > min && posts.id <= max)
+    .filter((posts, index) => isIndex ? index >= min && index < max : posts.id > min && posts.id <= max)
     .map(val => {
       const {id, title, author} = val;
       const post = createEl({
@@ -405,13 +406,13 @@ btnAdd.addEventListener('click', _ => {
 
 postEl.addEventListener('click', onClickPost);
 
-const infinityScroll = intersectionObserver => {
-  const post = postEl.querySelectorAll('li');
+const infinityScroll = (intersectionObserver, firstIndex) => {
+  const post = postEl.querySelectorAll(POST);
+  const minIndex = Number(post[post.length - ONE].dataset.index);
   post.forEach(el => {
-    const postIndex = Number(el.dataset.index);
-    if (!el.nextSibling && postIndex > 1) {
+    if (!el.nextSibling && firstIndex < minIndex) {
       intersectionObserver.observe(el);
-    } else if (postIndex <= 1) {
+    } else if (minIndex === firstIndex) {
       intersectionObserver.disconnect();
     }
   });
@@ -425,35 +426,52 @@ const io = new IntersectionObserver((entries, observe) => {
   entries.forEach(async (entry) => {
     if (entry.isIntersecting) {
       loading.classList.remove(HIDDEN);
-      const entriesIndex = await entries[0].target.dataset.index - 1;
+      const entriesIndex = await entries[0].target.dataset.index - ONE;
+      const data = await fetchData();
       await setUI({
-        data: await fetchData(),
+        data: data,
         min: entriesIndex - MAX_POST,
         max: entriesIndex,
         insertPosition: 'beforeend'
       });
       await loading.classList.add(HIDDEN);
-      await infinityScroll(observe);
+      await infinityScroll(observe, data[data.length - ONE].id);
     }
   });
 }, observerOption);
 
+const setCount = ({data}) => {
+  const index = {
+    max: 0,
+    min: 0
+  };
+  if (data.length === 0) return index;
+  index.max = data.length - ONE > MAX_POST ? MAX_POST : data.length + ONE;
+  index.min = 0;
+  return index;
+};
+
 const init = async _ => {
   const initialData = await fetchData();
+  const index = await setCount({data: initialData});
   await setUI({
     data: initialData,
-    min: initialData.length - MAX_POST,
-    max: initialData.length,
+    min: index.min,
+    max: index.max,
+    index: true,
     insertPosition: 'beforeend'
   });
 
   await loading.classList.add(HIDDEN);
 
-  changeURL({
-    parameter: 'posts=all',
-    method: 'replaceState'
-  });
-  infinityScroll(io);
+
+  if (index.max !== 0) {
+    changeURL({
+      parameter: '/post/all',
+      method: 'replaceState'
+    });
+    await infinityScroll(io, index.max)
+  }
 };
 
 if (document.readyState === 'complete') {
