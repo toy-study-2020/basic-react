@@ -282,7 +282,6 @@ const noPost = _ => {
 const addPost = async ({
   type
 }) => {
-  loading.classList.remove(HIDDEN);
 
   const postData = {
     type: type,
@@ -291,6 +290,12 @@ const addPost = async ({
     author: authorForm.value
   };
 
+  const nullData = Object.keys(postData).filter(key => postData[key] === '');
+  if (nullData.length > 0) {
+    return alert(`${nullData.map(form => form.toUpperCase()).join(', ')} 채워주세요.`)
+  }
+
+  loading.classList.remove(HIDDEN);
   await post(postData);
 
   const data = await fetchData();
