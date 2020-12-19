@@ -38,7 +38,6 @@ const toggleClassAll = ({
     element.classList[methodType](toggleClass);
   })
 };
-}
 
 export {
   docSelector,
