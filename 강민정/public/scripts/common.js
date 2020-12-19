@@ -255,28 +255,12 @@ const postDelete = _ => {
 const postEvent = e => {
   e.preventDefault();
   let target = e.target;
-  switch (target.tagName) {
-  case 'INPUT':
-    if (postEl.classList.contains('modify')) return;
-    toggleDescription({target: target});
-    break;
-  case 'BUTTON':
-    const index = target.dataset.index;
-    if (target.className === MODIFY.replace('.', '')) {
-      postModify({
-        el: postEl.querySelector(`li[data-index="${index}"]`)
-      });
-    } else if (target.className === DELETE.replace('.', '')) {
-      postDelete();
-    } else {
-      update({
-
-      });
+  while (target !== undefined && target.parentNode) {
+    if (target.tagName === 'INPUT') {
+      if (target.closest('li').classList.contains('modify')) return;
+      return toggleDescription({target: target});
     }
-    break;
-  default:
     target = target.parentNode;
-    break;
   }
 };
 
