@@ -323,6 +323,8 @@ const toggleDescription = ({target}) => {
   const method = description.classList.contains('hidden') ? 'remove' : 'add';
   const postNumber = method === 'remove' ? link.dataset.index : 'all';
 
+  modifyMethod.cancel({target: link});
+
   toggleClassAll({
     el: DESCRIPTION_ELEMENT,
     methodType: 'add',
@@ -385,10 +387,16 @@ const modifyMethod = {
     await postEl.querySelector(`li[data-index="${id}"] .descriptionInfoWrap`).classList.remove(HIDDEN);
     await loading.classList.add(HIDDEN);
   },
-  cancel: ({target, elements}) => {
-    target.classList.remove(elements.toggleClass);
-    elements.title.readOnly = true;
-    elements.description.readOnly = true;
+  cancel: ({target = 'all'}) => {
+    const modifyPost = postEl.querySelector('.modify');
+    if (!modifyPost) return;
+    modifyPost.classList.remove('modify');
+    modifyPost.querySelector('input').readOnly = true;
+    modifyPost.querySelector('textarea').readOnly = true;
+    changeURL({
+      parameter: `/post/${target ? target.dataset.index : 'all'}`,
+      method: 'pushState'
+    })
   },
   delete: ({target}) => {
     console.log('delete')
@@ -409,6 +417,7 @@ const onClickPost = e => {
 
 btnAdd.addEventListener('click', _ => {
   addPost({type: 'posts'});
+  modifyMethod.cancel({});
 });
 
 postEl.addEventListener('click', onClickPost);
