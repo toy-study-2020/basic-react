@@ -1,23 +1,23 @@
 import React from 'react';
 import './CommentsList.scss';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
-import DeleteIcon from '@material-ui/icons/Delete';
+import CommentDesc from './CommentDesc'
 
-const CommentsList = ({comments, onDelete}) => {
 
+
+const CommentsList = ({comments, onDelete, onUpdate}) => {
   return (
     <ol className={"comments_list"}>
       {
         comments.length > 0
         ?
-        comments.map((desc) => {
+        comments.map((comment) => {
           return (
-            <li key={desc.id}>
-              <p>{desc.body}</p>
-              <div className="comments_btns">
-                <AutorenewIcon/>
-                <DeleteIcon onClick={() => onDelete(desc.id)}/>
-              </div>
+            <li key={comment.id}>
+              <CommentDesc
+                comment={comment}
+                onDelete={onDelete}
+                onUpdate={onUpdate}
+              />
             </li>
           )
         })

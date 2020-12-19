@@ -6,8 +6,11 @@ const PostsListContainer = () => {
   const [posts, setPosts] = useState([])
   
   useEffect(() => {
-    getPosts().then(data => setPosts(data))
+    getPosts().then(data => {
+      setPosts(data.reverse())
+    })
   }, [])
+
   
   return (
     <PostsListPresneter posts={posts}/>

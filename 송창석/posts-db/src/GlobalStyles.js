@@ -13,6 +13,20 @@ const GlobalStyles = createGlobalStyle`
   body{
     font-size: 14px;
   }
+  button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    outline: none;
+  }
+  input {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    outline: none;
+    border: 0;
+  }
   .btn {
     font-weight: bold;
     background-color: #fff;

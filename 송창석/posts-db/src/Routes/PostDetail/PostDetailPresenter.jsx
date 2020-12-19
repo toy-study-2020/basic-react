@@ -35,7 +35,7 @@ const PostDetailPresenter = ({ post, id, goBack, onDelete }) => {
           <h4>제목 : {post.title}</h4>
           <span>작성자 : {post.author}</span>
         </section>
-        <CommentsWrap />
+        <CommentsWrap id={id} />
       </div>
     </>
   );

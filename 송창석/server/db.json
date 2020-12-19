@@ -6,14 +6,9 @@
       "author": "송창석"
     },
     {
-      "title": "22222",
+      "title": "2222",
       "author": "송창석",
       "id": 2
-    },
-    {
-      "title": "333",
-      "author": "송창석",
-      "id": 3
     }
   ],
   "comments": [
@@ -38,13 +33,13 @@
       "id": 4
     },
     {
-      "body": "3-1",
-      "postId": 3,
+      "body": "2-4",
+      "postId": 2,
       "id": 5
     },
     {
-      "body": "3-2",
-      "postId": 3,
+      "body": "2-5",
+      "postId": 2,
       "id": 6
     }
   ],

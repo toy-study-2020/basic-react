@@ -1,63 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { createComment, deleteComment, getPostCommentById } from '../../api/comments';
+import { createComment, deleteComment, getPostCommentById, updateComment } from '../../api/comments';
 import CommentCreate from '../CommentCreate/CommentCreate';
 import CommentsList from '../CommentsList/CommentsList'
 
-const fetchPostCommentById = async id => {
+const fetchPostCommentById = async (id) => {
   const res = await getPostCommentById(id)
   return res
 }
 
-const CommentsWrapContainer = () => {
-  const {id} = useParams()
+const CommentsWrapContainer = ({id}) => {
   const [comments, setComments] = useState([])
-  const [comment, setComment] = useState({
-    body: "",
-    postId: Number(id)
-  })
 
   useEffect(() => {
     const fetch = fetchPostCommentById(id)
-    fetch.then(data => setComments(data))
+    fetch.then(comments => setComments(comments.reverse()))
   }, [id])
 
-  const handleChange = e => setComment({
-    ...comment,
-    [e.target.name] : e.target.value
-  })
-  const handleCreate = e => {
-    e.preventDefault()
-    const {body, postId} = comment
-    if(body !== "") {
-      createComment({body, postId})
-      const fetch = fetchPostCommentById(id)
-      fetch.then(data => setComments(data))
-      setComment({
-        ...comment,
-        body: ""
-      })
-    } else {
-      alert("내용을 입력해주세요.")
-    }
+  
+  const handleCreate = async ({body, postId}) => {
+    const res = await createComment({body, postId})
+    setComments(comments => comments.concat(res))
+    const fetch = fetchPostCommentById(id)
+    fetch.then(comments => setComments(comments.reverse()))
   }
+
   const handleDelete = commentId => {
     deleteComment(commentId)
     const fetch = fetchPostCommentById(id)
-    fetch.then(data => setComments(data))
+    fetch.then(comments => setComments(comments.reverse()))
+  }
+
+  const handleUpdate = ({id, body, postId}) => {
+    updateComment({id, body, postId})
+    const fetch = fetchPostCommentById(postId)
+    fetch.then(comments => setComments(comments.reverse()))
   }
 
 
   return (
     <>
       <CommentCreate
-        body={comment.body}
-        onChange={handleChange}
+        id={id}
         onSubmit={handleCreate}
       />
       <CommentsList
         comments={comments}
         onDelete={handleDelete}
+        onUpdate={handleUpdate}
       />
     </>
   );
