@@ -398,8 +398,31 @@ const modifyMethod = {
       method: 'pushState'
     })
   },
-  delete: ({target}) => {
-    console.log('delete')
+  delete: async ({target}) => {
+    const id = target.dataset.index;
+    changeURL({
+      parameter: `/post/${id}`,
+      method: 'pushState'
+    })
+    const msg = confirm('삭제하시겠습니까?');
+    if (msg) {
+      await loading.classList.remove(HIDDEN);
+      await del({
+        type: 'posts',
+        id
+      });
+      const data = await fetchData();
+      if (data.length === 0) noPost();
+      await target.classList.add(HIDDEN);
+      await loading.classList.add(HIDDEN);
+      await target.remove();
+    } else {
+      changeURL({
+        parameter: `/post/${id}`,
+        method: 'pushState'
+        }
+      )
+    }
   }
 };
 
