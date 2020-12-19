@@ -4,8 +4,10 @@ const HEADERS = {'Content-type': 'application/json; charset=UTF-8'};
 const ELEMENTS_CLASS = {
   LOADING: '.loading',
   POSTS: '.posts',
+  POST: '.post',
   DESCRIPTION_ELEMENT: '.descriptionInfoWrap',
   BUTTON_ELEMENT: '.buttons',
+  NO_POST: '.no',
   BTN: {
     ADD: '.btnAdd',
     DELETE: '.btnDelete',
