@@ -1,21 +1,21 @@
 const docSelector = ({
-  el: el,
+  el,
   all: isAll
 }) => {
   if (isAll) return document.querySelectorAll(el);
   else return document.querySelector(el);
 };
 
-const createEl = ({
-  tag: tag
-}) => {
-  return document.createElement(tag);
+const createEl = ({tag, attribute}) => {
+  const el = document.createElement(tag);
+  Object.assign(el, attribute);
+  return el;
 };
 
 const insertEl = ({
-  target: target,
+  target,
   position: pos = 'beforebegin',
-  element: el
+  el
 }) => {
   target.insertAdjacentElement(pos, el);
 }
@@ -29,13 +29,13 @@ const toggleClassMethod = ({
 };
 
 const toggleClassAll = ({
-  el: el,
-  methodType: type,
-  toggleClass: toggleClass
+  el,
+  methodType,
+  toggleClass
 }) => {
   const elements = docSelector({el, all: true});
   elements.forEach(element => {
-    element.classList[type](toggleClass);
+    element.classList[methodType](toggleClass);
   })
 };
 }
