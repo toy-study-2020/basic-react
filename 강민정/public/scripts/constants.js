@@ -5,11 +5,13 @@ const ELEMENTS_CLASS = {
   LOADING: '.loading',
   POSTS: '.posts',
   DESCRIPTION_ELEMENT: '.descriptionInfoWrap',
+  BUTTON_ELEMENT: '.buttons',
   BTN: {
     ADD: '.btnAdd',
     DELETE: '.btnDelete',
     MODIFY: '.btnModify',
-    CONFIRM: '.btnConfirm'
+    CONFIRM: '.btnConfirm',
+    CANCEL: '.btnCancel'
   },
   ADD_FORM: {
     WRAP: '.addForm',
