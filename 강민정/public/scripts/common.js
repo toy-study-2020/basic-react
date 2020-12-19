@@ -300,10 +300,16 @@ const addPost = async ({
   await post(postData);
 
   const data = await fetchData();
+  const max = data[data.length - ONE].id;
+  changeURL({
+    parameter: `/post/${max + ONE}`,
+    method: 'replaceState'
+  });
+
   await setUI({
     data: data,
-    min: data.length - 1,
-    max: data.length,
+    min: max - ONE,
+    max: max,
     insertPosition: 'afterbegin'
   });
 
@@ -367,10 +373,11 @@ const modifyMethod = {
 
     const data = await fetchData();
     await target.classList.add(HIDDEN);
+    const max = id;
     await setUI({
       data: data,
-      min: id - 1,
-      max: id,
+      min: max - ONE,
+      max: max,
       insertPosition: position,
       target: nextElement
     });
