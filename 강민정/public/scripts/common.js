@@ -348,7 +348,7 @@ const addPost = async ({
   loading.classList.remove(HIDDEN);
   await post(postData);
 
-  const data = await fetchData();
+  const data = await fetchData({type: 'posts'});
   const max = data[data.length - ONE].id;
 
   await setUI({
