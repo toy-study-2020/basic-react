@@ -48,8 +48,9 @@ const FETCH = {
       await response.json();
     }
   },
-  async getDB () {
-    const response = await fetch(`${URL}/posts`);
+  async getDB ({type}) {
+    if (!type) return;
+    const response = await fetch(`${URL}/${type}`);
     if (response.ok) return await response.json();
   },
   async updateDB ({
@@ -92,8 +93,8 @@ const {
   deleteDB: del
 } = FETCH;
 
-const fetchData = async _ => {
-  return await read();
+const fetchData = async ({type}) => {
+  return await read({type});
 };
 
 const setUI = ({
@@ -267,7 +268,7 @@ const modifyMethod = {
     const nextElement = await target.nextElementSibling ? target.nextElementSibling : postEl;
     const position = await target.nextElementSibling ? 'beforebegin' : 'beforeend';
 
-    const data = await fetchData();
+    const data = await fetchData({type: 'posts'});
     await target.classList.add(HIDDEN);
     const max = id;
     await setUI({
@@ -297,7 +298,7 @@ const modifyMethod = {
         type: 'posts',
         id
       });
-      const data = await fetchData();
+      const data = await fetchData({type: 'posts'});
       if (data.length === 0) noPost();
       await target.classList.add(HIDDEN);
       await loading.classList.add(HIDDEN);
@@ -429,7 +430,7 @@ const io = new IntersectionObserver((entries, observe) => {
     if (entry.isIntersecting) {
       loading.classList.remove(HIDDEN);
       const entriesIndex = await entries[0].target.dataset.index - ONE;
-      const data = await fetchData();
+      const data = await fetchData({type: 'posts'});
       await setUI({
         data: data,
         min: entriesIndex - MAX_POST,
@@ -454,7 +455,7 @@ const setCount = ({data}) => {
 };
 
 const init = async _ => {
-  const initialData = await fetchData();
+  const initialData = await fetchData({type: 'posts'});
   const index = await setCount({data: initialData});
   await setUI({
     data: initialData,
