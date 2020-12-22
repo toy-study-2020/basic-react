@@ -28,17 +28,6 @@ const titleForm = addForm.querySelector(TITLE);
 const authorForm = addForm.querySelector(AUTHOR);
 const descriptionForm = addForm.querySelector(DESCRIPTION);
 
-const changeURL = ({
-  parameter: param,
-  method: method
-}) => {
-  const state = null
-  const title = null;
-  const url = `${param}`;
-
-  history[method](state, title, url)
-};
-
 const FETCH = {
   postDB: async ({
     type,
@@ -121,11 +110,6 @@ const setUI = ({
     const noPost = docSelector({el: NO_POST});
     noPost?.classList.add(HIDDEN);
     noPost?.remove();
-
-    changeURL({
-      parameter: '/post/all',
-      method: 'replaceState'
-    });
   }
 
   data
@@ -273,11 +257,6 @@ const noPost = _ => {
     position: 'afterbegin',
     el: noPost
   });
-
-  changeURL({
-    parameter: `/post/no`,
-    method: `replaceState`
-  });
 }
 
 const addPost = async ({
@@ -301,10 +280,6 @@ const addPost = async ({
 
   const data = await fetchData();
   const max = data[data.length - ONE].id;
-  changeURL({
-    parameter: `/post/${max + ONE}`,
-    method: 'replaceState'
-  });
 
   await setUI({
     data: data,
@@ -336,11 +311,6 @@ const toggleDescription = ({target}) => {
     methodType: method,
     toggleClass: HIDDEN
   });
-
-  changeURL({
-    parameter: `/post/${postNumber}`,
-    method: 'pushState'
-  })
 };
 
 const modifyMethod = {
@@ -348,10 +318,6 @@ const modifyMethod = {
     target.classList.add(elements.toggleClass);
     elements.title.readOnly = false;
     elements.description.readOnly = false;
-    changeURL({
-      parameter: `/post/${target.dataset.index}`,
-      method: 'pushState'
-    });
   },
   confirm: async ({target, elements}) => {
     const modifyData = {
@@ -397,17 +363,9 @@ const modifyMethod = {
     modifyPost.classList.remove('modify');
     modifyPost.querySelector('input').readOnly = true;
     modifyPost.querySelector('textarea').readOnly = true;
-    changeURL({
-      parameter: `/post/${target ? target.dataset.index : 'all'}`,
-      method: 'pushState'
-    })
   },
   delete: async ({target}) => {
     const id = target.dataset.index;
-    changeURL({
-      parameter: `/post/${id}`,
-      method: 'pushState'
-    })
     const msg = confirm('삭제하시겠습니까?');
     if (msg) {
       await loading.classList.remove(HIDDEN);
@@ -420,12 +378,6 @@ const modifyMethod = {
       await target.classList.add(HIDDEN);
       await loading.classList.add(HIDDEN);
       await target.remove();
-    } else {
-      changeURL({
-        parameter: `/post/${id}`,
-        method: 'pushState'
-        }
-      )
     }
   }
 };
@@ -516,10 +468,6 @@ const init = async _ => {
 
 
   if (index.max !== 0) {
-    changeURL({
-      parameter: '/post/all',
-      method: 'replaceState'
-    });
     await infinityScroll(io, index.max)
   }
 };
