@@ -29,12 +29,12 @@ const authorForm = addForm.querySelector(AUTHOR);
 const descriptionForm = addForm.querySelector(DESCRIPTION);
 
 const FETCH = {
-  postDB: async ({
+  async postDB ({
     type,
     title,
     author,
     desc
-  }) => {
+  }) {
     const response = await fetch(`${URL}/${type}`, {
       method: 'POST',
       body: JSON.stringify({
@@ -48,17 +48,17 @@ const FETCH = {
       await response.json();
     }
   },
-  getDB: async _ => {
+  async getDB () {
     const response = await fetch(`${URL}/posts`);
     if (response.ok) return await response.json();
   },
-  updateDB: async ({
+  async updateDB ({
     type,
     id,
     title,
     author,
     desc
-  }) => {
+  }) {
     const response = await fetch(`${URL}/${type}/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({
@@ -72,10 +72,10 @@ const FETCH = {
       await response.json();
     }
   },
-  deleteDB: async ({
+  async deleteDB ({
     type,
     id
-  }) => {
+  }) {
     const response = await fetch(`${URL}/${type}/${id}`, {
       method: 'DELETE'
     });
@@ -237,6 +237,75 @@ const onClickButton = ({target, btnText, prevData}) => {
   });
 }
 
+const modifyMethod = {
+  modify ({target, elements}) {
+    target.classList.add(elements.toggleClass);
+    elements.title.readOnly = false;
+    elements.description.readOnly = false;
+  },
+  async confirm ({target, elements}) {
+    const modifyData = {
+      type: 'posts',
+      id: target.dataset.index,
+      title: elements.title.value,
+      author: elements.author.textContent,
+      desc: elements.description.value
+    };
+
+    const {type, id, title, author, desc} = modifyData;
+
+    await update({
+      type,
+      id,
+      title,
+      author,
+      desc
+    });
+
+    await loading.classList.remove(HIDDEN);
+
+    const nextElement = await target.nextElementSibling ? target.nextElementSibling : postEl;
+    const position = await target.nextElementSibling ? 'beforebegin' : 'beforeend';
+
+    const data = await fetchData();
+    await target.classList.add(HIDDEN);
+    const max = id;
+    await setUI({
+      data: data,
+      min: max - ONE,
+      max: max,
+      insertPosition: position,
+      target: nextElement
+    });
+    await target.remove();
+    await postEl.querySelector(`li[data-index="${id}"] .descriptionInfoWrap`).classList.remove(HIDDEN);
+    await loading.classList.add(HIDDEN);
+  },
+  cancel ({target = 'all'}) {
+    const modifyPost = postEl.querySelector('.modify');
+    if (!modifyPost) return;
+    modifyPost.classList.remove('modify');
+    modifyPost.querySelector('input').readOnly = true;
+    modifyPost.querySelector('textarea').readOnly = true;
+  },
+  async delete ({target}) {
+    const id = target.dataset.index;
+    const msg = confirm('삭제하시겠습니까?');
+    if (msg) {
+      await loading.classList.remove(HIDDEN);
+      await del({
+        type: 'posts',
+        id
+      });
+      const data = await fetchData();
+      if (data.length === 0) noPost();
+      await target.classList.add(HIDDEN);
+      await loading.classList.add(HIDDEN);
+      await target.remove();
+    }
+  }
+};
+
 const formClear = _ => {
   titleForm.value = '';
   descriptionForm.value = '';
@@ -311,75 +380,6 @@ const toggleDescription = ({target}) => {
     methodType: method,
     toggleClass: HIDDEN
   });
-};
-
-const modifyMethod = {
-  modify: ({target, elements}) => {
-    target.classList.add(elements.toggleClass);
-    elements.title.readOnly = false;
-    elements.description.readOnly = false;
-  },
-  confirm: async ({target, elements}) => {
-    const modifyData = {
-      type: 'posts',
-      id: target.dataset.index,
-      title: elements.title.value,
-      author: elements.author.textContent,
-      desc: elements.description.value
-    };
-
-    const {type, id, title, author, desc} = modifyData;
-
-    await update({
-      type,
-      id,
-      title,
-      author,
-      desc
-    });
-
-    await loading.classList.remove(HIDDEN);
-
-    const nextElement = await target.nextElementSibling ? target.nextElementSibling : postEl;
-    const position = await target.nextElementSibling ? 'beforebegin' : 'beforeend';
-
-    const data = await fetchData();
-    await target.classList.add(HIDDEN);
-    const max = id;
-    await setUI({
-      data: data,
-      min: max - ONE,
-      max: max,
-      insertPosition: position,
-      target: nextElement
-    });
-    await target.remove();
-    await postEl.querySelector(`li[data-index="${id}"] .descriptionInfoWrap`).classList.remove(HIDDEN);
-    await loading.classList.add(HIDDEN);
-  },
-  cancel: ({target = 'all'}) => {
-    const modifyPost = postEl.querySelector('.modify');
-    if (!modifyPost) return;
-    modifyPost.classList.remove('modify');
-    modifyPost.querySelector('input').readOnly = true;
-    modifyPost.querySelector('textarea').readOnly = true;
-  },
-  delete: async ({target}) => {
-    const id = target.dataset.index;
-    const msg = confirm('삭제하시겠습니까?');
-    if (msg) {
-      await loading.classList.remove(HIDDEN);
-      await del({
-        type: 'posts',
-        id
-      });
-      const data = await fetchData();
-      if (data.length === 0) noPost();
-      await target.classList.add(HIDDEN);
-      await loading.classList.add(HIDDEN);
-      await target.remove();
-    }
-  }
 };
 
 const onClickPost = e => {
@@ -466,9 +466,8 @@ const init = async _ => {
 
   await loading.classList.add(HIDDEN);
 
-
   if (index.max !== 0) {
-    await infinityScroll(io, index.max)
+    await infinityScroll(io, index.max);
   }
 };
 
