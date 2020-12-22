@@ -430,10 +430,11 @@ const addPost = async ({
 };
 
 const toggleDescription = ({target}) => {
-  const link = target.closest('li');
-  const description = link.querySelector(DESCRIPTION_ELEMENT);
-  const method = description.classList.contains('hidden') ? 'remove' : 'add';
-  const postNumber = method === 'remove' ? link.dataset.index : 'all';
+  const post = target.closest('li');
+  const description = post.querySelector(DESCRIPTION_ELEMENT);
+  const isOpen = description.classList.contains('hidden');
+  const isComment = description.classList.contains('isComment');
+  const method = isOpen ? 'remove' : 'add';
 
   modifyMethod.cancel();
 
@@ -448,6 +449,13 @@ const toggleDescription = ({target}) => {
     methodType: method,
     toggleClass: HIDDEN
   });
+
+  if (isOpen && !isComment) {
+    description.classList.add('isComment');
+    setComment({
+      target: post
+    });
+  }
 };
 
 const onClickPost = e => {
