@@ -307,6 +307,73 @@ const modifyMethod = {
   }
 };
 
+const setComment = async ({
+  target
+}) => {
+  const data = await fetchData({type: 'comments'});
+  const postId = target.dataset.index;
+  const commentUI = await setCommentUI({data, postId});
+  await insertEl({
+    target: target.querySelector(DESCRIPTION_ELEMENT),
+    position: 'beforeend',
+    el: commentUI
+  })
+};
+
+const setCommentUI = ({
+  data,
+  postId: postIndex
+}) => {
+  const commentWrap = createEl({
+    tag: 'div',
+    attribute: {
+      className: 'commentWrap'
+    }
+  });
+  commentWrap.innerHTML = `
+    <strong>COMMENT</strong>
+  `;
+  const comments = createEl({
+    tag: 'ul',
+    attribute: {
+      className: 'comments'
+    }
+  });
+
+  insertEl({
+    target: commentWrap,
+    position: 'beforeend',
+    el: comments
+  });
+  data
+    .reverse()
+    .filter(comment => Number(comment.postId) === Number(postIndex))
+    .map(val => {
+      const {id, title, author} = val;
+
+      const comment = createEl({
+        tag: 'li',
+        attribute: {
+          className: 'comment',
+          dataIndex: id
+        }
+      });
+      comment.innerHTML = `
+      <span class="index">${id}</span>
+      <span class="title">${title}</span>
+      <span class="author">${author}</span>
+    `;
+
+      insertEl({
+        target: comments,
+        position: 'afterbegin',
+        el: comment
+      });
+    });
+
+  return commentWrap;
+};
+
 const formClear = _ => {
   titleForm.value = '';
   descriptionForm.value = '';
