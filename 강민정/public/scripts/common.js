@@ -281,7 +281,7 @@ const modifyMethod = {
     await postEl.querySelector(`li[data-index="${id}"] .descriptionInfoWrap`).classList.remove(HIDDEN);
     await loading.classList.add(HIDDEN);
   },
-  cancel ({target = 'all'}) {
+  cancel () {
     const modifyPost = postEl.querySelector('.modify');
     if (!modifyPost) return;
     modifyPost.classList.remove('modify');
@@ -367,7 +367,7 @@ const toggleDescription = ({target}) => {
   const method = description.classList.contains('hidden') ? 'remove' : 'add';
   const postNumber = method === 'remove' ? link.dataset.index : 'all';
 
-  modifyMethod.cancel({target: link});
+  modifyMethod.cancel();
 
   toggleClassAll({
     el: DESCRIPTION_ELEMENT,
@@ -395,7 +395,7 @@ const onClickPost = e => {
 };
 
 btnAdd.addEventListener('click', _ => {
-  modifyMethod.cancel({});
+  modifyMethod.cancel();
   addPost({type: 'posts'})
     .then(_ => {
       toggleClassAll({
