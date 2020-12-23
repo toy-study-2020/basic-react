@@ -106,9 +106,9 @@ const setUI = ({
   target: wrapEl
 }) => {
   if (data.length === 0) {
-    return noPost();
+    return noPost({target: postEl});
   } else {
-    const noPost = docSelector({el: NO_POST});
+    const noPost = postEl.querySelector(NO_POST);
     noPost?.classList.add(HIDDEN);
     noPost?.remove();
   }
@@ -299,7 +299,7 @@ const modifyMethod = {
         id
       });
       const data = await fetchData({type: 'posts'});
-      if (data.length === 0) noPost();
+      if (data.length === 0) noPost({target: postEl});
       await target.classList.add(HIDDEN);
       await loading.classList.add(HIDDEN);
       await target.remove();
@@ -332,23 +332,17 @@ const setCommentUI = ({
   });
   commentWrap.innerHTML = `
     <strong>COMMENT</strong>
+    <ul></ul>
   `;
-  const comments = createEl({
-    tag: 'ul',
-    attribute: {
-      className: 'comments'
-    }
-  });
-
-  insertEl({
-    target: commentWrap,
-    position: 'beforeend',
-    el: comments
-  });
-  data
+  const comments = commentWrap.querySelector('ul');
+  const filterData = data
     .reverse()
-    .filter(comment => Number(comment.postId) === Number(postIndex))
-    .map(val => {
+    .filter(comment => Number(comment.postId) === Number(postIndex));
+
+  if (filterData.length === 0) {
+    noPost({target: comments});
+  } else {
+    filterData.map(val => {
       const {id, title, author} = val;
 
       const comment = createEl({
@@ -369,7 +363,8 @@ const setCommentUI = ({
         position: 'afterbegin',
         el: comment
       });
-    });
+    }).join('');
+  }
 
   return commentWrap;
 };
@@ -380,7 +375,7 @@ const formClear = _ => {
   authorForm.value = '';
 };
 
-const noPost = _ => {
+const noPost = ({target}) => {
   const noPost = createEl({
     tag: 'li',
     attribute: {
@@ -390,7 +385,7 @@ const noPost = _ => {
 
   noPost.textContent = '게시글이 없습니다.';
   insertEl({
-    target: postEl,
+    target,
     position: 'afterbegin',
     el: noPost
   });
