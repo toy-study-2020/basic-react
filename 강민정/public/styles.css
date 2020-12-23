@@ -99,8 +99,6 @@ header strong {
   padding: 40px 10px 0; }
   .posts .descriptionInfoWrap.hidden {
     display: none; }
-  .posts .descriptionInfoWrap.isComment .commentWrap {
-    opacity: 1; }
 
 .posts .index {
   width: 100px;
@@ -162,34 +160,38 @@ header strong {
   font-size: 16px;
   box-sizing: border-box; }
 
-.commentWrap {
-  opacity: 0;
-  transition: opacity .3s; }
-  .commentWrap strong {
-    display: flex;
-    padding: 20px 10px;
-    margin-top: 10px;
-    border-top: solid 1px #ccc; }
-  .commentWrap li {
-    display: flex;
-    padding: 10px 0;
-    align-items: center; }
-    .commentWrap li span {
-      display: -webkit-box;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      word-break: break-all;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      font-size: 14px;
-      color: #000; }
-  .commentWrap .index {
-    width: 50px; }
-  .commentWrap .author {
-    width: 100px; }
-  .commentWrap .title {
-    flex: 1;
-    padding: 0 10px; }
+.commentWrap strong {
+  display: flex;
+  padding: 20px 10px;
+  margin-top: 10px;
+  border-top: solid 1px #ccc; }
+
+.commentWrap li {
+  display: flex;
+  padding: 10px 0;
+  align-items: center; }
+  .commentWrap li.no {
+    justify-content: center;
+    padding: 30px 0; }
+  .commentWrap li span {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+    color: #000; }
+
+.commentWrap .index {
+  width: 50px; }
+
+.commentWrap .author {
+  width: 100px; }
+
+.commentWrap .title {
+  flex: 1;
+  padding: 0 10px; }
 
 .buttonWrap {
   padding: 30px 0 10px;
