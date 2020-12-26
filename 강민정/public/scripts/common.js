@@ -58,11 +58,12 @@ const FETCH = {
     id,
     title,
     author,
-    desc
+    desc = ''
   }) {
-    const response = await fetch(`${URL}/${type}/${id}`, {
+    const response = await fetch(`${URL}/${type}`, {
       method: 'PATCH',
       body: JSON.stringify({
+        id,
         title,
         author,
         desc
@@ -254,11 +255,16 @@ const modifyMethod = {
       desc: elements.description?.value
     };
 
-    const {type, id, title, author, desc} = modifyData;
+    const {id, title, author, desc} = modifyData;
+    const isPost = modifyData.desc !== null && typeof modifyData.desc !== 'undefined';
+
+    const postId = isPost ? '' :  Number(target.closest('ul').closest('li').dataset.index);
+    const type = isPost ? 'posts' : 'comments';
+    const path = isPost ? `posts/${id}` : `posts/${postId}/comments`;
 
     await update({
-      type,
       id,
+      type: path,
       title,
       author,
       desc
@@ -266,21 +272,39 @@ const modifyMethod = {
 
     await loading.classList.remove(HIDDEN);
 
-    const nextElement = await target.nextElementSibling ? target.nextElementSibling : postEl;
+    const nextElement =
+      await target.nextElementSibling
+        ? target.nextElementSibling
+        : isPost
+        ? postEl
+        : target.closest('ul');
     const position = await target.nextElementSibling ? 'beforebegin' : 'beforeend';
 
-    const data = await fetchData({type: 'posts'});
-    await target.classList.add(HIDDEN);
-    const max = id;
-    await setUI({
-      data: data,
-      min: max - ONE,
-      max: max,
-      insertPosition: position,
-      target: nextElement
-    });
-    await target.remove();
-    await postEl.querySelector(`li[data-index="${id}"] .descriptionInfoWrap`).classList.remove(HIDDEN);
+    const data = await fetchData({type});
+
+    if (isPost) {
+      await target.classList.add(HIDDEN);
+      const max = id;
+      await setUI({
+        data: data,
+        min: max - ONE,
+        max,
+        insertPosition: position,
+        target: nextElement
+      });
+      await target.remove();
+    } else {
+      await target.classList.add(HIDDEN);
+      const max = id;
+      await setCommentUI({
+        data,
+        target: nextElement,
+        min: max - ONE,
+        max,
+        insertPosition: position
+      });
+      await target.remove();
+    }
     await loading.classList.add(HIDDEN);
   },
   cancel () {
@@ -476,7 +500,7 @@ const onClickPost = e => {
   let target = e.target;
   while (target !== undefined && target.parentNode) {
     if (target.tagName === 'INPUT') {
-      if (target.closest('li').classList.contains('modify')) return;
+      if (target.closest('li').classList.contains('modify') || target.closest('li').classList.contains('comment')) return;
       return toggleDescription({target: target});
     }
     target = target.parentNode;
