@@ -310,20 +310,9 @@ const modifyMethod = {
 const setComment = async ({
   target
 }) => {
-  const data = await fetchData({type: 'comments'});
   const postId = target.dataset.index;
-  const commentUI = await setCommentUI({data, postId});
-  await insertEl({
-    target: target.querySelector(DESCRIPTION_ELEMENT),
-    position: 'beforeend',
-    el: commentUI
-  })
-};
-
-const setCommentUI = ({
-  data,
-  postId: postIndex
-}) => {
+  const data = await fetchData({type: `posts/${postId}/comments`});
+  const filterData = data.filter(comment => Number(comment.postId) === Number(postId));
   const commentWrap = createEl({
     tag: 'div',
     attribute: {
