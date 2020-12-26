@@ -332,41 +332,67 @@ const setCommentUI = ({
   });
   commentWrap.innerHTML = `
     <strong>COMMENT</strong>
-    <ul></ul>
+    <ul class="comments"></ul>
   `;
-  const comments = commentWrap.querySelector('ul');
-  const filterData = data
-    .reverse()
-    .filter(comment => Number(comment.postId) === Number(postIndex));
 
-  if (filterData.length === 0) {
-    noPost({target: comments, type: 'comment'});
+  const comments = commentWrap.querySelector('.comments');
+  await insertEl({
+    target: target.querySelector(DESCRIPTION_ELEMENT),
+    position: 'beforeend',
+    el: commentWrap
+  })
+  await setCommentUI({
+    data: filterData,
+    target: comments
+  });
+};
+
+const setCommentUI = ({
+  data,
+  min = 0,
+  max = data.length + ONE,
+  insertPosition: position = 'afterbegin',
+  target
+}) => {
+  if (data.length === 0) {
+    noPost({target, type: 'comment'});
   } else {
-    filterData.map(val => {
-      const {id, title, author} = val;
+    data
+      .reverse()
+      .filter(comment => comment.id > min && comment.id <= max)
+      .map(val => {
+        const {id, title, author} = val;
+        const comment = createEl({
+          tag: 'li',
+          attribute: {
+            className: 'comment'
+          }
+        });
 
-      const comment = createEl({
-        tag: 'li',
-        attribute: {
-          className: 'comment',
-          dataIndex: id
-        }
-      });
-      comment.innerHTML = `
-      <span class="index">${id}</span>
-      <span class="title">${title}</span>
-      <span class="author">${author}</span>
-    `;
+        comment.dataset.index = id;
+        comment.innerHTML = `
+          <span class="index">${id}</span>
+          <span class="title">
+            <input 
+              type="text" 
+              value="${title}"
+              readonly>
+          </span>
+          <span class="author">${author}</span>
+          <div class="buttonWrap">
+            <ul class="buttons"></ul>
+          </div>
+        `;
 
-      insertEl({
-        target: comments,
-        position: 'afterbegin',
-        el: comment
-      });
-    }).join('');
+        insertEl({
+          target,
+          position,
+          el: comment
+        });
+
+        setButtons({target: comment});
+      }).join('');
   }
-
-  return commentWrap;
 };
 
 const formClear = _ => {
