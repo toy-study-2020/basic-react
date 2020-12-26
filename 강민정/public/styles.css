@@ -166,14 +166,14 @@ header strong {
   margin-top: 10px;
   border-top: solid 1px #ccc; }
 
-.commentWrap li {
+.commentWrap .comment {
   display: flex;
   padding: 10px 0;
   align-items: center; }
-  .commentWrap li.no {
+  .commentWrap .comment.no {
     justify-content: center;
     padding: 30px 0; }
-  .commentWrap li span {
+  .commentWrap .comment span {
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
