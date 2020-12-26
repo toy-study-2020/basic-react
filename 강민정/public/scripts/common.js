@@ -201,7 +201,7 @@ const setButtons = ({target}) => {
 
     const prevData = {
       title: target.querySelector('input').value,
-      description: target.querySelector('textarea').value
+      description: target.querySelector('textarea')?.value
     };
 
     Object.freeze(prevData);
@@ -223,7 +223,7 @@ const onClickButton = ({target, btnText, prevData}) => {
   if (btnText === 'CONFIRM') {
     const currentData = {
       title: elements.title.value,
-      description: elements.description.value
+      description: elements.description?.value
     };
 
     if (JSON.stringify(prevData) === JSON.stringify(currentData)) {
@@ -242,15 +242,16 @@ const modifyMethod = {
   modify ({target, elements}) {
     target.classList.add(elements.toggleClass);
     elements.title.readOnly = false;
-    elements.description.readOnly = false;
+    if (elements.description) {
+      elements.description.readOnly = false;
+    }
   },
   async confirm ({target, elements}) {
     const modifyData = {
-      type: 'posts',
       id: target.dataset.index,
       title: elements.title.value,
       author: elements.author.textContent,
-      desc: elements.description.value
+      desc: elements.description?.value
     };
 
     const {type, id, title, author, desc} = modifyData;
@@ -287,7 +288,9 @@ const modifyMethod = {
     if (!modifyPost) return;
     modifyPost.classList.remove('modify');
     modifyPost.querySelector('input').readOnly = true;
-    modifyPost.querySelector('textarea').readOnly = true;
+    if (modifyPost.querySelector('textarea')) {
+      modifyPost.querySelector('textarea').readOnly = true;
+    }
   },
   async delete ({target}) {
     const id = target.dataset.index;
