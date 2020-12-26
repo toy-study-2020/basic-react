@@ -71,21 +71,26 @@ header strong {
     border: none; }
   .posts > li.hidden {
     display: none; }
-  .posts > li.modify .btnModify,
-  .posts > li.modify .btnDelete {
-    display: none; }
-  .posts > li.modify .btnConfirm,
-  .posts > li.modify .btnCancel {
-    display: inline-block; }
-  .posts > li .btnConfirm,
-  .posts > li .btnCancel {
-    display: none; }
-  .posts > li .btnModify,
-  .posts > li .btnDelete {
-    display: inline-block; }
 
 .posts .modify .btnAdd {
   display: none; }
+
+.posts li.modify .description + .buttonWrap .btnModify,
+.posts li.modify .description + .buttonWrap .btnDelete {
+  display: none; }
+
+.posts li.modify .description + .buttonWrap .btnConfirm,
+.posts li.modify .description + .buttonWrap .btnCancel {
+  display: inline-block; }
+
+.posts .description + .buttonWrap {
+  padding: 30px 0 10px; }
+  .posts .description + .buttonWrap .btnConfirm,
+  .posts .description + .buttonWrap .btnCancel {
+    display: none; }
+  .posts .description + .buttonWrap .btnModify,
+  .posts .description + .buttonWrap .btnDelete {
+    display: inline-block; }
 
 .posts .titleInfoWrap {
   display: flex;
@@ -166,14 +171,17 @@ header strong {
   margin-top: 10px;
   border-top: solid 1px #ccc; }
 
-.commentWrap .comment {
+.commentWrap .comment,
+.commentWrap .no {
   display: flex;
   padding: 10px 0;
   align-items: center; }
-  .commentWrap .comment.no {
+  .commentWrap .comment.no,
+  .commentWrap .no.no {
     justify-content: center;
     padding: 30px 0; }
-  .commentWrap .comment span {
+  .commentWrap .comment span,
+  .commentWrap .no span {
     display: -webkit-box;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -192,9 +200,31 @@ header strong {
 .commentWrap .title {
   flex: 1;
   padding: 0 10px; }
+  .commentWrap .title input {
+    cursor: text; }
+
+.commentWrap .buttonWrap button {
+  font-size: 11px;
+  margin-left: 5px;
+  background-color: #00be29; }
+
+.commentWrap .btnConfirm,
+.commentWrap .btnCancel {
+  display: none; }
+
+.commentWrap .btnModify,
+.commentWrap .btnDelete {
+  display: inline-block; }
+
+.commentWrap li.modify .btnModify,
+.commentWrap li.modify .btnDelete {
+  display: none; }
+
+.commentWrap li.modify .btnConfirm,
+.commentWrap li.modify .btnCancel {
+  display: inline-block; }
 
 .buttonWrap {
-  padding: 30px 0 10px;
   text-align: right;
   z-index: 1; }
   .buttonWrap ul {
