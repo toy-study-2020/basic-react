@@ -106,7 +106,7 @@ const setUI = ({
   target: wrapEl
 }) => {
   if (data.length === 0) {
-    return noPost({target: postEl});
+    return noPost({target: postEl, type: 'post'});
   } else {
     const noPost = postEl.querySelector(NO_POST);
     noPost?.classList.add(HIDDEN);
@@ -299,7 +299,7 @@ const modifyMethod = {
         id
       });
       const data = await fetchData({type: 'posts'});
-      if (data.length === 0) noPost({target: postEl});
+      if (data.length === 0) noPost({target: postEl, type: 'post'});
       await target.classList.add(HIDDEN);
       await loading.classList.add(HIDDEN);
       await target.remove();
@@ -340,7 +340,7 @@ const setCommentUI = ({
     .filter(comment => Number(comment.postId) === Number(postIndex));
 
   if (filterData.length === 0) {
-    noPost({target: comments});
+    noPost({target: comments, type: 'comment'});
   } else {
     filterData.map(val => {
       const {id, title, author} = val;
@@ -375,7 +375,7 @@ const formClear = _ => {
   authorForm.value = '';
 };
 
-const noPost = ({target}) => {
+const noPost = ({target, type}) => {
   const noPost = createEl({
     tag: 'li',
     attribute: {
@@ -383,7 +383,7 @@ const noPost = ({target}) => {
     }
   });
 
-  noPost.textContent = '게시글이 없습니다.';
+  noPost.textContent = type === 'post' ? '게시글이 없습니다.' : '댓글이 없습니다.';
   insertEl({
     target,
     position: 'afterbegin',
