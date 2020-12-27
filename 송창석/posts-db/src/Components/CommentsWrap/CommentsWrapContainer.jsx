@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { createComment, deleteComment, getPostCommentById, updateComment } from '../../api/comments';
 import CommentCreate from '../CommentCreate/CommentCreate';
-import CommentsList from '../CommentsList/CommentsList'
-
-const fetchPostCommentById = async (id) => {
-  const res = await getPostCommentById(id)
-  return res
-}
+import CommentsList from '../CommentsList/CommentsList';
 
 const CommentsWrapContainer = ({id}) => {
   const [comments, setComments] = useState([])
 
   useEffect(() => {
-    const fetch = fetchPostCommentById(id)
-    fetch.then(comments => setComments(comments.reverse()))
+    const fetchComments = async () => {
+      const fetch = await getPostCommentById(id)
+      setComments(fetch.reverse())
+    }
+    fetchComments()
   }, [id])
 
   
-  const handleCreate = async ({body, postId}) => {
-    const res = await createComment({body, postId})
-    setComments(comments => comments.concat(res))
-    const fetch = fetchPostCommentById(id)
-    fetch.then(comments => setComments(comments.reverse()))
+  const handleCreate = ({body, postId}) => {
+    createComment({body, postId}).then(async () => {
+      const fetch = await getPostCommentById(id)
+      setComments(fetch.reverse())
+    })
   }
 
   const handleDelete = commentId => {
-    deleteComment(commentId)
-    const fetch = fetchPostCommentById(id)
-    fetch.then(comments => setComments(comments.reverse()))
+    deleteComment(commentId).then(async () => {
+      const fetch = await getPostCommentById(id)
+      setComments(fetch.reverse())
+    })
   }
 
   const handleUpdate = ({id, body, postId}) => {
-    updateComment({id, body, postId})
-    const fetch = fetchPostCommentById(postId)
-    fetch.then(comments => setComments(comments.reverse()))
+    updateComment({id, body, postId}).then(async () => {
+      const fetch = await getPostCommentById(postId)
+      setComments(fetch.reverse())
+    })
   }
 
 
