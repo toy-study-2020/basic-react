@@ -15,25 +15,22 @@ const CommentsWrapContainer = ({id}) => {
   }, [id])
 
   
-  const handleCreate = ({body, postId}) => {
-    createComment({body, postId}).then(async () => {
-      const fetch = await getPostCommentById(id)
-      setComments(fetch.reverse())
-    })
+  const handleCreate = async ({body, postId}) => {
+    await createComment({body, postId})
+    const fetch = await getPostCommentById(id)
+    setComments(fetch.reverse())
   }
 
-  const handleDelete = commentId => {
-    deleteComment(commentId).then(async () => {
-      const fetch = await getPostCommentById(id)
-      setComments(fetch.reverse())
-    })
+  const handleDelete = async commentId => {
+    await deleteComment(commentId)
+    const fetch = await getPostCommentById(id)
+    setComments(fetch.reverse())
   }
 
-  const handleUpdate = ({id, body, postId}) => {
-    updateComment({id, body, postId}).then(async () => {
-      const fetch = await getPostCommentById(postId)
-      setComments(fetch.reverse())
-    })
+  const handleUpdate = async ({id, body, postId}) => {
+    await updateComment({id, body, postId})
+    const fetch = await getPostCommentById(postId)
+    setComments(fetch.reverse())
   }
 
 
