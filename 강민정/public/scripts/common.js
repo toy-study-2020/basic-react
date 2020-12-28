@@ -392,6 +392,20 @@ const setComment = async ({
     data: filterData,
     target: comments
   });
+
+
+  btnAddComment.addEventListener('click', _ => {
+    const commentData = {
+      title: titleForm.value,
+      author: authorForm.value
+    };
+
+    addComment({
+      type: 'comments',
+      commentData,
+      target: comments
+    })
+  });
 };
 
 const setCommentUI = ({
@@ -495,6 +509,39 @@ const addPost = async ({
   await loading.classList.add(HIDDEN);
   await formClear();
 };
+
+const addComment = async ({
+  type,
+  commentData,
+  target
+}) => {
+  const nullData = Object.keys(commentData).filter(key => commentData[key] === '');
+  if (nullData.length > 0) {
+    return alert(`${nullData.map(form => form.toUpperCase()).join(', ')} 채워주세요.`);
+  }
+
+  console.log(commentData);
+
+  loading.classList.remove(HIDDEN);
+  await post({
+    type,
+    commentData
+  });
+
+  const data = await fetchData({type: 'comments'});
+  const max = data[data.length - ONE].id;
+
+  await setCommentUI({
+    data: data,
+    min: max - ONE,
+    max: max,
+    insertPosition: 'afterbegin',
+    target
+  });
+
+  await loading.classList.add(HIDDEN);
+};
+
 
 const toggleDescription = ({target}) => {
   const post = target.closest('li');
