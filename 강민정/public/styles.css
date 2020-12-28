@@ -1,0 +1,273 @@
+html,
+body {
+  height: 100%; }
+
+body {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu; }
+  body button,
+  body input,
+  body textarea {
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu; }
+  body a {
+    text-decoration: none; }
+  body button {
+    -webkit-appearance: none;
+    padding: 3px 8px 5px;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    background-color: #00a3e5;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2); }
+  body a:active,
+  body button:active {
+    opacity: .8; }
+  body * {
+    margin: 0;
+    padding: 0; }
+
+ul,
+ol,
+li {
+  list-style: none; }
+
+.boardWrap {
+  padding: 20px 20px 0; }
+
+header strong {
+  font-size: 18px; }
+
+.addForm {
+  margin-bottom: 30px; }
+  .addForm > div {
+    display: flex;
+    padding: 4px 0; }
+    .addForm > div label {
+      display: flex;
+      width: 150px;
+      align-items: center; }
+      .addForm > div label[for="description"] {
+        align-items: flex-start; }
+    .addForm > div span {
+      flex: auto; }
+    .addForm > div input,
+    .addForm > div textarea {
+      width: 100%;
+      padding: 8px 5px;
+      box-sizing: border-box;
+      resize: none; }
+
+.posts > li {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out;
+  animation-fill-mode: forwards; }
+  .posts > li.no {
+    padding: 80px;
+    text-align: center;
+    border: none; }
+  .posts > li.hidden {
+    display: none; }
+
+.posts .modify .btnAdd {
+  display: none; }
+
+.posts li.modify .description + .buttonWrap .btnModify,
+.posts li.modify .description + .buttonWrap .btnDelete {
+  display: none; }
+
+.posts li.modify .description + .buttonWrap .btnConfirm,
+.posts li.modify .description + .buttonWrap .btnCancel {
+  display: inline-block; }
+
+.posts .description + .buttonWrap {
+  padding: 30px 0 10px; }
+  .posts .description + .buttonWrap .btnConfirm,
+  .posts .description + .buttonWrap .btnCancel {
+    display: none; }
+  .posts .description + .buttonWrap .btnModify,
+  .posts .description + .buttonWrap .btnDelete {
+    display: inline-block; }
+
+.posts .titleInfoWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.posts .descriptionInfoWrap {
+  display: block;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+  padding: 40px 10px 0; }
+  .posts .descriptionInfoWrap.hidden {
+    display: none; }
+
+.posts .index {
+  width: 100px;
+  text-align: center;
+  box-sizing: border-box; }
+
+.posts .titleWrap {
+  flex: 1; }
+
+.posts .title input {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #000;
+  padding-right: 10px;
+  font-size: 16px; }
+
+.posts .authorWrap {
+  width: 150px; }
+
+.posts .author {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  padding: 0 10px;
+  box-sizing: border-box;
+  color: #000;
+  text-align: center; }
+
+.posts input[readonly],
+.posts textarea[readonly] {
+  outline: none;
+  border-color: transparent; }
+
+.posts input[readonly] {
+  cursor: pointer; }
+
+.posts input {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  padding: 8px; }
+
+.posts textarea {
+  padding: 10px; }
+
+.posts input,
+.posts textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  resize: none;
+  font-size: 16px;
+  box-sizing: border-box; }
+
+.commentWrap strong {
+  display: flex;
+  padding: 20px 10px;
+  margin-top: 10px;
+  border-top: solid 1px #ccc; }
+
+.commentWrap .comment,
+.commentWrap .no {
+  display: flex;
+  padding: 10px 0;
+  align-items: center; }
+  .commentWrap .comment.no,
+  .commentWrap .no.no {
+    justify-content: center;
+    padding: 30px 0; }
+  .commentWrap .comment span,
+  .commentWrap .no span {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 14px;
+    color: #000; }
+
+.commentWrap .index {
+  width: 50px; }
+
+.commentWrap .author {
+  width: 100px; }
+
+.commentWrap .title {
+  flex: 1;
+  padding: 0 10px; }
+  .commentWrap .title input {
+    cursor: text; }
+
+.commentWrap .buttonWrap button {
+  font-size: 11px;
+  margin-left: 5px;
+  background-color: #00be29; }
+
+.commentWrap .btnConfirm,
+.commentWrap .btnCancel {
+  display: none; }
+
+.commentWrap .btnModify,
+.commentWrap .btnDelete {
+  display: inline-block; }
+
+.commentWrap li.modify .btnModify,
+.commentWrap li.modify .btnDelete {
+  display: none; }
+
+.commentWrap li.modify .btnConfirm,
+.commentWrap li.modify .btnCancel {
+  display: inline-block; }
+
+.buttonWrap {
+  text-align: right;
+  z-index: 1; }
+  .buttonWrap ul {
+    font-size: 0; }
+  .buttonWrap li {
+    display: inline-block;
+    font-size: 0; }
+  .buttonWrap button {
+    cursor: pointer;
+    margin-left: 10px; }
+
+.loading {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center; }
+  .loading.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s; }
+  .loading i {
+    display: flex;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 0;
+    animation: spin 1s ease-in-out infinite; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }

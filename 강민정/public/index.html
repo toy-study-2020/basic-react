@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD</title>
+  <link
+    rel="stylesheet"
+    href="./styles.css">
+  <script
+    type="module"
+    src="./scripts/common.js"></script>
+</head>
+<body>
+<div class="boardWrap">
+  <header>
+    <strong>NOTICE</strong>
+  </header>
+  <div class="buttonWrap">
+    <button
+      type="button"
+      class="btnAdd">ADD
+    </button>
+  </div>
+  <div class="addForm">
+    <div class="titleWrap">
+      <label for="title">TITLE</label>
+      <span class="titleFrom">
+        <input
+          type="text"
+          id="title"
+          autocomplete="off"
+          placeholder="제목을 입력해주세요.">
+      </span>
+    </div>
+    <div class="authorWrap">
+      <label for="author">AUTHOR</label>
+      <span class="authorForm">
+        <input
+          type="text"
+          id="author"
+          autocomplete="off"
+          placeholder="작성자를 입력해주세요.">
+      </span>
+    </div>
+    <div class="descriptionWrap">
+      <label for="description">DESCRIPTION</label>
+      <span class="descriptionForm">
+        <textarea
+          id="description"
+          placeholder="내용을 입력해주세요."
+        rows="3"></textarea>
+      </span>
+    </div>
+  </div>
+  <div class="contents">
+    <ul class="posts">
+    </ul>
+  </div>
+  <div class="loading">
+    <i>로딩중입니다.</i>
+  </div>
+</div>
+</body>
+</html>
