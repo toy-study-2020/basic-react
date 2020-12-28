@@ -575,9 +575,12 @@ const toggleDescription = ({target}) => {
 const onClickPost = e => {
   e.preventDefault();
   let target = e.target;
+  const isReturn = target.closest('li').classList.contains('modify')
+    || target.closest('li').classList.contains('comment')
+    || target.closest('div').classList.contains('addComment');
   while (target !== undefined && target.parentNode) {
     if (target.tagName === 'INPUT') {
-      if (target.closest('li').classList.contains('modify') || target.closest('li').classList.contains('comment')) return;
+      if (isReturn) return;
       return toggleDescription({target: target});
     }
     target = target.parentNode;
