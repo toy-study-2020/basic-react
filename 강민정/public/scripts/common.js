@@ -21,7 +21,7 @@ const {ADD, DELETE, MODIFY, CANCEL, CONFIRM} = BTN;
 
 const loading = docSelector({el: LOADING});
 const postEl = docSelector({el: POSTS});
-const btnAdd = docSelector({el: ADD});
+const btnAdd = docSelector({el: `.buttonWrap ${ADD}`});
 
 const addForm = docSelector({el: WRAP});
 const titleForm = addForm.querySelector(TITLE);
