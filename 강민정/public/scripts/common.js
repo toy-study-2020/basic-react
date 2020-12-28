@@ -56,10 +56,10 @@ const FETCH = {
   async updateDB ({
     type,
     id,
-    title,
-    author,
-    desc = ''
+    body
   }) {
+    const {title, author} = body;
+    const desc = body?.desc;
     const response = await fetch(`${URL}/${type}`, {
       method: 'PATCH',
       body: JSON.stringify({
@@ -258,16 +258,14 @@ const modifyMethod = {
     const {id, title, author, desc} = modifyData;
     const isPost = modifyData.desc !== null && typeof modifyData.desc !== 'undefined';
 
-    const postId = isPost ? '' :  Number(target.closest('ul').closest('li').dataset.index);
+    const body = isPost ? {title, author, desc} : {title, author};
     const type = isPost ? 'posts' : 'comments';
     const path = isPost ? `posts/${id}` : `comments/${id}`;
 
     await update({
       id,
-      type: path,
-      title,
-      author,
-      desc
+      body,
+      type: path
     });
 
     await loading.classList.remove(HIDDEN);
