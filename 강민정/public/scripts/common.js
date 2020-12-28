@@ -316,15 +316,19 @@ const modifyMethod = {
   },
   async delete ({target}) {
     const id = target.dataset.index;
+    const type = target.classList.contains('comment') ? 'comments' : 'posts';
     const msg = confirm('삭제하시겠습니까?');
     if (msg) {
       await loading.classList.remove(HIDDEN);
       await del({
-        type: 'posts',
+        type,
         id
       });
-      const data = await fetchData({type: 'posts'});
-      if (data.length === 0) noPost({target: postEl, type: 'post'});
+
+      const data = await fetchData({type});
+      if (data.length === 0) noPost({
+        target: target.closest('ul'), type: type.replace('s', '')
+      });
       await target.classList.add(HIDDEN);
       await loading.classList.add(HIDDEN);
       await target.remove();
