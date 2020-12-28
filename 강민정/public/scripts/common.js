@@ -350,10 +350,39 @@ const setComment = async ({
   });
   commentWrap.innerHTML = `
     <strong>COMMENT</strong>
+    <div class="addComment">
+      <label 
+        title="댓글"
+        class="title">
+        <input
+          type="text"
+          name="title"
+          placeholder="댓글"
+          autocomplete="off">
+      </label>
+      <label
+        title="작성자"
+        class="author">
+        <input
+          type="text"
+          name="author"
+          placeholder="작성자"
+          autocomplete="off">
+      </label>
+      <button 
+        type="button"
+        class="btnAdd">
+        ADD
+      </button>
+    </div>
     <ul class="comments"></ul>
   `;
 
   const comments = commentWrap.querySelector('.comments');
+  const titleForm = commentWrap.querySelector('input[name="title"]');
+  const authorForm = commentWrap.querySelector('input[name="author"]');
+  const btnAddComment = commentWrap.querySelector(ADD);
+
   await insertEl({
     target: target.querySelector(DESCRIPTION_ELEMENT),
     position: 'beforeend',
