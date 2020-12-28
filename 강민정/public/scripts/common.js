@@ -260,7 +260,7 @@ const modifyMethod = {
 
     const postId = isPost ? '' :  Number(target.closest('ul').closest('li').dataset.index);
     const type = isPost ? 'posts' : 'comments';
-    const path = isPost ? `posts/${id}` : `posts/${postId}/comments`;
+    const path = isPost ? `posts/${id}` : `comments/${id}`;
 
     await update({
       id,
