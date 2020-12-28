@@ -1,0 +1,33 @@
+.comments_list {
+  margin-top: 20px;
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #666;
+    border-bottom: 1px solid #c6c6c6;
+    input {
+      padding: 5px;
+      border: 1px solid #222;
+      font-size: 16px;
+    }
+  }
+  .comments_btns {
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+      cursor: pointer;
+      & + * {
+        margin-left: 10px;
+      }
+    }
+    button {
+      padding: 8px;
+      font-size: 14px;
+      text-decoration: underline;
+    }
+  }
+}

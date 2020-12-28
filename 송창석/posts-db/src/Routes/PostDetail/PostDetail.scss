@@ -1,0 +1,18 @@
+.detail_wrap {
+  overflow: hidden;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+}
+.sec_detail {
+  margin-bottom: 30px;
+  h4 {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 22px;
+  }
+  span {
+    font-size: 18px;
+  }
+}
