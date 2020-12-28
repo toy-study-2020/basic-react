@@ -389,7 +389,6 @@ const setCommentUI = ({
 
         comment.dataset.index = id;
         comment.innerHTML = `
-          <span class="index">${id}</span>
           <span class="title">
             <input 
               type="text" 
