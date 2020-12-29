@@ -31,13 +31,15 @@ const descriptionForm = addForm.querySelector(DESCRIPTION);
 const FETCH = {
   async postDB ({
     type,
-    title,
-    author,
-    desc
+    body
   }) {
+    const postId = body?.postId;
+    const {title, author} = body;
+    const desc = body?.desc;
     const response = await fetch(`${URL}/${type}`, {
       method: 'POST',
       body: JSON.stringify({
+        postId,
         title,
         author,
         desc
@@ -482,7 +484,6 @@ const addPost = async ({
 }) => {
 
   const postData = {
-    type: type,
     title: titleForm.value,
     desc: descriptionForm.value,
     author: authorForm.value
@@ -494,7 +495,10 @@ const addPost = async ({
   }
 
   loading.classList.remove(HIDDEN);
-  await post(postData);
+  await post({
+    type,
+    body: postData
+  });
 
   const data = await fetchData({type: 'posts'});
   const max = data[data.length - ONE].id;
@@ -520,12 +524,12 @@ const addComment = async ({
     return alert(`${nullData.map(form => form.toUpperCase()).join(', ')} 채워주세요.`);
   }
 
-  console.log(commentData);
+  const postId = target.closest('li').dataset.index;
 
   loading.classList.remove(HIDDEN);
   await post({
     type,
-    commentData
+    body: {...commentData, postId}
   });
 
   const data = await fetchData({type: 'comments'});
